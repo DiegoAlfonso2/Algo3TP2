@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class AlgoFormertest2 {
+public class AlgoFormerEntrega2Test {
 	
 	@Test
 	public void test01moverAlgoFormerPorZonaRocosa() {
