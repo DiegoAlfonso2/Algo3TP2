@@ -1,49 +1,23 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.modos;
 
-public class Modo {
+public abstract class Modo {
+	
+	public abstract Modo cambiarModo();
+	
+	public abstract String avatarModo();
+	
+	public abstract int ataqueModo();
+	
+	public abstract int distAtaqueModo();
+	
+	public abstract int velocidadModo();
 
-	private String avatar;
-	private int ataque;
-	private int distAtaque;
-	private int velocidad;
+	public abstract int atravesarEspinas(int puntosDeVida);
 
-	public Modo(String avatar, int ataque, int distAtaque, int velocidad) {
-		this.avatar = avatar;
-		this.ataque = ataque;
-		this.distAtaque = distAtaque;
-		this.velocidad = velocidad;
-	}
+	public abstract int atravesarPantano();
 
-	public String getAvatar() {
-		return avatar;
-	}
+	public abstract void atravesarNebulosaAndromeda();
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public int getAtaque() {
-		return ataque;
-	}
-
-	public void setAtaque(int ataque) {
-		this.ataque = ataque;
-	}
-
-	public int getDistAtaque() {
-		return distAtaque;
-	}
-
-	public void setDistAtaque(int distAtaque) {
-		this.distAtaque = distAtaque;
-	}
-
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
-	}
-
+	public abstract void atravesarTormentaPsionica();
+		
 }

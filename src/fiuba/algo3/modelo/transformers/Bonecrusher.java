@@ -1,16 +1,47 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.transformers;
 
-/**
- * Created by Julian Garate on 6/4/16.
- */
+import fiuba.algo3.modelo.modos.BonecrusherHumanoide;
+import fiuba.algo3.modelo.modos.Modo;
+
 public class Bonecrusher extends Decepticon{
 
     public Bonecrusher() {
         this.nombre = "Bonecrusher";
         this.puntosDeVida = 200;
-        this.modoActivo = new Modo("Bonecrusher Humanoide", 30, 3, 1);
-        this.modoInactivo = new Modo("Jet Cibertroniano", 30, 3, 8);
+        this.modoActivo = new BonecrusherHumanoide();
+        this.setearCaracteristicas(this.modoActivo);
     }
+	
+	private void setearCaracteristicas(Modo modo) {
+		this.avatar = modo.avatarModo();
+		this.ataque = modo.ataqueModo();
+		this.distAtaque = modo.distAtaqueModo();
+		this.velocidad = modo.velocidadModo();
+	}
+	
+	public void cambiarModo() {
+		modoActivo = this.modoActivo.cambiarModo();
+		this.setearCaracteristicas(this.modoActivo);
+	}
 
+	@Override
+	public void atravesarEspinas() {
+		this.puntosDeVida = this.modoActivo.atravesarEspinas(this.puntosDeVida);
+	}
 
+	@Override
+	public void atravesarPantano() {
+		this.descontarMovimientoPosible(this.modoActivo.atravesarPantano());
+	}
+
+	@Override
+	public void atravesarNebulosaAndromeda() {
+		this.modoActivo.atravesarNebulosaAndromeda();
+	}
+
+	@Override
+	public void atravesarTormentaPsionica() {
+		this.modoActivo.atravesarTormentaPsionica();
+	}
+	
 }

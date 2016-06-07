@@ -1,7 +1,15 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.excepciones.CasilleroOcupadoException;
+import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
+import fiuba.algo3.modelo.superficies.Aire;
+import fiuba.algo3.modelo.superficies.Terreno;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
+
 public class Casillero {
 	
+	private Terreno terreno;
+	private Aire espacioAereo;
 	private Coordenada posicion;
 	private AlgoFormer algoformer;
 	private Contenido contenido;
@@ -45,9 +53,7 @@ public class Casillero {
 	}
 	
 	public boolean estaVacio() {
-		// TODO Eventualmente podria contemplar que este la chispa o haya
-		// un bonus
-		return this.algoformer == null;
+		return (this.algoformer == null && this.contenido == null);
 	}
 
 	public Contenido obtenerContenido() {
@@ -56,4 +62,29 @@ public class Casillero {
 		}
 		return this.contenido;
 	}
+
+	public void actuarSobreAlgoformer(AlgoFormer personaje) {
+		if (this.contenido != null) {
+			personaje.absorber(contenido);
+		}
+		if (this.terreno != null) {
+			terreno.actuarSobreAlgoformer(personaje);
+		}
+		if (this.espacioAereo != null) {
+			espacioAereo.actuarSobreAlgoformer(personaje);
+		}
+	}
+
+	public void ponerSuperficie(Terreno terreno) {
+		this.terreno = terreno;
+	}
+	
+	public void ponerSuperficie(Aire aire) {
+		this.espacioAereo = aire;
+	}
+	
+	public boolean hayAlgoformer() {
+		return !(algoformer == null);
+	}
+	
 }

@@ -1,14 +1,23 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.transformers;
 
-import java.util.ArrayList;
-import java.util.List;
+import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.elementos.Bonus;
+import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.modelo.modos.Modo;
 
-abstract class AlgoFormer implements Contenido {
+public abstract class AlgoFormer{
 	
-    String nombre;
-    int puntosDeVida;
-    Modo modoActivo;
-	Modo modoInactivo;
+	protected String nombre;
+	protected String avatar;
+	protected int ataque;
+	protected int distAtaque;
+	protected int velocidad;
+	protected int puntosDeVida;
+	protected int movimientos;
+	protected Bonus bonus;
+    protected ChispaSuprema chispa;
+	protected Modo modoActivo;
 
 	/*public AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -23,7 +32,7 @@ abstract class AlgoFormer implements Contenido {
 	}
 
 	public String getAvatar() {
-		return modoActivo.getAvatar();
+		return this.avatar;
 	}
 
 	public int getPuntosDeVida() {
@@ -31,21 +40,19 @@ abstract class AlgoFormer implements Contenido {
 	}
 
 	public int getPtosDeAtaque() {
-		return modoActivo.getAtaque();
+		return this.ataque;
 	}
 
 	public int getDistanciaAtaque() {
-		return modoActivo.getDistAtaque();
+		return this.distAtaque;
 	}
 
 	public int getVelocidad() {
-		return modoActivo.getVelocidad();
+		return this.velocidad;
 	}
 
 	public void cambiarModo() {
-		Modo tmp = modoActivo;
-		modoActivo = modoInactivo;
-		modoInactivo = tmp;
+		modoActivo.cambiarModo();
 	}
 
 	public boolean estaVivo() {
@@ -53,10 +60,43 @@ abstract class AlgoFormer implements Contenido {
 	}
 
 	public void validarMovimiento(int cantMov) {
-		if (cantMov > modoActivo.getVelocidad()){
+		if (cantMov > this.velocidad){
 			throw new MovimientoInvalidoException();
-		}
-		
+		}	
 	}
+	
+	public void absorber(Bonus bonus) {
+		this.bonus = bonus;
+	}
+	
+	public void absorber(ChispaSuprema chispa) {
+		this.chispa = chispa;
+	}
+	
+	public void absorber(Contenido contenido) {
+		this.bonus = contenido.definirBonus();
+		this.chispa = contenido.definirChispa();
+	}
+
+	public abstract void atravesarEspinas();
+	
+	public abstract void atravesarPantano();
+	
+	public abstract void atravesarNebulosaAndromeda();
+	
+	public abstract void atravesarTormentaPsionica();
+
+	public void resetearMovimientosPosibles() {
+		this.movimientos = this.velocidad;
+	}
+
+	public boolean poseeMovimientosPosibles() {
+		return (this.movimientos > 0);
+	}
+
+	public void descontarMovimientoPosible(int i) {
+		this.movimientos -= 1;
+	}
+
 }
 

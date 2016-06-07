@@ -1,4 +1,4 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.excepciones;
 
 public class CasilleroVacioException extends RuntimeException {
 
