@@ -14,3 +14,6 @@ hs_err_pid*
 # Build folders #
 build/
 
+# Files and folders added by Eclipse IDE #
+RemoteSystemsTempFiles/
+.metadata/
