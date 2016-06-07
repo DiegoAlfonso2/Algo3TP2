@@ -1,5 +1,14 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.excepciones.JuegoNoEstaActivoException;
+import fiuba.algo3.modelo.transformers.Bonecrusher;
+import fiuba.algo3.modelo.transformers.Bumblebee;
+import fiuba.algo3.modelo.transformers.Frenzy;
+import fiuba.algo3.modelo.transformers.Megatron;
+import fiuba.algo3.modelo.transformers.Optimus;
+import fiuba.algo3.modelo.transformers.Ratchet;
+
 public class Partida {
 
 	private Tablero tablero;
@@ -16,10 +25,18 @@ public class Partida {
 		// a inicializar los mapas.
 		this.tablero = new Tablero(10, 10);
 		// TODO inicializar todo el equipo
-		Modo optimusHumanoide = new Modo("Optimus Humanoide", 50, 2, 2);
-		Modo optimusAlterno = new Modo("Peterbilt 379", 15, 4, 5);
-		AlgoFormer optimus = new AlgoFormer("Optimus", 500, optimusHumanoide, optimusAlterno);
-		tablero.ponerAlgoformer(optimus, new Coordenada(1,1));
+
+		tablero.crearSuperficies();
+		
+		tablero.ponerAlgoformer(new Optimus(), new Coordenada(1,1));
+        tablero.ponerAlgoformer(new Bumblebee(), new Coordenada(3,1));
+        tablero.ponerAlgoformer(new Ratchet(), new Coordenada(1,3));
+        tablero.ponerAlgoformer(new Megatron(), new Coordenada(10,10));
+        tablero.ponerAlgoformer(new Bonecrusher(), new Coordenada(10,8));
+        tablero.ponerAlgoformer(new Frenzy(),new Coordenada(8,10));
+
+        tablero.ponerChispaSuprema(new ChispaSuprema(),new Coordenada(6,5));
+
 		this.jugando = true;
 	}
 	
@@ -42,13 +59,20 @@ public class Partida {
 	public String obtenerAlgoformer(Coordenada ubicacion) {
 		return this.tablero.algoFormerEnCasillero(ubicacion).getNombre();
 	}
-	
+
+	public String obtenerContenido(Coordenada ubicacion) {
+		return this.tablero.contenidoEnCasillero(ubicacion).getNombre();
+	}
 	public String obtenerModoAlgoformer(Coordenada ubicacion) {
 		return this.tablero.algoFormerEnCasillero(ubicacion).getAvatar();
 	}
 
 	public boolean casilleroVacio(Coordenada ubicacion) {
 		return this.tablero.casilleroVacio(ubicacion);
+	}
+
+	public int obtenerVidaAlgoFormer(Coordenada ubicacion) {
+		return this.tablero.algoFormerEnCasillero(ubicacion).getPuntosDeVida();		
 	}
 
 }

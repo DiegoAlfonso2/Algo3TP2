@@ -3,6 +3,16 @@ package fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
+import fiuba.algo3.modelo.superficies.Aire;
+import fiuba.algo3.modelo.superficies.Espinas;
+import fiuba.algo3.modelo.superficies.Nube;
+import fiuba.algo3.modelo.superficies.Rocosa;
+import fiuba.algo3.modelo.superficies.Terreno;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
+
 public class Tablero {
 	
 	private int largoX;
@@ -13,8 +23,8 @@ public class Tablero {
 		this.largoX = largoX;
 		this.largoY = largoY;
 		casilleros = new ArrayList<Casillero>(largoX * largoY);
-		for (int i = 0; i < largoX; ++i) {
-			for (int j = 0; j < largoX; ++j) {
+		for (int i = 1; i <= largoX; ++i) {
+			for (int j = 1; j <= largoX; ++j) {
 				casilleros.add(new Casillero(new Coordenada(i, j)));
 			}
 		}
@@ -35,7 +45,6 @@ public class Tablero {
 			}
 		}
 		throw new PosicionInvalidaException();
-
 	}
 
 	// TODO Tal vez esto tendria que tomar un contenido cualquiera, no un personaje
@@ -43,17 +52,45 @@ public class Tablero {
 		localizarCasillero(ubicacion).ponerAlgoformer(personaje);
 	}
 	
+    public void ponerChispaSuprema( ChispaSuprema chispaSuprema, Coordenada ubicacion) {
+        localizarCasillero(ubicacion).ponerContenido(chispaSuprema);
+    }
+
 	// TODO Por ahora solamente se saca el algoformer. Habria que ver que pasa
 	// en el caso de los bonus, etc... O los saca al "atravesar"?
-	public void sacarElemento(Contenido elemento, Coordenada ubicacion) {
+    // CRISTIAN: Pensaria en sacar los bonus y chispas con el "atravesar".
+	public void sacarAlgoformer(AlgoFormer personaje, Coordenada ubicacion) {
 		localizarCasillero(ubicacion).sacarAlgoformer();
 	}
 
 	public void atravesarCasillero(Coordenada coordenada, AlgoFormer personaje) {
-		// TODO Validar que el casillero se pueda atravesar
-		// TODO Hacer que la superficie actue sobre el personaje
-		// TODO Obtener los bonificadores del camino?
-		// TODO Obtener la chispa?
+		Casillero destino = localizarCasillero(coordenada);
+		if (destino.hayAlgoformer() || !personaje.poseeMovimientosPosibles()){
+			throw new MovimientoInvalidoException();
+		}
+		destino.actuarSobreAlgoformer(personaje);
+	}
+
+	public Contenido contenidoEnCasillero(Coordenada ubicacion) {
+		return(localizarCasillero(ubicacion).obtenerContenido());
+	}
+
+	public void ponerSuperficie(Terreno terreno, Coordenada coordenada) {
+		this.localizarCasillero(coordenada).ponerSuperficie(terreno);	
+	}
+	
+	public void ponerSuperficie(Aire espacioAereo, Coordenada coordenada) {
+		this.localizarCasillero(coordenada).ponerSuperficie(espacioAereo);	
+	}
+
+	public void crearSuperficies() {
+		for (int filas = 1 ; filas < (this.largoX + 1) ; filas++){
+			for (int columnas = 1 ; columnas < (this.largoY + 1) ; columnas ++){
+				this.ponerSuperficie(new Rocosa(), new Coordenada(filas,columnas));
+				this.ponerSuperficie(new Nube(), new Coordenada(filas,columnas));
+			}
+		}
+        this.ponerSuperficie(new Espinas(), new Coordenada(2,1));
 	}
 }
 

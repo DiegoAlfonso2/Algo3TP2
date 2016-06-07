@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.transformers.AlgoFormer;
+
 /**
  * Created by Julian Garate on 6/1/16.
  */
