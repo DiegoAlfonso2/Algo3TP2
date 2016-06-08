@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.transformers;
 
+import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.Contenido;
 import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
@@ -10,7 +11,7 @@ public abstract class AlgoFormer{
 	
 	protected String nombre;
 	protected String avatar;
-	protected int ataque;
+	protected Ataque ataque;
 	protected int distAtaque;
 	protected int velocidad;
 	protected int puntosDeVida;
@@ -40,7 +41,7 @@ public abstract class AlgoFormer{
 	}
 
 	public int getPtosDeAtaque() {
-		return this.ataque;
+		return this.ataque.getPtosDeAtaque();
 	}
 
 	public int getDistanciaAtaque() {
@@ -52,7 +53,15 @@ public abstract class AlgoFormer{
 	}
 
 	public void cambiarModo() {
-		modoActivo.cambiarModo();
+		this.modoActivo = modoActivo.cambiarModo();
+		this.setearCaracteristicas(modoActivo);
+	}
+	
+	protected void setearCaracteristicas(Modo modo) {
+		this.avatar = modo.avatarModo();
+		this.ataque.setPtosDeAtaque(modo.ataqueModo());
+		this.distAtaque = modo.distAtaqueModo();
+		this.velocidad = modo.velocidadModo();
 	}
 
 	public boolean estaVivo() {
@@ -97,6 +106,6 @@ public abstract class AlgoFormer{
 	public void descontarMovimientoPosible(int i) {
 		this.movimientos -= 1;
 	}
-
+	
 }
 

@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.modos.Modo;
+import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.modos.OptimusHumanoide;
 
 public class Optimus extends Autobot{
@@ -8,16 +8,10 @@ public class Optimus extends Autobot{
     public Optimus() {
         this.nombre = "Optimus";
         this.puntosDeVida = 500;
+        this.ataque = new Ataque();
         this.modoActivo = new OptimusHumanoide();
         this.setearCaracteristicas(this.modoActivo);
     }
-
-	private void setearCaracteristicas(Modo modo) {
-		this.avatar = modo.avatarModo();
-		this.ataque = modo.ataqueModo();
-		this.distAtaque = modo.distAtaqueModo();
-		this.velocidad = modo.velocidadModo();
-	}
 	
 	public void cambiarModo() {
 		modoActivo = this.modoActivo.cambiarModo();
@@ -41,7 +35,7 @@ public class Optimus extends Autobot{
 
 	@Override
 	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica();
+		this.modoActivo.atravesarTormentaPsionica(this.ataque);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo.modos;
 
+import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 
 public class FrenzyHumanoide extends Modo {
@@ -41,13 +42,12 @@ public class FrenzyHumanoide extends Modo {
 
 	@Override
 	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
+		// No le ocurre nada al atravesar la Nebulosa de Andrómeda.
 	}
 
 	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+	public void atravesarTormentaPsionica(Ataque ataque) {
+		// No le ocurre nada al atravesar la Tormenta Psiónica.
 	}
-
 }
 

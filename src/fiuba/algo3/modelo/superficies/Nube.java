@@ -6,7 +6,7 @@ public class Nube extends Aire {
 
 	@Override
 	public void actuarSobreAlgoformer(AlgoFormer personaje) {
-		// TODO Auto-generated method stub
+		// Por los supuestos decididos para implementar el trabajo, la Nube no hace NADA.
 	}
 	
 }

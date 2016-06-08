@@ -1,5 +1,6 @@
 package fiuba.algo3.modelo;
 
+import fiuba.algo3.modelo.acciones.Accion;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.excepciones.JuegoNoEstaActivoException;
 import fiuba.algo3.modelo.transformers.Bonecrusher;
@@ -27,14 +28,7 @@ public class Partida {
 		// TODO inicializar todo el equipo
 
 		tablero.crearSuperficies();
-		
-		tablero.ponerAlgoformer(new Optimus(), new Coordenada(1,1));
-        tablero.ponerAlgoformer(new Bumblebee(), new Coordenada(3,1));
-        tablero.ponerAlgoformer(new Ratchet(), new Coordenada(1,3));
-        tablero.ponerAlgoformer(new Megatron(), new Coordenada(10,10));
-        tablero.ponerAlgoformer(new Bonecrusher(), new Coordenada(10,8));
-        tablero.ponerAlgoformer(new Frenzy(),new Coordenada(8,10));
-
+		tablero.inicializarAlgoformers();
         tablero.ponerChispaSuprema(new ChispaSuprema(),new Coordenada(6,5));
 
 		this.jugando = true;
@@ -73,6 +67,10 @@ public class Partida {
 
 	public int obtenerVidaAlgoFormer(Coordenada ubicacion) {
 		return this.tablero.algoFormerEnCasillero(ubicacion).getPuntosDeVida();		
+	}
+	
+	public int obtenerAtaqueAlgoFormer(Coordenada ubicacion) {
+		return this.tablero.algoFormerEnCasillero(ubicacion).getPtosDeAtaque();		
 	}
 
 }

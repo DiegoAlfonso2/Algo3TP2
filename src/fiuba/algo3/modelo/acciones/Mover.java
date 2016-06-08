@@ -1,7 +1,10 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.acciones;
 
 import java.util.List;
 
+import fiuba.algo3.modelo.Coordenada;
+import fiuba.algo3.modelo.Partida;
+import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
@@ -13,8 +16,6 @@ public class Mover implements Accion {
 	private List<Coordenada> movimiento;
 	
     public Mover(List<Coordenada> movimiento) {
-    	// TODO Ver si hace falta clonar la lista o alcanza con
-    	// guardarse una referencia
     	this.movimiento = movimiento;
     }
 

@@ -1,23 +1,18 @@
 package fiuba.algo3.modelo.transformers;
 
+import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.modos.FrenzyHumanoide;
-import fiuba.algo3.modelo.modos.Modo;
 
 public class Frenzy extends Decepticon{
 
     public Frenzy() {
         this.nombre = "Frenzy";
         this.puntosDeVida = 400;
+        this.ataque = new Ataque();
         this.modoActivo = new FrenzyHumanoide();
         this.setearCaracteristicas(this.modoActivo);
     }
-	
-	private void setearCaracteristicas(Modo modo) {
-		this.avatar = modo.avatarModo();
-		this.ataque = modo.ataqueModo();
-		this.distAtaque = modo.distAtaqueModo();
-		this.velocidad = modo.velocidadModo();
-	}
+
 	
 	public void cambiarModo() {
 		modoActivo = this.modoActivo.cambiarModo();
@@ -41,7 +36,7 @@ public class Frenzy extends Decepticon{
 
 	@Override
 	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica();
+		this.modoActivo.atravesarTormentaPsionica(this.ataque);
 	}
 	
 }

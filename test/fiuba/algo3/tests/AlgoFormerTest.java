@@ -5,11 +5,11 @@ package fiuba.algo3.tests;
 
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Jugador;
-import fiuba.algo3.modelo.Mover;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.transformers.Optimus;
 import fiuba.algo3.modelo.Partida;
-import fiuba.algo3.modelo.Transformar;
+import fiuba.algo3.modelo.acciones.Mover;
+import fiuba.algo3.modelo.acciones.Transformar;
 
 import org.junit.Test;
 

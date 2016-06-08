@@ -8,10 +8,19 @@ import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
 import fiuba.algo3.modelo.superficies.Aire;
 import fiuba.algo3.modelo.superficies.Espinas;
+import fiuba.algo3.modelo.superficies.NebulosaAndromeda;
 import fiuba.algo3.modelo.superficies.Nube;
+import fiuba.algo3.modelo.superficies.Pantano;
 import fiuba.algo3.modelo.superficies.Rocosa;
 import fiuba.algo3.modelo.superficies.Terreno;
+import fiuba.algo3.modelo.superficies.TormentaPsionica;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
+import fiuba.algo3.modelo.transformers.Bonecrusher;
+import fiuba.algo3.modelo.transformers.Bumblebee;
+import fiuba.algo3.modelo.transformers.Frenzy;
+import fiuba.algo3.modelo.transformers.Megatron;
+import fiuba.algo3.modelo.transformers.Optimus;
+import fiuba.algo3.modelo.transformers.Ratchet;
 
 public class Tablero {
 	
@@ -90,7 +99,55 @@ public class Tablero {
 				this.ponerSuperficie(new Nube(), new Coordenada(filas,columnas));
 			}
 		}
-        this.ponerSuperficie(new Espinas(), new Coordenada(2,1));
+		// Hardcodeo las Zonas de Pantanos.
+		this.ponerSuperficie(new Pantano(), new Coordenada(1,2));
+		this.ponerSuperficie(new Pantano(), new Coordenada(2,8));
+		this.ponerSuperficie(new Pantano(), new Coordenada(4,4));
+		this.ponerSuperficie(new Pantano(), new Coordenada(4,7));
+		this.ponerSuperficie(new Pantano(), new Coordenada(9,2));
+		this.ponerSuperficie(new Pantano(), new Coordenada(9,8));
+		this.ponerSuperficie(new Pantano(), new Coordenada(9,10));
+		
+		// Hardcodeo las Zonas de Espinas.
+		this.ponerSuperficie(new Espinas(), new Coordenada(1,4));
+		this.ponerSuperficie(new Espinas(), new Coordenada(2,1));
+		this.ponerSuperficie(new Espinas(), new Coordenada(2,6));
+		this.ponerSuperficie(new Espinas(), new Coordenada(3,9));
+		this.ponerSuperficie(new Espinas(), new Coordenada(4,5));
+		this.ponerSuperficie(new Espinas(), new Coordenada(5,10));
+		this.ponerSuperficie(new Espinas(), new Coordenada(8,1));
+        this.ponerSuperficie(new Espinas(), new Coordenada(8,6));
+        this.ponerSuperficie(new Espinas(), new Coordenada(9,4));
+        this.ponerSuperficie(new Espinas(), new Coordenada(9,9));
+        
+        // Hardcodeo las Zonas de Nebulosas de Andrómeda.
+		this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(1,6));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,3));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,10));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(3,8));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(4,2));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(7,4));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(9,6));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(10,4));
+        
+        // Hardcodeo las Zonas de Tormentas Psiónicas.
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(2,9));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,3));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,6));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,1));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,6));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,9));
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(10,5));
 	}
+
+	public void inicializarAlgoformers() {
+		this.ponerAlgoformer(new Optimus(), new Coordenada(1,1));
+        this.ponerAlgoformer(new Bumblebee(), new Coordenada(3,1));
+        this.ponerAlgoformer(new Ratchet(), new Coordenada(1,3));
+        this.ponerAlgoformer(new Megatron(), new Coordenada(10,10));
+        this.ponerAlgoformer(new Bonecrusher(), new Coordenada(10,8));
+        this.ponerAlgoformer(new Frenzy(),new Coordenada(8,10));
+	}
+	
 }
 

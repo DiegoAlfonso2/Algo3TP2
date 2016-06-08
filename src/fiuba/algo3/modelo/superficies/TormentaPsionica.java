@@ -6,7 +6,7 @@ public class TormentaPsionica extends Aire {
 
 	@Override
 	public void actuarSobreAlgoformer(AlgoFormer personaje) {
-		// TODO Auto-generated method stub
+		personaje.atravesarTormentaPsionica();
 	}
 	
 }

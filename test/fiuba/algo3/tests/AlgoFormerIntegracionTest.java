@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.*;
-
+import fiuba.algo3.modelo.acciones.Mover;
+import fiuba.algo3.modelo.acciones.Transformar;
 
 import org.junit.Assert;
 import org.junit.Test;

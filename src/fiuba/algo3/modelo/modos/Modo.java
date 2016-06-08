@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo.modos;
 
+import fiuba.algo3.modelo.Ataque;
+
 public abstract class Modo {
 	
 	public abstract Modo cambiarModo();
@@ -18,6 +20,6 @@ public abstract class Modo {
 
 	public abstract void atravesarNebulosaAndromeda();
 
-	public abstract void atravesarTormentaPsionica();
+	public abstract void atravesarTormentaPsionica(Ataque ataque);
 		
 }

@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo.modos;
 
+import fiuba.algo3.modelo.Ataque;
+
 public class RatchetAlterno extends Modo {
 
 	@Override
@@ -43,8 +45,10 @@ public class RatchetAlterno extends Modo {
 	}
 
 	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+	public void atravesarTormentaPsionica(Ataque ataque) {
+		if (!ataque.sufrioModificacionPsionica()) {
+			ataque.modificacionPsionica();
+		}
 	}
 
 }

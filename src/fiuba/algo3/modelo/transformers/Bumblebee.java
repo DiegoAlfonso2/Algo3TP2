@@ -1,23 +1,17 @@
 package fiuba.algo3.modelo.transformers;
 
+import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.modos.BumblebeeHumanoide;
-import fiuba.algo3.modelo.modos.Modo;
 
 public class Bumblebee extends Autobot{
 
     public Bumblebee() {
         this.nombre = "Bumblebee";
         this.puntosDeVida = 350;
+        this.ataque = new Ataque();
         this.modoActivo = new BumblebeeHumanoide();
         this.setearCaracteristicas(this.modoActivo);
     }
-	
-	private void setearCaracteristicas(Modo modo) {
-		this.avatar = modo.avatarModo();
-		this.ataque = modo.ataqueModo();
-		this.distAtaque = modo.distAtaqueModo();
-		this.velocidad = modo.velocidadModo();
-	}
 	
 	public void cambiarModo() {
 		modoActivo = this.modoActivo.cambiarModo();
@@ -41,7 +35,7 @@ public class Bumblebee extends Autobot{
 
 	@Override
 	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica();
+		this.modoActivo.atravesarTormentaPsionica(this.ataque);
 	}
 	
 }
