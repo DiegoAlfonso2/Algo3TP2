@@ -619,6 +619,19 @@ public class MoverTest {
 				new Coordenada(9, 9));
 	}
 	
+	@Test(expected=MovimientoInvalidoException.class)
+	public void test14NoSePuedeTerminarEnCasilleroNoConsecutivo() {
+		Tablero tablero = new Tablero(10, 10);
+		Optimus optimus = new Optimus();
+		Coordenada ubicacionInicial = new Coordenada(1, 1);
+		tablero.ponerAlgoformer(optimus, ubicacionInicial);
+
+		mover(tablero,
+				ubicacionInicial,
+				new Coordenada(9, 9));
+	}
+	
+	@Test(expected=MovimientoInvalidoException.class)
 	public void test15NoSePuedeMoverDesdeCasilleroSinAlgoFormer() {
 		Tablero tablero = new Tablero(10, 10);
 		Optimus optimusHumanoide = new Optimus();
@@ -629,6 +642,11 @@ public class MoverTest {
 				new Coordenada(3, 3),
 				new Coordenada(4, 4),
 				new Coordenada(4, 5));
+	}
+	
+	public void test16MovimientoInvalidoNoModificaAlgoFormer() {
+		Tablero tablero = new Tablero(10, 10);
+		
 	}
 
 }

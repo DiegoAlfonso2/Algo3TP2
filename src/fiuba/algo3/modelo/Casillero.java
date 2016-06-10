@@ -1,5 +1,10 @@
 package fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import fiuba.algo3.modelo.acciones.consecuencias.AbsorberContenido;
+import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.superficies.Aire;
@@ -63,16 +68,26 @@ public class Casillero {
 		return this.contenido;
 	}
 
-	public void actuarSobreAlgoformer(AlgoFormer personaje) {
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
+			EstadoVital estado) {
+		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = 
+				new ArrayList<Consecuencia>();
 		if (this.contenido != null) {
-			personaje.absorber(contenido);
+			// De esta forma diferimos las consecuencias de pasar por un casillero hasta
+			// saber que el movimiento es valido
+			// Suposicion: si el contenido es un bonus, no entra en juego en el mismo turno
+			// en el que se obtiene sino a partir del siguiente
+			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(contenido));
 		}
 		if (this.terreno != null) {
-			terreno.actuarSobreAlgoformer(personaje);
+			consecuenciasDeActuarSobreAlgoformer.addAll(
+					terreno.actuarSobreAlgoformer(personaje, estado));
 		}
 		if (this.espacioAereo != null) {
-			espacioAereo.actuarSobreAlgoformer(personaje);
+			consecuenciasDeActuarSobreAlgoformer.addAll(
+					espacioAereo.actuarSobreAlgoformer(personaje, estado));
 		}
+		return consecuenciasDeActuarSobreAlgoformer;
 	}
 
 	public void ponerSuperficie(Terreno terreno) {

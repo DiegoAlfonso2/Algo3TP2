@@ -8,6 +8,16 @@ public class Coordenada {
 		this.x = x;
 		this.y = y;
 	}
+	
+	/**
+	 * Indica si dos casilleros representados por sus coordenadas son adyacentes 
+	 * (estan uno al lado del otro, uno arriba del otro o en diagonal).
+	 * @param otra Coordenada contra la que se quiere hacer la comprobacion
+	 * @return
+	 */
+	public boolean esConsecutiva(Coordenada otra) {
+		return Math.abs(this.x - otra.x) <= 1 && Math.abs(this.y - otra.y) <= 1;
+	}
 
 	@Override
 	public boolean equals(Object otroObjeto) {
@@ -17,6 +27,14 @@ public class Coordenada {
 		} catch (ClassCastException cce) {
 			return false;
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		int seed = 2;
+		seed ^= x + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+		seed ^= y + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+		return seed;
 	}
 
 	@Override

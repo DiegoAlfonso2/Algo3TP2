@@ -1,8 +1,10 @@
 package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
@@ -72,12 +74,14 @@ public class Tablero {
 		localizarCasillero(ubicacion).sacarAlgoformer();
 	}
 
-	public void atravesarCasillero(Coordenada coordenada, AlgoFormer personaje) {
+	public Collection<Consecuencia> atravesarCasillero(Coordenada coordenada, AlgoFormer personaje,
+			EstadoVital estado) {
 		Casillero destino = localizarCasillero(coordenada);
 		if (destino.hayAlgoformer() || !personaje.poseeMovimientosPosibles()){
 			throw new MovimientoInvalidoException();
 		}
-		destino.actuarSobreAlgoformer(personaje);
+		estado.descontarMovimiento();
+		return destino.actuarSobreAlgoformer(personaje, estado);
 	}
 
 	public Contenido contenidoEnCasillero(Coordenada ubicacion) {
@@ -120,7 +124,7 @@ public class Tablero {
         this.ponerSuperficie(new Espinas(), new Coordenada(9,4));
         this.ponerSuperficie(new Espinas(), new Coordenada(9,9));
         
-        // Hardcodeo las Zonas de Nebulosas de Andrómeda.
+        // Hardcodeo las Zonas de Nebulosas de Andrï¿½meda.
 		this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(1,6));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,3));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,10));
@@ -130,7 +134,7 @@ public class Tablero {
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(9,6));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(10,4));
         
-        // Hardcodeo las Zonas de Tormentas Psiónicas.
+        // Hardcodeo las Zonas de Tormentas Psiï¿½nicas.
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(2,9));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,3));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,6));
