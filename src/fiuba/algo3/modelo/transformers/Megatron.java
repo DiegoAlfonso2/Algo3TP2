@@ -1,41 +1,18 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import fiuba.algo3.modelo.modos.MegatronAlterno;
 import fiuba.algo3.modelo.modos.MegatronHumanoide;
 
 public class Megatron extends Decepticon {
 	
+	private static final String MEGATRON_NOMBRE = "Megatron";
+	private static final int MEGATRON_PUNTOS_DE_VIDA = 550;
+	
 	public Megatron() {
-        this.nombre = "Megatron";
-        this.puntosDeVida = 550;
-        this.ataque = new Ataque();
-        this.modoActivo = new MegatronHumanoide();
-        this.setearCaracteristicas(this.modoActivo);
+        super(MEGATRON_NOMBRE,
+        		MEGATRON_PUNTOS_DE_VIDA,
+        		new MegatronHumanoide(),
+        		new MegatronAlterno());
     }
-	
-	public void cambiarModo() {
-		modoActivo = this.modoActivo.cambiarModo();
-		this.setearCaracteristicas(this.modoActivo);
-	}
-	
-	@Override
-	public void atravesarEspinas() {
-		this.puntosDeVida = this.modoActivo.atravesarEspinas(this.puntosDeVida);
-	}
-
-	@Override
-	public void atravesarPantano() {
-		this.descontarMovimientoPosible(this.modoActivo.atravesarPantano());
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		this.modoActivo.atravesarNebulosaAndromeda();
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica(this.ataque);
-	}
-	
+		
 }

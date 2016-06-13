@@ -13,9 +13,6 @@ import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
-/**
- * Created by Julian Garate on 6/1/16.
- */
 public class Mover implements Accion {
 
 	private List<Coordenada> movimiento;
@@ -24,14 +21,12 @@ public class Mover implements Accion {
     	this.movimiento = movimiento;
     }
 
-	/**
-	 * 
-	 */
     @Override
     // TODO Este metodo pide un refactor
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
     	if (movimiento == null || movimiento.size() < 2) {
-    		throw new MovimientoInvalidoException();
+    		throw new MovimientoInvalidoException(
+    				"No estan indicados los casilleros que se van a atravesar");
     	}
     	try {
 			Coordenada origen = movimiento.remove(0);
@@ -40,9 +35,9 @@ public class Mover implements Accion {
 			try {
 				personaje = tablero.algoFormerEnCasillero(origen);
 			} catch (CasilleroVacioException cve) {
-				throw new MovimientoInvalidoException();
+				throw new MovimientoInvalidoException(
+						"No hay un AlgoFormer en ese casillero");
 			}
-			personaje.resetearMovimientosPosibles();
 			List<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
 			// TODO Pedirselo al Algoformer
 			EstadoVital estado = new EstadoVital(personaje.getPuntosDeVida(), 

@@ -8,6 +8,8 @@ import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.superficies.Aire;
+import fiuba.algo3.modelo.superficies.Nube;
+import fiuba.algo3.modelo.superficies.Rocosa;
 import fiuba.algo3.modelo.superficies.Terreno;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
@@ -21,7 +23,10 @@ public class Casillero {
 		
 	public Casillero(Coordenada posicion) {
 		this.posicion = posicion;
+		this.contenido = null;
 		this.algoformer = null;
+		this.terreno = new Rocosa();
+		this.espacioAereo = new Nube();
 	}
 	
 	// TODO ver como usar esto en lugar de cada metodo por separado
@@ -73,10 +78,6 @@ public class Casillero {
 		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = 
 				new ArrayList<Consecuencia>();
 		if (this.contenido != null) {
-			// De esta forma diferimos las consecuencias de pasar por un casillero hasta
-			// saber que el movimiento es valido
-			// Suposicion: si el contenido es un bonus, no entra en juego en el mismo turno
-			// en el que se obtiene sino a partir del siguiente
 			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(contenido));
 		}
 		if (this.terreno != null) {

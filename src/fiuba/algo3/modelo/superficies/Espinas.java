@@ -15,11 +15,10 @@ public class Espinas extends Terreno {
 			EstadoVital estado) {
 		// TODO Suposicion: atravesar las espinas hace danio a TODOS los algoformers,
 		// tambien los aereos
-		Consecuencia atravesarEspinas = new AtravesarEspinas();
-		ArrayList<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
-		consecuencias.add(atravesarEspinas);
-		// TODO Si la suposicion no es valida, ver que pasa con cada tipo de algoformer
-		estado.setPuntosDeVidaRestantes((int) (estado.getPuntosDeVidaRestantes() * 0.95));
+//		Consecuencia atravesarEspinas = new AtravesarEspinas();
+//		ArrayList<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
+//		consecuencias.add(atravesarEspinas);
+		Collection<Consecuencia> consecuencias = personaje.atravesarEspinas(estado);
 		return consecuencias;
 	}
 

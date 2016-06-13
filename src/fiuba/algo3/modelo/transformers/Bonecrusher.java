@@ -1,41 +1,17 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import fiuba.algo3.modelo.modos.BonecrusherAlterno;
 import fiuba.algo3.modelo.modos.BonecrusherHumanoide;
 
 public class Bonecrusher extends Decepticon{
+	
+	private static final String BONECRUSHER_NOMBRE = "Bonecrusher";
+	private static final int BONECRUSHER_PUNTOS_DE_VIDA = 200;
 
     public Bonecrusher() {
-        this.nombre = "Bonecrusher";
-        this.puntosDeVida = 200;
-        this.ataque = new Ataque();
-        this.modoActivo = new BonecrusherHumanoide();
-        this.setearCaracteristicas(this.modoActivo);
+    	super(BONECRUSHER_NOMBRE, 
+    			BONECRUSHER_PUNTOS_DE_VIDA, 
+    			new BonecrusherHumanoide(),
+    			new BonecrusherAlterno());
     }
-	
-	public void cambiarModo() {
-		modoActivo = this.modoActivo.cambiarModo();
-		this.setearCaracteristicas(this.modoActivo);
-	}
-
-	@Override
-	public void atravesarEspinas() {
-		this.puntosDeVida = this.modoActivo.atravesarEspinas(this.puntosDeVida);
-	}
-
-	@Override
-	public void atravesarPantano() {
-		this.descontarMovimientoPosible(this.modoActivo.atravesarPantano());
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		this.modoActivo.atravesarNebulosaAndromeda();
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica(this.ataque);
-	}
-	
 }

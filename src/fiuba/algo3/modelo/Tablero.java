@@ -77,7 +77,7 @@ public class Tablero {
 	public Collection<Consecuencia> atravesarCasillero(Coordenada coordenada, AlgoFormer personaje,
 			EstadoVital estado) {
 		Casillero destino = localizarCasillero(coordenada);
-		if (destino.hayAlgoformer() || !personaje.poseeMovimientosPosibles()){
+		if (destino.hayAlgoformer()){
 			throw new MovimientoInvalidoException();
 		}
 		estado.descontarMovimiento();

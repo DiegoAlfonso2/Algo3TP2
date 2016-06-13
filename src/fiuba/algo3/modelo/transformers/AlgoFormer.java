@@ -1,7 +1,10 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import java.util.Collection;
+
 import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.EstadoVital;
+import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
@@ -11,22 +14,18 @@ public abstract class AlgoFormer{
 	
 	protected String nombre;
 	protected String avatar;
-	protected Ataque ataque;
-	protected int distAtaque;
-	protected int velocidad;
 	protected int puntosDeVida;
-	protected int movimientos;
 	protected Bonus bonus;
     protected ChispaSuprema chispa;
 	protected Modo modoActivo;
+	protected Modo modoInactivo;
 
-	/*public AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
+	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
 		this.puntosDeVida = puntosDeVida;
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
 	}
-    */
 
 	public String getNombre() {
 		return this.nombre;
@@ -41,39 +40,31 @@ public abstract class AlgoFormer{
 	}
 
 	public int getPtosDeAtaque() {
-		return this.ataque.getPtosDeAtaque();
+		return modoActivo.getPtosDeAtaque();
 	}
 
 	public int getDistanciaAtaque() {
-		return this.distAtaque;
+		return modoActivo.getDistAtaque();
 	}
 
 	public int getVelocidad() {
-		return this.velocidad;
+		return modoActivo.getVelocidad();
 	}
 
 	public void cambiarModo() {
-		this.modoActivo = modoActivo.cambiarModo();
-		this.setearCaracteristicas(modoActivo);
+		Modo tmp = modoActivo;
+		this.modoActivo = modoInactivo;
+		this.modoInactivo = tmp;
 	}
 	
-	protected void setearCaracteristicas(Modo modo) {
-		this.avatar = modo.avatarModo();
-		this.ataque.setPtosDeAtaque(modo.ataqueModo());
-		this.distAtaque = modo.distAtaqueModo();
-		this.velocidad = modo.velocidadModo();
+	public EstadoVital getEstadoVital() {
+		return new EstadoVital(getPuntosDeVida(), getVelocidad());
 	}
 
 	public boolean estaVivo() {
 		return puntosDeVida > 0;
 	}
 
-	public void validarMovimiento(int cantMov) {
-		if (cantMov > this.velocidad){
-			throw new MovimientoInvalidoException();
-		}	
-	}
-	
 	public void absorber(Bonus bonus) {
 		this.bonus = bonus;
 	}
@@ -86,26 +77,16 @@ public abstract class AlgoFormer{
 		this.bonus = contenido.definirBonus();
 		this.chispa = contenido.definirChispa();
 	}
-
-	public abstract void atravesarEspinas();
 	
-	public abstract void atravesarPantano();
+	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
+		return modoActivo.atravesarEspinas(estado);
+	}
 	
-	public abstract void atravesarNebulosaAndromeda();
-	
-	public abstract void atravesarTormentaPsionica();
-
-	public void resetearMovimientosPosibles() {
-		this.movimientos = this.velocidad;
-	}
-
-	public boolean poseeMovimientosPosibles() {
-		return (this.movimientos > 0);
-	}
-
-	public void descontarMovimientoPosible(int i) {
-		this.movimientos -= 1;
-	}
+//	public abstract void atravesarPantano();
+//	
+//	public abstract void atravesarNebulosaAndromeda();
+//	
+//	public abstract void atravesarTormentaPsionica();
 	
 }
 
