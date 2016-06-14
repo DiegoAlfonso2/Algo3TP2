@@ -1,52 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.Ataque;
+public class OptimusAlterno extends UnidadTerrestre {
 
-public class OptimusAlterno extends Modo {
+	private final static int OPTIMUS_TERRESTRE_PUNTOS_ATAQUE = 15;
+	private final static int OPTIMUS_TERRESTRE_DIST_ATAQUE = 4;
+	private final static int OPTIMUS_TERRESTRE_VELOCIDAD = 5;
+	private final static String OPTIMUS_TERRESTRE_AVATAR =
+			"Peterbilt 379";
 
-	@Override
-	public Modo cambiarModo() {
-		return new OptimusHumanoide();
+	public OptimusAlterno() {
+		super(OPTIMUS_TERRESTRE_PUNTOS_ATAQUE, 
+				OPTIMUS_TERRESTRE_DIST_ATAQUE, 
+				OPTIMUS_TERRESTRE_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Peterbilt 379";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 15;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 4;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 5;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 2;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// No le ocurre nada al atravesar la Nebulosa de Andrómeda.
-	}
-
-	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
-		// No le ocurre nada al atravesar la Tormenta Psiónica.
+		return OPTIMUS_TERRESTRE_AVATAR;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Pantano extends Terreno {
 	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
 			EstadoVital estado) {
 		// TODO Logica para atravesar el pantano
-		personaje.atravesarPantano();
+//		personaje.atravesarPantano();
 		return new ArrayList<Consecuencia>();
 	}
 

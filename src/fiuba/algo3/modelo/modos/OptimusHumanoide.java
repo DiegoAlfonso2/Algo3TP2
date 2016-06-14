@@ -1,54 +1,23 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.Ataque;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+public class OptimusHumanoide extends Humanoide {
 
-public class OptimusHumanoide extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new OptimusAlterno();
+	private final static int OPTIMUS_HUMANOIDE_PUNTOS_ATAQUE = 50;
+	private final static int OPTIMUS_HUMANOIDE_DIST_ATAQUE = 2;
+	private final static int OPTIMUS_HUMANOIDE_VELOCIDAD = 2;
+	private final static String OPTIMUS_HUMANOIDE_AVATAR =
+			"Optimus Humanoide";
+	
+	public OptimusHumanoide() {
+		super(OPTIMUS_HUMANOIDE_PUNTOS_ATAQUE,
+				OPTIMUS_HUMANOIDE_DIST_ATAQUE,
+				OPTIMUS_HUMANOIDE_VELOCIDAD);
 	}
-
+	
 	@Override
 	public String avatarModo() {
-		return "Optimus Humanoide";
+		return OPTIMUS_HUMANOIDE_AVATAR;
 	}
-
-	@Override
-	public int ataqueModo() {
-		return 50;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 2;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 2;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		throw new MovimientoInvalidoException();
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// No le ocurre nada al atravesar la Nebulosa de Andrómeda.
-	}
-
-	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
-		// No le ocurre nada al atravesar la Tormenta Psiónica.
-	}
-
+	
 }
 

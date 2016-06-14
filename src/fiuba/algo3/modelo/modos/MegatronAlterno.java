@@ -1,54 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.Ataque;
-
-public class MegatronAlterno extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new MegatronHumanoide();
+public class MegatronAlterno extends UnidadAerea {
+	
+	private final static int MEGATRON_ALTERNO_PUNTOS_ATAQUE = 55;
+	private final static int MEGATRON_ALTERNO_DIST_ATAQUE = 2;
+	private final static int MEGATRON_ALTERNO_VELOCIDAD = 8;
+	private final static String MEGATRON_ALTERNO_AVATAR =
+			"Jet Cibertroniano";
+	
+	public MegatronAlterno() {
+		super(MEGATRON_ALTERNO_PUNTOS_ATAQUE,
+				MEGATRON_ALTERNO_DIST_ATAQUE,
+				MEGATRON_ALTERNO_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Jet Cibertroniano";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 55;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 2;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 8;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return puntosDeVida;
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 1;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
-		if (!ataque.sufrioModificacionPsionica()) {
-			ataque.modificacionPsionica();
-		}
+		return MEGATRON_ALTERNO_AVATAR;
 	}
 
 }

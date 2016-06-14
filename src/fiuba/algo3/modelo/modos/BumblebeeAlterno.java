@@ -1,52 +1,21 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.Ataque;
+public class BumblebeeAlterno extends UnidadTerrestre {
+	
+	private final static int BUMBLEBEE_TERRESTRE_PUNTOS_ATAQUE = 20;
+	private final static int BUMBLEBEE_TERRESTRE_DIST_ATAQUE = 3;
+	private final static int BUMBLEBEE_TERRESTRE_VELOCIDAD = 15;
+	private final static String BUMBLEBEE_TERRESTRE_AVATAR =
+			"Chevrolet Camaro Concept";
 
-public class BumblebeeAlterno extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new BumblebeeHumanoide();
+	public BumblebeeAlterno() {
+		super(BUMBLEBEE_TERRESTRE_PUNTOS_ATAQUE,
+				BUMBLEBEE_TERRESTRE_DIST_ATAQUE,
+				BUMBLEBEE_TERRESTRE_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Chevrolet Camaro Concept";
+		return BUMBLEBEE_TERRESTRE_AVATAR;
 	}
-
-	@Override
-	public int ataqueModo() {
-		return 20;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 3;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 15;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 2;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// No le ocurre nada al atravesar la Nebulosa de Andrómeda.
-	}
-
-	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
-		// No le ocurre nada al atravesar la Tormenta Psiónica.
-	}
-
 }

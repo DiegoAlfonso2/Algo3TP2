@@ -32,7 +32,7 @@ public abstract class AlgoFormer{
 	}
 
 	public String getAvatar() {
-		return this.avatar;
+		return modoActivo.avatarModo();
 	}
 
 	public int getPuntosDeVida() {

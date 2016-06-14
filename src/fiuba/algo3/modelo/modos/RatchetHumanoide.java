@@ -1,54 +1,23 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.Ataque;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+public class RatchetHumanoide extends Humanoide {
 
-public class RatchetHumanoide extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new RatchetAlterno();
+	private final static int RATCHET_HUMANOIDE_PUNTOS_ATAQUE = 5;
+	private final static int RATCHET_HUMANOIDE_DIST_ATAQUE = 5;
+	private final static int RATCHET_HUMANOIDE_VELOCIDAD = 1;
+	private final static String RATCHET_HUMANOIDE_AVATAR =
+			"Ratchet Humanoide";
+	
+	public RatchetHumanoide() {
+		super(RATCHET_HUMANOIDE_PUNTOS_ATAQUE,
+				RATCHET_HUMANOIDE_DIST_ATAQUE,
+				RATCHET_HUMANOIDE_VELOCIDAD);
 	}
-
+	
 	@Override
 	public String avatarModo() {
-		return "Ratchet Humanoide";
+		return RATCHET_HUMANOIDE_AVATAR;
 	}
-
-	@Override
-	public int ataqueModo() {
-		return 5;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 5;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 1;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		throw new MovimientoInvalidoException();
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// No le ocurre nada al atravesar la Nebulosa de Andrómeda.
-	}
-
-	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
-		// No le ocurre nada al atravesar la Tormenta Psiónica.
-	}
-
+	
 }
 
