@@ -645,8 +645,13 @@ public class MoverTest {
 	}
 	
 	public void test16MovimientoInvalidoNoModificaAlgoFormer() {
+		// TODO (Faltan modificadores y chispa suprema)
 		Tablero tablero = new Tablero(10, 10);
 		
+	}
+	
+	public void test17SiAlgoFormerMuereEnElMedioNoConcluyeMovimiento() {
+		// TODO (Faltan modificadores y chispa suprema)
 	}
 
 }

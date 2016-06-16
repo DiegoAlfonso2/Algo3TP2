@@ -63,7 +63,7 @@ public class Casillero {
 	}
 	
 	public boolean estaVacio() {
-		return (this.algoformer == null && this.contenido == null);
+		return this.contenido == null;
 	}
 
 	public Contenido obtenerContenido() {
@@ -78,7 +78,7 @@ public class Casillero {
 		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = 
 				new ArrayList<Consecuencia>();
 		if (this.contenido != null) {
-			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(contenido));
+			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(this));
 		}
 		if (this.terreno != null) {
 			consecuenciasDeActuarSobreAlgoformer.addAll(

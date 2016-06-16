@@ -1,18 +1,23 @@
 package fiuba.algo3.modelo.acciones.consecuencias;
 
-import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.Casillero;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class AbsorberContenido implements Consecuencia {
-	Contenido contenido;
+	Casillero casillero;
 
-	public AbsorberContenido(Contenido contenido) {
-		this.contenido = contenido;
+	public AbsorberContenido(Casillero casilleroConContenido) {
+		this.casillero = casilleroConContenido;
 	}
 
 	@Override
 	public void serAfrontadaPor(AlgoFormer personaje) {
-		personaje.absorber(contenido);
+		// Workaround por si un AlgoFormer pasa mas de una vez por el mismo 
+		// casillero. El contenido debe ser absorbido solamente una vez. De
+		// otra forma, al pasar por un modificador, este se duplicaria
+		if (!casillero.estaVacio()) {
+			personaje.absorber(casillero.obtenerContenido());
+		}
 	}
 	
 }
