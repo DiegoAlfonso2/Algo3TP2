@@ -11,8 +11,7 @@ import fiuba.algo3.modelo.transformers.AlgoFormer;
 public class Espinas extends Terreno {
 
 	@Override
-	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje,
-			EstadoVital estado) {
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
 		// TODO Suposicion: atravesar las espinas hace danio a TODOS los algoformers,
 		// tambien los aereos
 		Consecuencia atravesarEspinas = new AtravesarEspinas();

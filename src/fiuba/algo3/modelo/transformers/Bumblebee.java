@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.modos.BumblebeeHumanoide;
 
 public class Bumblebee extends Autobot{
@@ -8,9 +8,9 @@ public class Bumblebee extends Autobot{
     public Bumblebee() {
         this.nombre = "Bumblebee";
         this.puntosDeVida = 350;
-        this.ataque = new Ataque();
         this.modoActivo = new BumblebeeHumanoide();
         this.setearCaracteristicas(this.modoActivo);
+        this.bonus = new Modificadores();
     }
 	
 	public void cambiarModo() {

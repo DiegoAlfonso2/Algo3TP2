@@ -5,6 +5,8 @@ package fiuba.algo3.tests;
 
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.transformers.Optimus;
 import fiuba.algo3.modelo.Partida;
@@ -60,13 +62,12 @@ public class AlgoFormerTest {
         movimiento.add(coordenada2);
         movimiento.add(coordenada3);
                 
-		Jugador jugador1 = new Jugador("Nombre1");
-		Jugador jugador2 = new Jugador("Nombre2");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0) 
-				.equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 
 		Mover muevoAOptimus = new Mover(movimiento);
 		partida.jugar(muevoAOptimus);
@@ -91,30 +92,27 @@ public class AlgoFormerTest {
         movimiento.add(coordenada4);
         movimiento.add(coordenada5);
         movimiento.add(coordenada6);
-        // TODO
-//		Jugador jugador1 = new Jugador("Nombre1", Decepticons);
-//		Jugador jugador2 = new Jugador("Nombre2", Autobots);
 
-		Jugador jugador1 = new Jugador("Nombre1");
-		Jugador jugador2 = new Jugador("Nombre2");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0)
-				.equalsIgnoreCase("Optimus"));
-        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada0)
-        		.equalsIgnoreCase("Optimus Humanoide"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
+        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada0).equalsIgnoreCase("Optimus Humanoide"));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
 		Assert.assertTrue(partida.casilleroVacio(coordenada2));
 		Assert.assertTrue(partida.casilleroVacio(coordenada3));
 
         Transformar transformoOptimusHumanoideEnPeterbilt = new Transformar(coordenada0);
 		partida.jugar(transformoOptimusHumanoideEnPeterbilt);
+		
+		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
+		partida.jugar(transformarMegatron);
+		
 		Mover muevoAOptimusEnEjeY = new Mover(movimiento);
 		partida.jugar(muevoAOptimusEnEjeY);
-		
-
     }
-
 
 }

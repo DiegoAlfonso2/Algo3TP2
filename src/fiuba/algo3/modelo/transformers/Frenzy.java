@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.modos.FrenzyHumanoide;
 
 public class Frenzy extends Decepticon{
@@ -8,9 +8,9 @@ public class Frenzy extends Decepticon{
     public Frenzy() {
         this.nombre = "Frenzy";
         this.puntosDeVida = 400;
-        this.ataque = new Ataque();
         this.modoActivo = new FrenzyHumanoide();
         this.setearCaracteristicas(this.modoActivo);
+        this.bonus = new Modificadores();
     }
 
 	

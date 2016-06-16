@@ -1,6 +1,6 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.modos.RatchetHumanoide;
 
 public class Ratchet extends Autobot{
@@ -8,9 +8,9 @@ public class Ratchet extends Autobot{
     public Ratchet() {
         this.nombre = "Ratchet";
         this.puntosDeVida = 150;
-        this.ataque = new Ataque();
         this.modoActivo = new RatchetHumanoide();
         this.setearCaracteristicas(this.modoActivo);
+        this.bonus = new Modificadores();
     }
 	
 	public void cambiarModo() {

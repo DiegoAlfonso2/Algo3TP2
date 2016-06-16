@@ -10,8 +10,7 @@ import fiuba.algo3.modelo.transformers.AlgoFormer;
 public class TormentaPsionica extends Aire {
 
 	@Override
-	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
-			EstadoVital estado) {
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
 		personaje.atravesarTormentaPsionica();
 		// TODO Agregar consecuencias de atravesar una tormenta psionica
 		return new ArrayList<Consecuencia>();

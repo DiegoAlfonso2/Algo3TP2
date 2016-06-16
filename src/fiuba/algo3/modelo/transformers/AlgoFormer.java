@@ -1,9 +1,9 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.Contenido;
-import fiuba.algo3.modelo.elementos.Bonus;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.modos.Modo;
 
@@ -11,22 +11,14 @@ public abstract class AlgoFormer{
 	
 	protected String nombre;
 	protected String avatar;
-	protected Ataque ataque;
+	protected int ataque;
 	protected int distAtaque;
 	protected int velocidad;
 	protected int puntosDeVida;
 	protected int movimientos;
-	protected Bonus bonus;
+	protected Modificadores bonus;
     protected ChispaSuprema chispa;
 	protected Modo modoActivo;
-
-	/*public AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
-		this.nombre = nombre;
-		this.puntosDeVida = puntosDeVida;
-		this.modoActivo = modoHumanoide;
-		this.modoInactivo = modoAlterno;
-	}
-    */
 
 	public String getNombre() {
 		return this.nombre;
@@ -41,7 +33,7 @@ public abstract class AlgoFormer{
 	}
 
 	public int getPtosDeAtaque() {
-		return this.ataque.getPtosDeAtaque();
+		return this.ataque;
 	}
 
 	public int getDistanciaAtaque() {
@@ -52,6 +44,8 @@ public abstract class AlgoFormer{
 		return this.velocidad;
 	}
 
+	public abstract boolean perteneceA(Jugador jugador);
+	
 	public void cambiarModo() {
 		this.modoActivo = modoActivo.cambiarModo();
 		this.setearCaracteristicas(modoActivo);
@@ -59,7 +53,7 @@ public abstract class AlgoFormer{
 	
 	protected void setearCaracteristicas(Modo modo) {
 		this.avatar = modo.avatarModo();
-		this.ataque.setPtosDeAtaque(modo.ataqueModo());
+		this.ataque = modo.ataqueModo();
 		this.distAtaque = modo.distAtaqueModo();
 		this.velocidad = modo.velocidadModo();
 	}
@@ -73,18 +67,9 @@ public abstract class AlgoFormer{
 			throw new MovimientoInvalidoException();
 		}	
 	}
-	
-	public void absorber(Bonus bonus) {
-		this.bonus = bonus;
-	}
-	
-	public void absorber(ChispaSuprema chispa) {
-		this.chispa = chispa;
-	}
-	
+
 	public void absorber(Contenido contenido) {
-		this.bonus = contenido.definirBonus();
-		this.chispa = contenido.definirChispa();
+		contenido.almacenarse(this.bonus, this.chispa);
 	}
 
 	public abstract void atravesarEspinas();
@@ -106,6 +91,38 @@ public abstract class AlgoFormer{
 	public void descontarMovimientoPosible(int i) {
 		this.movimientos -= 1;
 	}
+
+	public boolean tieneBonus(String bonus) {
+		return this.bonus.tieneBonus(bonus);
+	}
+	
+	public boolean ataquePosible(int distancia) {
+		return (distAtaque >= distancia);
+	}
+
+	public int atacar() {
+		return bonus.modificarAtaque(this.ataque);
+	}
+
+	public void recibirAtaque(int ataque) {
+		this.recibirDanio(bonus.modificarDefensa(ataque));
+	}
+	
+	private void recibirDanio(int ataqueRecibido) {
+		this.puntosDeVida -= ataqueRecibido;
+	}
+
+	public void descontarTurnos() {
+		this.bonus.descontarTurnos();
+	}
+
+	public void activarBonus() {
+		this.bonus.activarBonus();
+	}
+
+	public abstract boolean equipoAutobots();
+	
+	public abstract boolean equipoDecepticons();
 	
 }
 

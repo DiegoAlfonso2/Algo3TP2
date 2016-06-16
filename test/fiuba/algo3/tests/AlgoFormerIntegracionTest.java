@@ -49,51 +49,46 @@ public class AlgoFormerIntegracionTest {
 		movimiento.add(coordenada1);
         movimiento.add(coordenada2);
                 
-		Jugador jugador1 = new Jugador("Nombre1");
-		Jugador jugador2 = new Jugador("Nombre2");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0) 
-				.equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 
 		Mover muevoAOptimus = new Mover(movimiento);
 		partida.jugar(muevoAOptimus);
 
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2) 
-				.equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).getNombre().equalsIgnoreCase("Optimus"));
 	}
 
 	@Test
 	public void test02TransformarAlgoFormerAFormaAlterna() {
 
-		// TODO
-//		Jugador jugador1 = new Jugador("Nombre1", Decepticons);
-//		Jugador jugador2 = new Jugador("Nombre2", Autobots);
-
-		Jugador jugador1 = new Jugador("Nombre1");
-		Jugador jugador2 = new Jugador("Nombre2");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		Partida partida = new Partida(jugador1, jugador2);
 
         Coordenada unaCoordenada = new Coordenada(1,1);
-		Assert.assertTrue(partida.obtenerAlgoformer(unaCoordenada) 
-				.equalsIgnoreCase("Optimus"));
-        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada)
-        		.equalsIgnoreCase("Optimus Humanoide"));
+		Assert.assertTrue(partida.obtenerAlgoformer(unaCoordenada).getNombre().equalsIgnoreCase("Optimus"));
+        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada).equalsIgnoreCase("Optimus Humanoide"));
 
         Transformar transformoOptimusHumanoideEnPeterbilt = new Transformar(unaCoordenada);
 		partida.jugar(transformoOptimusHumanoideEnPeterbilt);
 
-        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada)
-        		.equalsIgnoreCase("Peterbilt 379"));
+		
+        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada).equalsIgnoreCase("Peterbilt 379"));
+        
+		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
+		partida.jugar(transformarMegatron);
 
         Transformar transformoOptimusPeterbiltEnHumanoide = new Transformar(unaCoordenada);
 		partida.jugar(transformoOptimusPeterbiltEnHumanoide);
-        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada)
-        		.equalsIgnoreCase("Optimus Humanoide"));
+        Assert.assertTrue(partida.obtenerModoAlgoformer(unaCoordenada).equalsIgnoreCase("Optimus Humanoide"));
 
 	}
 
@@ -110,35 +105,32 @@ public class AlgoFormerIntegracionTest {
         movimiento.add(coordenada2);
         movimiento.add(coordenada3);
 
-        // TODO
-//		Jugador jugador1 = new Jugador("Nombre1", Decepticons);
-//		Jugador jugador2 = new Jugador("Nombre2", Autobots);
-
-		Jugador jugador1 = new Jugador("Nombre1");
-		Jugador jugador2 = new Jugador("Nombre2");
+        Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0)
-				.equalsIgnoreCase("Optimus"));
-        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada0)
-        		.equalsIgnoreCase("Optimus Humanoide"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
+        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada0).equalsIgnoreCase("Optimus Humanoide"));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
 		Assert.assertTrue(partida.casilleroVacio(coordenada2));
 		Assert.assertTrue(partida.casilleroVacio(coordenada3));
 
         Transformar transformoOptimusHumanoideEnPeterbilt = new Transformar(coordenada0);
 		partida.jugar(transformoOptimusHumanoideEnPeterbilt);
+		
+		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
+		partida.jugar(transformarMegatron);
+		
 		Mover muevoAOptimusEnEjeY = new Mover(movimiento);
 		partida.jugar(muevoAOptimusEnEjeY);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
 		Assert.assertTrue(partida.casilleroVacio(coordenada2));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3) 
-				.equalsIgnoreCase("Optimus"));
-        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada3)
-        		.equalsIgnoreCase("Peterbilt 379"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).getNombre().equalsIgnoreCase("Optimus"));
+        Assert.assertTrue(partida.obtenerModoAlgoformer(coordenada3).equalsIgnoreCase("Peterbilt 379"));
     }
 
 
@@ -150,26 +142,19 @@ public class AlgoFormerIntegracionTest {
 	en un MAPA de 10x10.
 	*/
 
-	Jugador jugador1 = new Jugador("Nombre1");
-	Jugador jugador2 = new Jugador("Nombre2");
+	Jugador jugador1 = new JugadorAutobots("Pepito");
+	Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 	Partida partida = new Partida(jugador1, jugador2);
 
 
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(1,1))
-            .equalsIgnoreCase("Optimus"));
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(3,1))
-            .equalsIgnoreCase("Bumblebee"));
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(1,3))
-            .equalsIgnoreCase("Ratchet"));
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(10,10))
-            .equalsIgnoreCase("Megatron"));
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(10,8))
-            .equalsIgnoreCase("Bonecrusher"));
-    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(8,10))
-            .equalsIgnoreCase("Frenzy"));
-    Assert.assertTrue(partida.obtenerContenido(new Coordenada(6,5))
-            .equalsIgnoreCase("Chispa Suprema"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(1,1)).getNombre().equalsIgnoreCase("Optimus"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(3,1)).getNombre().equalsIgnoreCase("Bumblebee"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(1,3)).getNombre().equalsIgnoreCase("Ratchet"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(10,10)).getNombre().equalsIgnoreCase("Megatron"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(10,8)).getNombre().equalsIgnoreCase("Bonecrusher"));
+    Assert.assertTrue(partida.obtenerAlgoformer(new Coordenada(8,10)).getNombre().equalsIgnoreCase("Frenzy"));
+    Assert.assertTrue(partida.obtenerContenido(new Coordenada(6,5)).getNombre().equalsIgnoreCase("Chispa Suprema"));
 
 }
     /*

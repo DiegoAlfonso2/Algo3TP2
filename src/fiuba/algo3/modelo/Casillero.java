@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import fiuba.algo3.modelo.acciones.consecuencias.AbsorberContenido;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.superficies.Aire;
@@ -24,7 +25,6 @@ public class Casillero {
 		this.algoformer = null;
 	}
 	
-	// TODO ver como usar esto en lugar de cada metodo por separado
     public void ponerContenido(Contenido unContenido) {
         if (this.contenido != null) {
             throw new CasilleroOcupadoException();
@@ -58,7 +58,7 @@ public class Casillero {
 	}
 	
 	public boolean estaVacio() {
-		return (this.algoformer == null && this.contenido == null);
+		return (this.contenido == null);
 	}
 
 	public Contenido obtenerContenido() {
@@ -68,24 +68,18 @@ public class Casillero {
 		return this.contenido;
 	}
 
-	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
-			EstadoVital estado) {
-		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = 
-				new ArrayList<Consecuencia>();
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
+		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = new ArrayList<Consecuencia>();
 		if (this.contenido != null) {
-			// De esta forma diferimos las consecuencias de pasar por un casillero hasta
-			// saber que el movimiento es valido
-			// Suposicion: si el contenido es un bonus, no entra en juego en el mismo turno
-			// en el que se obtiene sino a partir del siguiente
-			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(contenido));
+			// De esta forma diferimos las consecuencias de pasar por un casillero hasta saber que el movimiento es valido.
+			// Suposicion: los bonus se pueden utilizar el turno siguiente a ser absorvidos.
+			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(contenido, this));
 		}
 		if (this.terreno != null) {
-			consecuenciasDeActuarSobreAlgoformer.addAll(
-					terreno.actuarSobreAlgoformer(personaje, estado));
+			consecuenciasDeActuarSobreAlgoformer.addAll(terreno.actuarSobreAlgoformer(personaje, estado));
 		}
 		if (this.espacioAereo != null) {
-			consecuenciasDeActuarSobreAlgoformer.addAll(
-					espacioAereo.actuarSobreAlgoformer(personaje, estado));
+			consecuenciasDeActuarSobreAlgoformer.addAll(espacioAereo.actuarSobreAlgoformer(personaje, estado));
 		}
 		return consecuenciasDeActuarSobreAlgoformer;
 	}
@@ -100,6 +94,14 @@ public class Casillero {
 	
 	public boolean hayAlgoformer() {
 		return !(algoformer == null);
+	}
+
+	public void ponerBonus(Bonus bonus) {
+		this.contenido = bonus;
+	}
+
+	public void sacarContenido() {
+		this.contenido = null;
 	}
 	
 }

@@ -1,9 +1,19 @@
 package fiuba.algo3.modelo.transformers;
 
-/**
- * Created by Julian Garate on 6/4/16.
- */
-abstract class Decepticon extends AlgoFormer {
+import fiuba.algo3.modelo.Jugador;
 
+public abstract class Decepticon extends AlgoFormer {
 
+	public boolean perteneceA(Jugador jugador) {
+		return jugador.lePertenece(this);
+	}
+
+	public boolean equipoAutobots() {
+		return true;
+	}
+	
+	public boolean equipoDecepticons() {
+		return false;
+	}
+	
 }

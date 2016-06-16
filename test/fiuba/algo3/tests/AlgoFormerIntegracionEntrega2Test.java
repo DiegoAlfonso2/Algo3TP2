@@ -6,6 +6,8 @@ import java.util.List;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.acciones.Mover;
 import fiuba.algo3.modelo.acciones.Transformar;
@@ -26,20 +28,20 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada1);
         movimiento.add(coordenada2);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Optimus en la posición (1,1).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 
 		Mover moverOptimus = new Mover(movimiento);
 		partida.jugar(moverOptimus);
 
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).getNombre().equalsIgnoreCase("Optimus"));
 	}
 
 	@Test (expected=MovimientoInvalidoException.class)
@@ -50,13 +52,13 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada0);
 		movimiento.add(coordenada1);
 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Optimus en la posición (1,1).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 
 		Mover moverOptimus = new Mover(movimiento);
 		partida.jugar(moverOptimus);
@@ -77,20 +79,24 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento2.add(coordenada3);
 		movimiento2.add(coordenada0);
 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Optimus en la posición (1,1).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 
 		Mover moverOptimus = new Mover(movimiento1);
 		partida.jugar(moverOptimus);
 		
 		// Yendo por el camino sin Pantano, optimus puede desplazarse hasta 2 casilleros.
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).getNombre().equalsIgnoreCase("Optimus"));
+		
+		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
+		partida.jugar(transformarMegatron);
 		
 		moverOptimus = new Mover(movimiento2);
 		// Al desplazarse por el Pantano, tarda el doble, por lo que por cada casillero que avanza en el Pantano gasta 2 de velocidad.
@@ -106,23 +112,27 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada0);
 		movimiento.add(coordenada1);
          
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
 		
 		Mover moverMegatron = new Mover(movimiento);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).getNombre().equalsIgnoreCase("Megatron"));
 	}	
 		
 	@Test 
@@ -135,13 +145,13 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada1);
         movimiento.add(coordenada2);
         
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Optimus en la posición (1,1).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Optimus"));
 		
 		// Se chequea que la vida de Optimus sea de 500.
 		Assert.assertTrue(partida.obtenerVidaAlgoFormer(coordenada0) == 500);
@@ -151,7 +161,7 @@ public class AlgoFormerIntegracionEntrega2Test {
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
 		Assert.assertTrue(partida.casilleroVacio(coordenada1));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).equalsIgnoreCase("Optimus"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada2).getNombre().equalsIgnoreCase("Optimus"));
 		
 		// Se chequea que al pasar por las espinas pierda un 5% de vida.
 		Assert.assertTrue(partida.obtenerVidaAlgoFormer(coordenada2) == 475);	
@@ -165,14 +175,14 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada0);
 		movimiento.add(coordenada1);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
 
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que la vida de Megatron sea de 550.
 		Assert.assertTrue(partida.obtenerVidaAlgoFormer(coordenada0) == 550);
@@ -180,11 +190,15 @@ public class AlgoFormerIntegracionEntrega2Test {
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
 		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
+		
 		Mover moverMegatron = new Mover(movimiento);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por las espinas pierda un 5% de vida.
 		Assert.assertTrue(partida.obtenerVidaAlgoFormer(coordenada1) == 550);	
@@ -198,22 +212,26 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada0);
 		movimiento.add(coordenada1);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 		
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
 		
 		Mover moverMegatron = new Mover(movimiento);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).equalsIgnoreCase("Megatron"));			
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada1).getNombre().equalsIgnoreCase("Megatron"));			
 	}	
 		
 	@Test 
@@ -232,22 +250,26 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada4);
 		movimiento.add(coordenada5);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 		
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
 		
 		Mover moverMegatron = new Mover(movimiento);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// TODO Hay que ver el tema de como terminar los turnos e iniciar otros. Recién ahí se puede implementar este test.
 		Assert.assertTrue(true == false);
@@ -269,25 +291,29 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento.add(coordenada4);
 		movimiento.add(coordenada5);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 		
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
 		
 		Mover moverMegatron = new Mover(movimiento);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica perdió un 40% de ataque.
-		Assert.assertTrue(partida.obtenerAtaqueAlgoFormer(coordenada5) == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).atacar() == 33);
 	}	
 	
 	@Test 
@@ -310,34 +336,41 @@ public class AlgoFormerIntegracionEntrega2Test {
 		movimiento2.add(coordenada4);
 		movimiento2.add(coordenada3);
                 
-		Jugador jugador1 = new Jugador("Pepito");
-		Jugador jugador2 = new Jugador("Pirulo");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 
 		// Se hardcodea un Megatron en la posición (10,10).
 		// Se hardcodean las superficies de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada0).getNombre().equalsIgnoreCase("Megatron"));
 		
 		Transformar transformarMegatron = new Transformar(coordenada0);
 		partida.jugar(transformarMegatron);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarOptimus = new Transformar (new Coordenada(1,1));
+		partida.jugar(transformarOptimus);
 		
 		Mover moverMegatron = new Mover(movimiento1);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica perdió un 40% de ataque.
-		Assert.assertTrue(partida.obtenerAtaqueAlgoFormer(coordenada5) == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).atacar() == 33);
+		
+		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		partida.jugar(transformarOptimus);
 		
 		moverMegatron = new Mover(movimiento2);
 		partida.jugar(moverMegatron);
 		
 		Assert.assertTrue(partida.casilleroVacio(coordenada0));
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).equalsIgnoreCase("Megatron"));
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica nuevamente no volvió a perder puntos de ataque.
-		Assert.assertTrue(partida.obtenerAtaqueAlgoFormer(coordenada3) == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).atacar() == 33);
 	}	
 	
 }
