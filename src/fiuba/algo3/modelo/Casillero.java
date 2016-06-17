@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import fiuba.algo3.modelo.acciones.consecuencias.AbsorberContenido;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.excepciones.CasilleroOcupadoException;
 import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.superficies.Aire;
@@ -29,7 +30,6 @@ public class Casillero {
 		this.espacioAereo = new Nube();
 	}
 	
-	// TODO ver como usar esto en lugar de cada metodo por separado
     public void ponerContenido(Contenido unContenido) {
         if (this.contenido != null) {
             throw new CasilleroOcupadoException();
@@ -73,20 +73,16 @@ public class Casillero {
 		return this.contenido;
 	}
 
-	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
-			EstadoVital estado) {
-		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = 
-				new ArrayList<Consecuencia>();
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
+		Collection<Consecuencia> consecuenciasDeActuarSobreAlgoformer = new ArrayList<Consecuencia>();
 		if (this.contenido != null) {
 			consecuenciasDeActuarSobreAlgoformer.add(new AbsorberContenido(this));
 		}
 		if (this.terreno != null) {
-			consecuenciasDeActuarSobreAlgoformer.addAll(
-					terreno.actuarSobreAlgoformer(personaje, estado));
+			consecuenciasDeActuarSobreAlgoformer.addAll(terreno.actuarSobreAlgoformer(personaje, estado));
 		}
 		if (this.espacioAereo != null) {
-			consecuenciasDeActuarSobreAlgoformer.addAll(
-					espacioAereo.actuarSobreAlgoformer(personaje, estado));
+			consecuenciasDeActuarSobreAlgoformer.addAll(espacioAereo.actuarSobreAlgoformer(personaje, estado));
 		}
 		return consecuenciasDeActuarSobreAlgoformer;
 	}
@@ -101,6 +97,14 @@ public class Casillero {
 	
 	public boolean hayAlgoformer() {
 		return !(algoformer == null);
+	}
+
+	public void ponerBonus(Bonus bonus) {
+		this.contenido = bonus;
+	}
+
+	public void sacarContenido() {
+		this.contenido = null;
 	}
 	
 }

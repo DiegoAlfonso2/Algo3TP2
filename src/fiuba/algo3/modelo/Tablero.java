@@ -5,7 +5,11 @@ import java.util.Collection;
 import java.util.List;
 
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.elementos.Bonus;
+import fiuba.algo3.modelo.elementos.Burbuja;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.elementos.DobleCanon;
+import fiuba.algo3.modelo.elementos.Flash;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
 import fiuba.algo3.modelo.superficies.Aire;
@@ -17,12 +21,6 @@ import fiuba.algo3.modelo.superficies.Rocosa;
 import fiuba.algo3.modelo.superficies.Terreno;
 import fiuba.algo3.modelo.superficies.TormentaPsionica;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
-import fiuba.algo3.modelo.transformers.Bonecrusher;
-import fiuba.algo3.modelo.transformers.Bumblebee;
-import fiuba.algo3.modelo.transformers.Frenzy;
-import fiuba.algo3.modelo.transformers.Megatron;
-import fiuba.algo3.modelo.transformers.Optimus;
-import fiuba.algo3.modelo.transformers.Ratchet;
 
 public class Tablero {
 	
@@ -58,7 +56,6 @@ public class Tablero {
 		throw new PosicionInvalidaException();
 	}
 
-	// TODO Tal vez esto tendria que tomar un contenido cualquiera, no un personaje
 	public void ponerAlgoformer(AlgoFormer personaje, Coordenada ubicacion) {
 		localizarCasillero(ubicacion).ponerAlgoformer(personaje);
 	}
@@ -67,15 +64,11 @@ public class Tablero {
         localizarCasillero(ubicacion).ponerContenido(chispaSuprema);
     }
 
-	// TODO Por ahora solamente se saca el algoformer. Habria que ver que pasa
-	// en el caso de los bonus, etc... O los saca al "atravesar"?
-    // CRISTIAN: Pensaria en sacar los bonus y chispas con el "atravesar".
 	public void sacarAlgoformer(AlgoFormer personaje, Coordenada ubicacion) {
 		localizarCasillero(ubicacion).sacarAlgoformer();
 	}
 
-	public Collection<Consecuencia> atravesarCasillero(Coordenada coordenada, AlgoFormer personaje,
-			EstadoVital estado) {
+	public Collection<Consecuencia> atravesarCasillero(Coordenada coordenada, AlgoFormer personaje, EstadoVital estado) {
 		Casillero destino = localizarCasillero(coordenada);
 		if (destino.hayAlgoformer()){
 			throw new MovimientoInvalidoException();
@@ -144,14 +137,50 @@ public class Tablero {
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(10,5));
 	}
 
-	public void inicializarAlgoformers() {
-		this.ponerAlgoformer(new Optimus(), new Coordenada(1,1));
-        this.ponerAlgoformer(new Bumblebee(), new Coordenada(3,1));
-        this.ponerAlgoformer(new Ratchet(), new Coordenada(1,3));
-        this.ponerAlgoformer(new Megatron(), new Coordenada(10,10));
-        this.ponerAlgoformer(new Bonecrusher(), new Coordenada(10,8));
-        this.ponerAlgoformer(new Frenzy(),new Coordenada(8,10));
+	public void inicializarAlgoformers(List<AlgoFormer> autobots, List<AlgoFormer> decepticons) {
+		this.ponerAlgoformer(autobots.get(0), new Coordenada(1,1));
+        this.ponerAlgoformer(autobots.get(1), new Coordenada(3,1));
+        this.ponerAlgoformer(autobots.get(2), new Coordenada(1,3));
+        this.ponerAlgoformer(decepticons.get(0), new Coordenada(10,10));
+        this.ponerAlgoformer(decepticons.get(1), new Coordenada(10,8));
+        this.ponerAlgoformer(decepticons.get(2), new Coordenada(8,10));
 	}
+
+	public void crearBonus() {
+		this.ponerBonus(new Burbuja(), new Coordenada(3,4));
+		this.ponerBonus(new Burbuja(), new Coordenada(5,7));
+		this.ponerBonus(new Burbuja(), new Coordenada(8,6));
+		this.ponerBonus(new Burbuja(), new Coordenada(10,2));
+		
+		this.ponerBonus(new DobleCanon(), new Coordenada(2,10));
+		this.ponerBonus(new DobleCanon(), new Coordenada(4,7));
+		this.ponerBonus(new DobleCanon(), new Coordenada(7,1));
+		this.ponerBonus(new DobleCanon(), new Coordenada(10,4));
+		
+		this.ponerBonus(new Flash(), new Coordenada(1,6));
+		this.ponerBonus(new Flash(), new Coordenada(4,3));
+		this.ponerBonus(new Flash(), new Coordenada(6,9));
+		this.ponerBonus(new Flash(), new Coordenada(9,4));
+	}
+	
+	private void ponerBonus(Bonus bonus, Coordenada coordenada) {
+		this.localizarCasillero(coordenada).ponerBonus(bonus);
+	}
+
+	public boolean ataquePosible(Coordenada atacante, Coordenada defensor) {
+		return this.algoFormerEnCasillero(atacante).ataquePosible(this.distancia(atacante,defensor));
+	}
+
+	public void efectuarAtaque(Coordenada atacante, Coordenada defensor) {
+		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
+	}
+
+	private int distancia(Coordenada atacante, Coordenada defensor) {
+		int distancia = 0;
+		// TODO Calcular distancia.
+		return distancia;
+	}
+	
 	
 }
 

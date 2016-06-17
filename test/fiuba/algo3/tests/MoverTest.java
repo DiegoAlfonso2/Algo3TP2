@@ -8,9 +8,12 @@ import org.junit.Test;
 
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.acciones.Mover;
+import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.superficies.Pantano;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
@@ -36,8 +39,8 @@ public class MoverTest {
 			coordenadasMovimiento.add(coordenada);
 		}
 		Mover testeado = new Mover(coordenadasMovimiento);
-		Jugador jugador1 = new Jugador("Jugador 1");
-		Jugador jugador2 = new Jugador("Jugador 2");
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		testeado.ejecutarSobre(new Partida(jugador1, jugador2), tablero);
 	}
 	
@@ -631,7 +634,7 @@ public class MoverTest {
 				new Coordenada(9, 9));
 	}
 	
-	@Test(expected=MovimientoInvalidoException.class)
+	@Test(expected=CasilleroVacioException.class)
 	public void test15NoSePuedeMoverDesdeCasilleroSinAlgoFormer() {
 		Tablero tablero = new Tablero(10, 10);
 		Optimus optimusHumanoide = new Optimus();

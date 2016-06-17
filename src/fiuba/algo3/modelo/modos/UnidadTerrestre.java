@@ -31,7 +31,7 @@ public abstract class UnidadTerrestre extends Modo {
 	}
 
 	@Override
-	public void atravesarTormentaPsionica(Ataque ataque) {
+	public void atravesarTormentaPsionica(int ataque) {
 		// TODO Auto-generated method stub
 		
 	}

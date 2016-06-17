@@ -18,4 +18,5 @@ public class BumblebeeAlterno extends UnidadTerrestre {
 	public String avatarModo() {
 		return BUMBLEBEE_TERRESTRE_AVATAR;
 	}
+
 }

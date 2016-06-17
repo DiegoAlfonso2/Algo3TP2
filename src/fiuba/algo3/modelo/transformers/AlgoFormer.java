@@ -4,9 +4,10 @@ import java.util.Collection;
 
 import fiuba.algo3.modelo.Contenido;
 import fiuba.algo3.modelo.EstadoVital;
+import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
-import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.modos.Modo;
 
@@ -15,7 +16,7 @@ public abstract class AlgoFormer{
 	protected String nombre;
 	protected String avatar;
 	protected int puntosDeVida;
-	protected Bonus bonus;
+	protected Modificadores bonus;
     protected ChispaSuprema chispa;
 	protected Modo modoActivo;
 	protected Modo modoInactivo;
@@ -25,6 +26,7 @@ public abstract class AlgoFormer{
 		this.puntosDeVida = puntosDeVida;
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
+		this.bonus = new Modificadores();
 	}
 
 	public String getNombre() {
@@ -51,6 +53,8 @@ public abstract class AlgoFormer{
 		return modoActivo.getVelocidad();
 	}
 
+	public abstract boolean perteneceA(Jugador jugador);
+	
 	public void cambiarModo() {
 		Modo tmp = modoActivo;
 		this.modoActivo = modoInactivo;
@@ -65,22 +69,45 @@ public abstract class AlgoFormer{
 		return puntosDeVida > 0;
 	}
 
-	public void absorber(Bonus bonus) {
-		this.bonus = bonus;
-	}
-	
-	public void absorber(ChispaSuprema chispa) {
-		this.chispa = chispa;
-	}
-	
 	public void absorber(Contenido contenido) {
-		this.bonus = contenido.definirBonus();
-		this.chispa = contenido.definirChispa();
+		contenido.almacenarse(this.bonus, this.chispa);
 	}
 	
 	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
 		return modoActivo.atravesarEspinas(estado);
 	}
+
+	public boolean tieneBonus(String bonus) {
+		return this.bonus.tieneBonus(bonus);
+	}
+	
+	public boolean ataquePosible(int distancia) {
+		return (modoActivo.getDistAtaque() >= distancia);
+	}
+
+	public int atacar() {
+		return bonus.modificarAtaque(modoActivo.getPtosDeAtaque());
+	}
+
+	public void recibirAtaque(int ataque) {
+		this.recibirDanio(bonus.modificarDefensa(ataque));
+	}
+	
+	private void recibirDanio(int ataqueRecibido) {
+		this.puntosDeVida -= ataqueRecibido;
+	}
+
+	public void descontarTurnos() {
+		this.bonus.descontarTurnos();
+	}
+
+	public void activarBonus() {
+		this.bonus.activarBonus();
+	}
+
+	public abstract boolean equipoAutobots();
+	
+	public abstract boolean equipoDecepticons();
 	
 //	public abstract void atravesarPantano();
 //	

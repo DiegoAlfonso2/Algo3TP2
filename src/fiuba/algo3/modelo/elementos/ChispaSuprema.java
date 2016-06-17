@@ -1,10 +1,8 @@
 package fiuba.algo3.modelo.elementos;
 
 import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.excepciones.FinalException;
 
-/**
- * Created by Julian Garate on 6/3/16.
- */
 public class ChispaSuprema implements Contenido{
 
     private String nombre = "Chispa Suprema";
@@ -21,5 +19,11 @@ public class ChispaSuprema implements Contenido{
 	@Override
 	public ChispaSuprema definirChispa() {
 		return this;
+	}
+
+	@Override
+	public void almacenarse(Modificadores bonus, ChispaSuprema chispa) {
+		chispa = this;
+		throw new FinalException();
 	}
 }

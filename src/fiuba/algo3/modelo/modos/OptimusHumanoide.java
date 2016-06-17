@@ -18,6 +18,6 @@ public class OptimusHumanoide extends Humanoide {
 	public String avatarModo() {
 		return OPTIMUS_HUMANOIDE_AVATAR;
 	}
-	
+
 }
 

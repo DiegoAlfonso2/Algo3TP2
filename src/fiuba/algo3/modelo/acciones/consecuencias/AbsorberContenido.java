@@ -17,6 +17,7 @@ public class AbsorberContenido implements Consecuencia {
 		// otra forma, al pasar por un modificador, este se duplicaria
 		if (!casillero.estaVacio()) {
 			personaje.absorber(casillero.obtenerContenido());
+			this.casillero.sacarContenido();
 		}
 	}
 	

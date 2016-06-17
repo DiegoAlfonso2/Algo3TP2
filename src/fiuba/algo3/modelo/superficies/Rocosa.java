@@ -10,8 +10,7 @@ import fiuba.algo3.modelo.transformers.AlgoFormer;
 public class Rocosa extends Terreno {
 
 	@Override
-	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
-			EstadoVital estado) {
+	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
 		return new ArrayList<Consecuencia>();
 	}
 

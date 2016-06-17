@@ -1,21 +1,19 @@
 package fiuba.algo3.modelo.elementos;
 
-public class Burbuja extends Bonus {
+public class SancionTormentaPsionica extends Bonus {
 
-	public Burbuja() {
-		this.nombre = "Burbuja";
+	public SancionTormentaPsionica() {
+		this.nombre = "Sancion Tormenta Psionica";
 		this.activo = false;
 	}
 
 	@Override
 	public int modificarAtaque(int ataqueParcial) {
-		return ataqueParcial;
+		return (int) (ataqueParcial * 0.6);
 	}
 
 	@Override
 	public int modificarDefensa(int ataqueRecibido) {
-		if (this.activo)
-			return 0;
 		return ataqueRecibido;
 	}
 
@@ -24,9 +22,8 @@ public class Burbuja extends Bonus {
 		return velocidadParcial;
 	}
 
-	public void inicializarTurnos() {
-		if (this.activo)
-			this.turnosRestantes = 2;
+	public void descontarTurno() {
+		// Este metodo no hace nada ya que la Tormenta Psionica afecta el ataque durante toda la partida.
 	}
 	
 }

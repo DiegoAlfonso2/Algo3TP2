@@ -38,6 +38,6 @@ public abstract class Modo {
 
 	public abstract void atravesarNebulosaAndromeda();
 
-	public abstract void atravesarTormentaPsionica(Ataque ataque);
+	public abstract void atravesarTormentaPsionica(int ataque);
 		
 }

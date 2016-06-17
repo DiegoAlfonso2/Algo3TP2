@@ -18,4 +18,5 @@ public class BonecrusherHumanoide extends Humanoide {
 	public String avatarModo() {
 		return BONECRUSHER_HUMANOIDE_AVATAR;
 	}
+
 }

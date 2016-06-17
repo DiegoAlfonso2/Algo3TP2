@@ -18,6 +18,6 @@ public class RatchetHumanoide extends Humanoide {
 	public String avatarModo() {
 		return RATCHET_HUMANOIDE_AVATAR;
 	}
-	
+
 }
 
