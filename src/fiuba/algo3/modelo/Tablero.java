@@ -171,8 +171,11 @@ public class Tablero {
 		return this.algoFormerEnCasillero(atacante).ataquePosible(this.distancia(atacante,defensor));
 	}
 
-	public void efectuarAtaque(Coordenada atacante, Coordenada defensor) {
-		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
+	public void efectuarAtaque(Coordenada coordAtacante, Coordenada coordDefensor) {
+//		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
+		AlgoFormer atacante = algoFormerEnCasillero(coordAtacante);
+		AlgoFormer atacado = algoFormerEnCasillero(coordDefensor);
+		atacante.atacar(atacado, aDistancia);
 	}
 
 	private int distancia(Coordenada atacante, Coordenada defensor) {

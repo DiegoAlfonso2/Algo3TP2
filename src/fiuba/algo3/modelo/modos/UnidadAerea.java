@@ -2,7 +2,6 @@ package fiuba.algo3.modelo.modos;
 
 import java.util.Collection;
 
-import fiuba.algo3.modelo.Ataque;
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 

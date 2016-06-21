@@ -4,7 +4,7 @@ import fiuba.algo3.modelo.modos.UnidadTerrestre;
 
 public class AlgoTerrestreMock extends UnidadTerrestre {
 
-	protected AlgoTerrestreMock(int ptosAtaque, int distAtaque, int velocidad) {
+	public AlgoTerrestreMock(int ptosAtaque, int distAtaque, int velocidad) {
 		super(ptosAtaque, distAtaque, velocidad);
 	}
 

@@ -6,7 +6,7 @@ import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class AlgoMock extends AlgoFormer {
 
-	protected AlgoMock(String nombre, int puntosDeVida, Modo modoHumanoide,
+	public AlgoMock(String nombre, int puntosDeVida, Modo modoHumanoide,
 			Modo modoAlterno) {
 		super(nombre, puntosDeVida, modoHumanoide, modoAlterno);
 	}

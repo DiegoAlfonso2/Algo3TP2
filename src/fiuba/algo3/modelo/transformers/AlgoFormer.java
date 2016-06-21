@@ -8,18 +8,17 @@ import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.modelo.excepciones.AtaqueInvalidoException;
 import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
 	
-	protected String nombre;
-	protected String avatar;
-	protected int puntosDeVida;
-	protected Modificadores bonus;
-    protected ChispaSuprema chispa;
-	protected Modo modoActivo;
-	protected Modo modoInactivo;
+	private String nombre;
+	private int puntosDeVida;
+	private Modificadores bonus;
+	private ChispaSuprema chispa;
+	private Modo modoActivo;
+	private Modo modoInactivo;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -81,15 +80,22 @@ public abstract class AlgoFormer{
 		return this.bonus.tieneBonus(bonus);
 	}
 	
-	public boolean ataquePosible(int distancia) {
+	private boolean ataquePosible(int distancia) {
 		return (modoActivo.getDistAtaque() >= distancia);
 	}
-
-	public int atacar() {
+	
+	public int getAtaqueModificado() {
 		return bonus.modificarAtaque(modoActivo.getPtosDeAtaque());
 	}
 
-	public void recibirAtaque(int ataque) {
+	public void atacar(AlgoFormer objetivo, int distanciaAObjetivo) {
+		if (!ataquePosible(distanciaAObjetivo)) {
+			throw new AtaqueInvalidoException();
+		}
+		objetivo.recibirAtaque(this, getAtaqueModificado());
+	}
+
+	protected void recibirAtaque(AlgoFormer atacante, int ataque) {
 		this.recibirDanio(bonus.modificarDefensa(ataque));
 	}
 	

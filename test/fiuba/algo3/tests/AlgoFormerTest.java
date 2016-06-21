@@ -4,8 +4,14 @@ import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Jugador;
 import fiuba.algo3.modelo.JugadorAutobots;
 import fiuba.algo3.modelo.JugadorDecepticons;
+import fiuba.algo3.modelo.excepciones.AtaqueInvalidoException;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.modelo.modos.Modo;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
 import fiuba.algo3.modelo.transformers.Optimus;
+import fiuba.algo3.tests.mocks.AlgoHumanoideMock;
+import fiuba.algo3.tests.mocks.AlgoMock;
+import fiuba.algo3.tests.mocks.AlgoTerrestreMock;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.acciones.Mover;
 import fiuba.algo3.modelo.acciones.Transformar;
@@ -20,13 +26,13 @@ import org.junit.Assert;
 public class AlgoFormerTest {
 
 	@Test
-	public void test01EmpiezaEnModoHumanoide() {
+	public void testEmpiezaEnModoHumanoide() {
 		Optimus optimus = new Optimus();
 		Assert.assertEquals(optimus.getAvatar(), "Optimus Humanoide");
 	}
 
 	@Test
-	public void test02TransformarAModoAlterno() {
+	public void testTransformarAModoAlterno() {
 		Optimus optimus = new Optimus();
 
 		Assert.assertEquals(optimus.getAvatar(), "Optimus Humanoide");
@@ -35,7 +41,7 @@ public class AlgoFormerTest {
 	}
 
 	@Test
-	public void test03TransformarDeVueltaAHumanoide() {
+	public void testTransformarDeVueltaAHumanoide() {
 
 		Optimus optimus = new Optimus();
 
@@ -47,7 +53,7 @@ public class AlgoFormerTest {
 	}
 
 	@Test(expected = MovimientoInvalidoException.class)
-	public void test04moverAlgoFormer() {
+	public void testMoverAlgoFormer() {
 
 		List<Coordenada> movimiento = new ArrayList<Coordenada>();
 		Coordenada coordenada0 = new Coordenada(1, 1);
@@ -73,7 +79,7 @@ public class AlgoFormerTest {
 	}
 
 	@Test(expected = MovimientoInvalidoException.class)
-	public void test04moverAlgoFormerAlterno() {
+	public void testMoverAlgoFormerAlterno() {
 
 		List<Coordenada> movimiento = new ArrayList<Coordenada>();
 		Coordenada coordenada0 = new Coordenada(1, 1);
@@ -119,6 +125,44 @@ public class AlgoFormerTest {
 		
 		Mover muevoAOptimusEnEjeY = new Mover(movimiento);
 		partida.jugar(muevoAOptimusEnEjeY);
+	}
+	
+	@Test
+	public void testAtacarAlgoFormer() {
+		final int ptosVidaIniciales = 10;
+		final int ptosAtaque = 1;
+		final int distanciaValida = 1;
+		Modo atacanteHumanoide = new AlgoHumanoideMock(ptosAtaque, distanciaValida, 0);
+		Modo atacanteTerrestre = new AlgoTerrestreMock(0, 0, 0);
+		AlgoFormer atacante = new AlgoMock(
+				"Atacante", 
+				1, 
+				atacanteHumanoide, 
+				atacanteTerrestre);
+		Modo atacadoHumanoide = new AlgoHumanoideMock(1, 1, 1);
+		Modo atacadoTerrestre = new AlgoTerrestreMock(1, 1, 1);
+		AlgoFormer atacado = new AlgoMock(
+				"Atacado",
+				ptosVidaIniciales, 
+				atacadoHumanoide, 
+				atacadoTerrestre);
+
+		Assert.assertTrue(
+				atacado.getEstadoVital().getPuntosDeVidaRestantes() 
+				== 
+				ptosVidaIniciales);
+		
+		atacante.atacar(atacado, distanciaValida);
+		
+		Assert.assertTrue(
+				atacado.getEstadoVital().getPuntosDeVidaRestantes() 
+				== 
+				ptosVidaIniciales - ptosAtaque);
+	}
+	
+	@Test(expected=AtaqueInvalidoException.class)
+	public void testAtacarEquipoPropioLanzaExcepcion() {
+		
 	}
 
 }

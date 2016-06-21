@@ -3,7 +3,6 @@ package fiuba.algo3.modelo.acciones;
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
-import fiuba.algo3.modelo.excepciones.AtaqueInvalidoException;
 import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
 
 public class Atacar implements Accion {
@@ -20,9 +19,6 @@ public class Atacar implements Accion {
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
     	if (!partida.puedeJugar(this.atacante)){
     		throw new EquipoIncorrectoException();
-    	}
-    	if (!tablero.ataquePosible(this.atacante, this.defensor)){
-    		throw new AtaqueInvalidoException();
     	}
     	tablero.efectuarAtaque(this.atacante, this.defensor);
     }
