@@ -25,14 +25,6 @@ TODOS LOS SUPUESTOS SON VARIABLES
 
 SUPONGO:
 1 - Cuando se crea al AF, se crea en modo HUMANOIDE.
-2 - El MAPA deberia ser cuadrado y tener una dimesion tal que la Matriz que
-    represente al tablero tenga una Casilla centro.
-3 - Cambie el ObtenerAlgoformer por ObtenerContenido, pensando que puede tener
-    la chispa suprema el casillero.
-4 - En vez de pasarle al Algoformer toda la informacion propia, hay Objetos personajes que
-    ya tienen esos datos hardcodeados.
-    antes -> Algoformer(vida,velocidad, ...., etc)
-    ahora -> Algoformer(Optimus)
 */
 
 

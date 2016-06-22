@@ -19,7 +19,7 @@ public class JugadorDecepticons extends Jugador {
 
 	@Override
 	public boolean lePertenece(AlgoFormer personaje) {
-		return personaje.equipoDecepticons();
+		return personaje.perteneceA(this);
 	}
 	
 }

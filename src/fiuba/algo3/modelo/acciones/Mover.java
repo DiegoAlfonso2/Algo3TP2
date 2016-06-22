@@ -34,7 +34,7 @@ public class Mover implements Accion {
     	}
     	try {
 			Coordenada origen = movimiento.remove(0);
-			Coordenada destino = movimiento.remove(movimiento.size() - 1);
+			Coordenada destino = movimiento.get(movimiento.size() - 1);
 			AlgoFormer personaje;
 			try {
 				personaje = tablero.algoFormerEnCasillero(origen);
@@ -43,24 +43,23 @@ public class Mover implements Accion {
 						"No hay un AlgoFormer en ese casillero");
 			}
 			List<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
-			// TODO Pedirselo al Algoformer
-			EstadoVital estado = new EstadoVital(personaje.getPuntosDeVida(), personaje.getVelocidad());
+			EstadoVital estado = personaje.getEstadoVital();
 			Coordenada coordenadaAnterior = origen;
 			for (Coordenada coordenada : movimiento) {
 				if (!coordenadaAnterior.esConsecutiva(coordenada)) {
-					throw new MovimientoInvalidoException();
+					throw new MovimientoInvalidoException(
+							"No se puede saltar entre casilleros no contiguos");
+				}
+				if (!estado.esValido()) {
+					throw new MovimientoInvalidoException(
+							"El movimiento excede la capacidad del AlgoFormer");
 				}
 				consecuencias.addAll(tablero.atravesarCasillero(coordenada, personaje, estado));
 				coordenadaAnterior = coordenada;
 			}
-			if (!coordenadaAnterior.esConsecutiva(destino)) {
-				throw new MovimientoInvalidoException();
+			if (estado.estaVivo()) {
+				tablero.ponerAlgoformer(personaje, destino);
 			}
-			consecuencias.addAll(tablero.atravesarCasillero(destino, personaje, estado));
-			if (!estado.esValido()) {
-				throw new MovimientoInvalidoException();
-			}
-			tablero.ponerAlgoformer(personaje, destino);
 			tablero.sacarAlgoformer(personaje, origen);
 			for (Consecuencia consecuencia : consecuencias) {
 				consecuencia.serAfrontadaPor(personaje);

@@ -125,7 +125,7 @@ public class MoverTest {
 	public void test02MoverOptimusTerrestreRangoMaximo() {
 		Tablero tablero = new Tablero(30, 30);
 		Optimus optimusTerrestre = new Optimus();
-		optimusTerrestre.cambiarModo();
+		optimusTerrestre.transformar();
 		Coordenada ubicacionInicial = new Coordenada(1,1);
 		tablero.ponerAlgoformer(optimusTerrestre, ubicacionInicial);
 
@@ -280,7 +280,7 @@ public class MoverTest {
 	public void test04MoverRatchetAereo() {
 		Tablero tablero = new Tablero(30, 30);
 		Ratchet ratchetAereo = new Ratchet();
-		ratchetAereo.cambiarModo();
+		ratchetAereo.transformar();
 		Coordenada ubicacionInicial = new Coordenada(1,1);
 		tablero.ponerAlgoformer(ratchetAereo, ubicacionInicial);
 
@@ -416,7 +416,7 @@ public class MoverTest {
 			
 		}
 		
-		optimus.cambiarModo();
+		optimus.transformar();
 		
 		moverYChequear(optimus, tablero,
 				ubicacionInicial,
@@ -425,7 +425,7 @@ public class MoverTest {
 				new Coordenada(1, 4),
 				new Coordenada(1, 5));
 		
-		optimus.cambiarModo();
+		optimus.transformar();
 		
 		try {
 			moverYChequear(optimus, tablero,
@@ -475,7 +475,7 @@ public class MoverTest {
 	public void test08MoverOptimusPeterbiltFueraRangoValido() {
 		Tablero tablero = new Tablero(10, 10);
 		Optimus optimus = new Optimus();
-		optimus.cambiarModo();
+		optimus.transformar();
 		Coordenada ubicacionInicial = new Coordenada(1,1);
 		tablero.ponerAlgoformer(optimus, ubicacionInicial);
 

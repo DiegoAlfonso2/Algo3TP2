@@ -10,13 +10,23 @@ public class Coordenada {
 	}
 	
 	/**
+	 * Devuelve la distancia Chebyshov entre dos coordenadas del tablero (
+	 * siendo _this_ una de ellas).
+	 * @param otra Coordenada contra la que se quiere medir la distancia
+	 * @return
+	 */
+	public int distanciaHasta(Coordenada otra) {
+		return Math.max(Math.abs(this.x - otra.x), Math.abs(this.y - otra.y));
+	}
+	
+	/**
 	 * Indica si dos casilleros representados por sus coordenadas son adyacentes 
 	 * (estan uno al lado del otro, uno arriba del otro o en diagonal).
 	 * @param otra Coordenada contra la que se quiere hacer la comprobacion
 	 * @return
 	 */
 	public boolean esConsecutiva(Coordenada otra) {
-		return Math.abs(this.x - otra.x) <= 1 && Math.abs(this.y - otra.y) <= 1;
+		return distanciaHasta(otra) <= 1;
 	}
 
 	@Override
