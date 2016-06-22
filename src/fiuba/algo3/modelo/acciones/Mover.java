@@ -46,7 +46,6 @@ public class Mover implements Accion {
 			EstadoVital estado = personaje.getEstadoVital();
 			Coordenada coordenadaAnterior = origen;
 			for (Coordenada coordenada : movimiento) {
-				System.out.println("Atravesando " + coordenada.toString());
 				if (!coordenadaAnterior.esConsecutiva(coordenada)) {
 					throw new MovimientoInvalidoException(
 							"No se puede saltar entre casilleros no contiguos");
@@ -58,13 +57,8 @@ public class Mover implements Accion {
 				consecuencias.addAll(tablero.atravesarCasillero(coordenada, personaje, estado));
 				coordenadaAnterior = coordenada;
 			}
-			System.out.println("Ptos de vida: " + estado.getPuntosDeVidaRestantes());
-			System.out.println("Esta vivo: " + estado.estaVivo());
-			System.out.println("Destino: " + destino);
 			if (estado.estaVivo()) {
-				System.out.println("Poniendo Algoformer");
 				tablero.ponerAlgoformer(personaje, destino);
-				System.out.println(tablero.algoFormerEnCasillero(destino));
 			}
 			tablero.sacarAlgoformer(personaje, origen);
 			for (Consecuencia consecuencia : consecuencias) {
