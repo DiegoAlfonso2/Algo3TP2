@@ -24,10 +24,13 @@ import fiuba.algo3.modelo.transformers.Ratchet;
 public class MoverTest {
 
 	private void moverYChequear(AlgoFormer personaje, Tablero tablero, Coordenada... coordenadas) {
-		Assert.assertTrue(tablero.algoFormerEnCasillero(coordenadas[0]) == personaje);
+		Assert.assertEquals(
+				tablero.algoFormerEnCasillero(coordenadas[0]),
+				personaje);
 		mover(tablero, coordenadas);
-		Assert.assertTrue(tablero.algoFormerEnCasillero(coordenadas[coordenadas.length - 1]) 
-				== personaje);
+		Assert.assertEquals(
+				tablero.algoFormerEnCasillero(coordenadas[coordenadas.length - 1]), 
+				personaje);
 		for (int i = 0; i < coordenadas.length - 1; ++i) {
 			Assert.assertTrue(tablero.casilleroVacio(coordenadas[i]));
 		}
@@ -634,7 +637,7 @@ public class MoverTest {
 				new Coordenada(9, 9));
 	}
 	
-	@Test(expected=CasilleroVacioException.class)
+	@Test(expected=MovimientoInvalidoException.class)
 	public void test15NoSePuedeMoverDesdeCasilleroSinAlgoFormer() {
 		Tablero tablero = new Tablero(10, 10);
 		Optimus optimusHumanoide = new Optimus();

@@ -4,23 +4,25 @@ import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class Atacar implements Accion {
 
-	private Coordenada atacante;
-	private Coordenada defensor;
+	private Coordenada coordAtacante;
+	private Coordenada coordDefensor;
 	
-    public Atacar (Coordenada atacante, Coordenada defensor) {
-    	this.atacante = atacante;
-    	this.defensor = defensor;
+    public Atacar (Coordenada coordAtacante, Coordenada defensor) {
+    	this.coordAtacante = coordAtacante;
+    	this.coordDefensor = defensor;
     }
 
     @Override
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
-    	if (!partida.puedeJugar(this.atacante)){
+    	AlgoFormer atacante = tablero.algoFormerEnCasillero(coordAtacante);
+    	if (!partida.puedeJugar(atacante)){
     		throw new EquipoIncorrectoException();
     	}
-    	tablero.efectuarAtaque(this.atacante, this.defensor);
+    	tablero.efectuarAtaque(this.coordAtacante, this.coordDefensor);
     }
     
 }

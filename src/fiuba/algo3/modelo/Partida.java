@@ -75,8 +75,12 @@ public class Partida {
 		return this.jugador2;
 	}
 
-	public boolean puedeJugar(Coordenada ubicacion) {
-		return (this.obtenerJugadorActivo().lePertenece(this.obtenerAlgoformer(ubicacion)));
+//	public boolean puedeJugar(Coordenada ubicacion) {
+//		return (this.obtenerJugadorActivo().lePertenece(this.obtenerAlgoformer(ubicacion)));
+//	}
+	
+	public boolean puedeJugar(AlgoFormer personaje) {
+		return (this.obtenerJugadorActivo().lePertenece(personaje));
 	}
 	
 }

@@ -1,9 +1,12 @@
 package fiuba.algo3.modelo.modos;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.acciones.consecuencias.RecibirDanio;
 
 public abstract class UnidadTerrestre extends Modo {
 	
@@ -13,14 +16,19 @@ public abstract class UnidadTerrestre extends Modo {
 
 	@Override
 	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
-		// TODO Auto-generated method stub
-		return null;
+		int ptosVidaRestantes = estado.getPuntosDeVidaRestantes();
+		int danio = (int) Math.floor(ptosVidaRestantes * 0.05);
+		danio = danio < 1 ? 1 : danio;
+		estado.setPuntosDeVidaRestantes(ptosVidaRestantes - danio);
+		Collection<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
+		consecuencias.add(new RecibirDanio(danio));
+		return consecuencias;
 	}
 
 	@Override
-	public int atravesarPantano() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		estado.descontarMovimiento();
+		return Collections.emptyList();
 	}
 
 	@Override

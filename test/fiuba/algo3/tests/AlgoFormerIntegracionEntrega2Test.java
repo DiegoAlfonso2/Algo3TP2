@@ -313,7 +313,7 @@ public class AlgoFormerIntegracionEntrega2Test {
 		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica perdio un 40% de ataque.
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).atacar() == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getAtaqueModificado() == 33);
 	}	
 	
 	@Test 
@@ -358,7 +358,7 @@ public class AlgoFormerIntegracionEntrega2Test {
 		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica perdio un 40% de ataque.
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).atacar() == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada5).getAtaqueModificado() == 33);
 		
 		// Solo se utiliza para poder pasar el turno de los Autobots, ya que no se pueden hacer 2 acciones en el mismo turno. 
 		partida.jugar(transformarOptimus);
@@ -370,7 +370,7 @@ public class AlgoFormerIntegracionEntrega2Test {
 		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).getNombre().equalsIgnoreCase("Megatron"));
 		
 		// Se chequea que al pasar por la Tormenta Psionica nuevamente no volvio a perder puntos de ataque.
-		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).atacar() == 33);
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).getAtaqueModificado() == 33);
 	}	
 	
 }

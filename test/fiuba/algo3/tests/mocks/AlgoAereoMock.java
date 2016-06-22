@@ -4,7 +4,7 @@ import fiuba.algo3.modelo.modos.UnidadAerea;
 
 public class AlgoAereoMock extends UnidadAerea {
 
-	protected AlgoAereoMock(int ptosAtaque, int distAtaque, int velocidad) {
+	public AlgoAereoMock(int ptosAtaque, int distAtaque, int velocidad) {
 		super(ptosAtaque, distAtaque, velocidad);
 	}
 

@@ -94,7 +94,7 @@ public abstract class AlgoFormer{
 	protected abstract void recibirAtaque(Autobot atacante, int ataque);
 	protected abstract void recibirAtaque(Decepticon atacante, int ataque);
 	
-	protected void recibirDanio(int ataqueRecibido) {
+	public void recibirDanio(int ataqueRecibido) {
 		this.puntosDeVida -= ataqueRecibido;
 	}
 
@@ -106,8 +106,10 @@ public abstract class AlgoFormer{
 		this.bonus.activarBonus();
 	}
 	
-//	public abstract void atravesarPantano();
-//	
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		return modoActivo.atravesarPantano(estado);
+	}
+	
 //	public abstract void atravesarNebulosaAndromeda();
 //	
 //	public abstract void atravesarTormentaPsionica();

@@ -1,6 +1,7 @@
 package fiuba.algo3.modelo.modos;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
@@ -13,14 +14,12 @@ public abstract class UnidadAerea extends Modo {
 	
 	@Override
 	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
-	public int atravesarPantano() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		return Collections.emptyList();
 	}
 
 	@Override

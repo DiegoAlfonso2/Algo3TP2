@@ -25,9 +25,6 @@ public class Mover implements Accion {
     @Override
     // TODO Este metodo pide un refactor
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
-    	if (!partida.puedeJugar(movimiento.get(0))){
-    		throw new EquipoIncorrectoException();
-    	}
     	if (movimiento == null || movimiento.size() < 2) {
     		throw new MovimientoInvalidoException(
     				"No estan indicados los casilleros que se van a atravesar");
@@ -42,10 +39,14 @@ public class Mover implements Accion {
 				throw new MovimientoInvalidoException(
 						"No hay un AlgoFormer en ese casillero");
 			}
+	    	if (!partida.puedeJugar(personaje)) {
+	    		throw new EquipoIncorrectoException();
+	    	}
 			List<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
 			EstadoVital estado = personaje.getEstadoVital();
 			Coordenada coordenadaAnterior = origen;
 			for (Coordenada coordenada : movimiento) {
+				System.out.println("Atravesando " + coordenada.toString());
 				if (!coordenadaAnterior.esConsecutiva(coordenada)) {
 					throw new MovimientoInvalidoException(
 							"No se puede saltar entre casilleros no contiguos");
@@ -57,8 +58,13 @@ public class Mover implements Accion {
 				consecuencias.addAll(tablero.atravesarCasillero(coordenada, personaje, estado));
 				coordenadaAnterior = coordenada;
 			}
+			System.out.println("Ptos de vida: " + estado.getPuntosDeVidaRestantes());
+			System.out.println("Esta vivo: " + estado.estaVivo());
+			System.out.println("Destino: " + destino);
 			if (estado.estaVivo()) {
+				System.out.println("Poniendo Algoformer");
 				tablero.ponerAlgoformer(personaje, destino);
+				System.out.println(tablero.algoFormerEnCasillero(destino));
 			}
 			tablero.sacarAlgoformer(personaje, origen);
 			for (Consecuencia consecuencia : consecuencias) {
