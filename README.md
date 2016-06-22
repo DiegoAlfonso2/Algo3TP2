@@ -7,6 +7,12 @@ Next: [![Build Status](https://travis-ci.org/DiegoAlfonso2/Algo3TP2.svg?branch=n
 
 Master: [![Build Status](https://travis-ci.org/DiegoAlfonso2/Algo3TP2.svg?branch=master)](https://travis-ci.org/DiegoAlfonso2/Algo3TP2)
 
+## Coverage Status
+
+[![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=next)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=next)
+
+[![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=master)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=master)
+
 ## Workflow de control de cambios propuesto
 
 Basado en [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) con algunas modificaciones.
