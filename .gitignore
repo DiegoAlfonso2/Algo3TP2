@@ -18,3 +18,5 @@ build/
 RemoteSystemsTempFiles/
 .metadata/
 /bin/
+.classpath
+.project
