@@ -9,9 +9,9 @@ Master: [![Build Status](https://travis-ci.org/DiegoAlfonso2/Algo3TP2.svg?branch
 
 ## Coverage Status
 
-[![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=next)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=next)
+Next: [![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=next)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=next)
 
-[![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=master)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=master)
+Master: [![codecov.io](http://codecov.io/github/DiegoAlfonso2/Algo3TP2/coverage.svg?branch=master)](http://codecov.io/github/DiegoAlfonso2/Algo3TP2?branch=master)
 
 ## Workflow de control de cambios propuesto
 
