@@ -36,7 +36,6 @@ public class Partida {
 	private void terminarTurno(){
 		this.hayGanador();
 		this.obtenerJugadorActivo().terminarTurno();
-		this.obtenerJugadorActivo().activarBonus();
 		this.jugador1.cambiarTurno();
 		this.jugador2.cambiarTurno();
 	}
@@ -66,7 +65,7 @@ public class Partida {
 	}
 	
 	public int obtenerAtaqueAlgoFormer(Coordenada ubicacion) {
-		return this.tablero.algoFormerEnCasillero(ubicacion).getPtosDeAtaque();		
+		return this.tablero.algoFormerEnCasillero(ubicacion).getAtaqueModificado();		
 	}
 
 	public Jugador obtenerJugadorActivo() {
@@ -74,10 +73,6 @@ public class Partida {
 			return this.jugador1;
 		return this.jugador2;
 	}
-
-//	public boolean puedeJugar(Coordenada ubicacion) {
-//		return (this.obtenerJugadorActivo().lePertenece(this.obtenerAlgoformer(ubicacion)));
-//	}
 	
 	public boolean puedeJugar(AlgoFormer personaje) {
 		return (this.obtenerJugadorActivo().lePertenece(personaje));

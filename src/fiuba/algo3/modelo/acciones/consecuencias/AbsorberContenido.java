@@ -16,7 +16,7 @@ public class AbsorberContenido implements Consecuencia {
 		// casillero. El contenido debe ser absorbido solamente una vez. De
 		// otra forma, al pasar por un modificador, este se duplicaria
 		if (!casillero.estaVacio()) {
-			personaje.absorber(casillero.obtenerContenido());
+			casillero.obtenerContenido().interactuarCon(personaje);
 			this.casillero.sacarContenido();
 		}
 	}

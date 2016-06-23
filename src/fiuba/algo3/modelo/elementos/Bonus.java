@@ -1,32 +1,17 @@
 package fiuba.algo3.modelo.elementos;
 
 import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public abstract class Bonus implements Contenido {
 
-	protected String nombre;
-	protected int turnosRestantes;
-	protected boolean activo;
+	private boolean activado = false;
+	
+	public abstract String getNombre();
 	
 	@Override
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	@Override
-	public Bonus definirBonus() {
-		return this;
-	}
-
-	@Override
-	public ChispaSuprema definirChispa() {
-		return null;
-	}
-
-	@Override
-	public void almacenarse(Modificadores bonus, ChispaSuprema chispa) {
-		this.inicializarTurnos();
-		bonus.agregar(this);
+	public void interactuarCon(AlgoFormer personaje) {
+		personaje.absorber(this);
 	}
 
 	public abstract int modificarAtaque(int ataqueParcial);
@@ -35,17 +20,14 @@ public abstract class Bonus implements Contenido {
 	
 	public abstract int modificarVelocidad(int velocidadParcial);
 	
-	public void inicializarTurnos() {
-		this.turnosRestantes = 3;
+	public void activar() {
+		activado = true;
 	}
 	
-	public void descontarTurno() {
-		if (this.activo)
-			this.turnosRestantes -= 1;
+	public boolean estaActivo() {
+		return activado;
 	}
-
-	public void activarBonus() {
-		this.activo = true;
-	}
+	
+	public abstract void descontarTurno();
 	
 }

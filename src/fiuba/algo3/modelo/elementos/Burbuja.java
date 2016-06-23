@@ -1,10 +1,17 @@
 package fiuba.algo3.modelo.elementos;
 
-public class Burbuja extends Bonus {
+public class Burbuja extends ModificadorAgotable {
 
+	private final static String NOMBRE = "Burbuja";
+	private final static int DURACION_TURNOS = 2;
+	
 	public Burbuja() {
-		this.nombre = "Burbuja";
-		this.activo = false;
+		super(DURACION_TURNOS);
+	}
+	
+	@Override
+	public String getNombre() {
+		return NOMBRE;
 	}
 
 	@Override
@@ -14,19 +21,12 @@ public class Burbuja extends Bonus {
 
 	@Override
 	public int modificarDefensa(int ataqueRecibido) {
-		if (this.activo)
-			return 0;
-		return ataqueRecibido;
+		return estaActivo() ? 0 : ataqueRecibido;
 	}
 
 	@Override
 	public int modificarVelocidad(int velocidadParcial) {
 		return velocidadParcial;
-	}
-
-	public void inicializarTurnos() {
-		if (this.activo)
-			this.turnosRestantes = 2;
 	}
 	
 }
