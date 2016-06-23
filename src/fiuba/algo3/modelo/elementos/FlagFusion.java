@@ -4,19 +4,20 @@ package fiuba.algo3.modelo.elementos;
 /**
  * Created by Julian Garate on 6/22/16.
  */
-public class FlagFusion extends Bonus {
+public class FlagFusion extends ModificadorAgotable {
+
+
+    private final static String NOMBRE = "Flash";
+    private final static int DURACION_TURNOS = 3;
 
     public FlagFusion() {
-        this.nombre = "FlagFusion";
-        this.activo = false;
+        super(DURACION_TURNOS);
     }
-
 
     @Override
-    public FlagFusion definirFlagFusion() {
-        return this;
+    public String getNombre() {
+        return NOMBRE;
     }
-
 
     @Override
     public int modificarAtaque(int ataqueParcial) {
@@ -34,20 +35,9 @@ public class FlagFusion extends Bonus {
     }
 
     @Override
-    public boolean algoformerDisponible() {
-        if(this.activo) return false;
-        return true;
-    }
-
-    public void inicializarTurnos() {
-        if (this.activo)
-            this.turnosRestantes = 2;
-    }
+    public boolean algoformerDisponible() { return !estaActivo ();   }
 
     @Override
-    public boolean modificarFusionable(){
-        if (this.turnosRestantes == 0)
-            return true;
-        return false;
-    }
+    public boolean modificarFusionable(){ return !estaActivo (); }
+
 }

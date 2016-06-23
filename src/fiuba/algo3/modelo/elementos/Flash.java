@@ -1,13 +1,20 @@
 package fiuba.algo3.modelo.elementos;
 
-public class Flash extends Bonus {
+public class Flash extends ModificadorAgotable {
 
-	public Flash() {
-		this.nombre = "Flash";
-		this.activo = false;
-	}
+    private final static String NOMBRE = "Flash";
+    private final static int DURACION_TURNOS = 3;
 
-	@Override
+    public Flash() {
+        super(DURACION_TURNOS);
+    }
+
+    @Override
+    public String getNombre() {
+        return NOMBRE;
+    }
+
+    @Override
 	public int modificarAtaque(int ataqueParcial) {
 		return ataqueParcial;
 	}
@@ -19,7 +26,7 @@ public class Flash extends Bonus {
 
 	@Override
 	public int modificarVelocidad(int velocidadParcial) {
-		if (this.activo)
+		if (this.estaActivo ())
 			return velocidadParcial * 3;
 		return velocidadParcial;
 	}

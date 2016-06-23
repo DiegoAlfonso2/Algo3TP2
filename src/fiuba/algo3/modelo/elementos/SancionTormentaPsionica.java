@@ -2,12 +2,12 @@ package fiuba.algo3.modelo.elementos;
 
 public class SancionTormentaPsionica extends Bonus {
 
-	public SancionTormentaPsionica() {
-		this.nombre = "Sancion Tormenta Psionica";
-		this.activo = false;
-	}
+    private final static String NOMBRE = "Sancion Tormenta Psionica";
 
-	@Override
+    @Override
+    public String getNombre() { return NOMBRE; }
+
+    @Override
 	public int modificarAtaque(int ataqueParcial) {
 		return (int) (ataqueParcial * 0.6);
 	}
@@ -32,8 +32,10 @@ public class SancionTormentaPsionica extends Bonus {
         return false;
     }
 
+    @Override
     public void descontarTurno() {
-		// Este metodo no hace nada ya que la Tormenta Psionica afecta el ataque durante toda la partida.
-	}
-	
+
+    }
+
 }
+

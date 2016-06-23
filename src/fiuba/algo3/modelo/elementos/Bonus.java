@@ -28,10 +28,7 @@ public abstract class Bonus implements Contenido {
 		activado = true;
 	}
 	
-	public boolean estaActivo() {
-		return activado;
-	}
-
 	public abstract void descontarTurno();
-	
+
+    public  boolean estaActivo() { return activado; }
 }
