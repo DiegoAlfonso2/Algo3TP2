@@ -19,6 +19,7 @@ public abstract class AlgoFormer{
 	private Modo modoInactivo;
     private boolean disponible;
     private boolean fusionable;
+    private boolean ganador;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -28,6 +29,7 @@ public abstract class AlgoFormer{
 		this.bonus = new Modificadores();
         this.disponible = true;
         this.fusionable = false;
+
 	}
 
 	public String getNombre() {
@@ -117,10 +119,15 @@ public abstract class AlgoFormer{
         return this.fusionable;
     }
 
+    public boolean estaActivado() { return this.disponible; }
+
 	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
 		return modoActivo.atravesarPantano(estado);
 	}
-	
+
+    public void completoChispa() {
+    }
+
 //	public abstract void atravesarPantano();
 //	
 //	public abstract void atravesarNebulosaAndromeda();

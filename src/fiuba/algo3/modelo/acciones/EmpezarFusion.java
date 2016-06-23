@@ -43,6 +43,7 @@ public class EmpezarFusion implements Accion {
             !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (terceraC))
             ) throw new EquipoIncorrectoException ("Los Algoformers tienen que ser del mismo equipo.");
 
+
     if ((!primeraC.esConsecutiva (segundaC) || !primeraC.esConsecutiva (terceraC)) &&
             (!segundaC.esConsecutiva (primeraC) || !segundaC.esConsecutiva (terceraC)) &&
             (!terceraC.esConsecutiva (primeraC) || !terceraC.esConsecutiva (segundaC))
@@ -60,6 +61,7 @@ public class EmpezarFusion implements Accion {
         // TODO deberia ser una consecuencia?
 
     tablero.algoFormerEnCasillero (primeraC). absorber (new FlagFusion ());
+
     tablero.algoFormerEnCasillero (segundaC). absorber (new FlagFusion ());
     tablero.algoFormerEnCasillero (terceraC). absorber (new FlagFusion ());
 

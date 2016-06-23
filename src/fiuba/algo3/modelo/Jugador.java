@@ -42,13 +42,12 @@ public abstract class Jugador {
 	}
 
 	public void sigueParticipando() {
-		boolean sigueJugando = false;
-		for (AlgoFormer algoformer : equipo) {
-			sigueJugando = algoformer.estaVivo();
-		}
-		if (!sigueJugando){
-			throw new FinalException();
-		}
-	}
-    
+        boolean sigueJugando = false;
+        for (AlgoFormer algoformer : equipo) {
+            sigueJugando = algoformer.estaVivo ();
+        }
+        if (!sigueJugando) {
+            throw new FinalException ();
+        }
+    }
 }
