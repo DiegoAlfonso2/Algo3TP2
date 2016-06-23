@@ -3,6 +3,7 @@ package fiuba.algo3.modelo;
 import fiuba.algo3.modelo.acciones.Accion;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.excepciones.JuegoNoEstaActivoException;
+import fiuba.algo3.modelo.superficies.Superficie;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class Partida {
@@ -67,6 +68,10 @@ public class Partida {
 	public int obtenerAtaqueAlgoFormer(Coordenada ubicacion) {
 		return this.tablero.algoFormerEnCasillero(ubicacion).getAtaqueModificado();		
 	}
+	
+	public int obtenerVelocidadAlgoFormer(Coordenada ubicacion) {
+		return this.tablero.algoFormerEnCasillero(ubicacion).getVelocidadModificada();
+	}
 
 	public Jugador obtenerJugadorActivo() {
 		if (this.jugador1.estaActivo())
@@ -78,6 +83,14 @@ public class Partida {
 		return (this.obtenerJugadorActivo().lePertenece(personaje));
 	}
 	
+	// TODO refactor
+	public Superficie obtenerSuperficieAerea(Coordenada ubicacion){
+		return this.tablero.obtenerSuperficieAerea(ubicacion);
+	}
+	
+	public Superficie obtenerSuperficieTerrestre(Coordenada ubicacion) {
+		return this.tablero.obtenerSuperficieTerrestre(ubicacion);
+	}
 }
 	
 

@@ -1,10 +1,16 @@
 package fiuba.algo3.modelo.elementos;
 
 public class SancionTormentaPsionica extends Bonus {
+	
+	private final String NOMBRE = "Sancion Tormenta Psionica";
 
 	public SancionTormentaPsionica() {
-		this.nombre = "Sancion Tormenta Psionica";
-		this.activo = false;
+
+	}
+	
+	@Override
+	public String getNombre() {
+		return NOMBRE;
 	}
 
 	@Override

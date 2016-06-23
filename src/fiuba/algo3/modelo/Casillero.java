@@ -11,6 +11,7 @@ import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.superficies.Aire;
 import fiuba.algo3.modelo.superficies.Nube;
 import fiuba.algo3.modelo.superficies.Rocosa;
+import fiuba.algo3.modelo.superficies.Superficie;
 import fiuba.algo3.modelo.superficies.Terreno;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
@@ -105,6 +106,14 @@ public class Casillero {
 
 	public void sacarContenido() {
 		this.contenido = null;
+	}
+
+	public Superficie obtenerTerreno(){
+		return (this.terreno);
+	}
+	
+	public Superficie obtenerAereo(){
+		return (this.espacioAereo);
 	}
 	
 }

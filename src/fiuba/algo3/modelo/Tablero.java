@@ -18,6 +18,7 @@ import fiuba.algo3.modelo.superficies.NebulosaAndromeda;
 import fiuba.algo3.modelo.superficies.Nube;
 import fiuba.algo3.modelo.superficies.Pantano;
 import fiuba.algo3.modelo.superficies.Rocosa;
+import fiuba.algo3.modelo.superficies.Superficie;
 import fiuba.algo3.modelo.superficies.Terreno;
 import fiuba.algo3.modelo.superficies.TormentaPsionica;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
@@ -172,6 +173,14 @@ public class Tablero {
 		AlgoFormer atacante = algoFormerEnCasillero(coordAtacante);
 		AlgoFormer atacado = algoFormerEnCasillero(coordDefensor);
 		atacante.atacar(atacado, coordAtacante.distanciaHasta(coordDefensor));
+	}
+
+	public Superficie obtenerSuperficieAerea(Coordenada coordenada){
+		return this.localizarCasillero(coordenada).obtenerAereo();
+	}
+	
+	public Superficie obtenerSuperficieTerrestre(Coordenada coordenada) {
+		return this.localizarCasillero(coordenada).obtenerTerreno();
 	}
 	
 }

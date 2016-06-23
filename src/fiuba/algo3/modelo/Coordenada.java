@@ -46,6 +46,14 @@ public class Coordenada {
 		seed ^= y + 0x9e3779b9 + (seed << 6) + (seed >> 2);
 		return seed;
 	}
+	
+	public int obtenerX(){
+		return this.x;
+	}
+
+	public int obtenerY(){
+		return this.y;
+	}
 
 	@Override
 	public String toString() {
