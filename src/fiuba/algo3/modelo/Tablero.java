@@ -175,7 +175,7 @@ public class Tablero {
 		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
 	}
 
-	private int distancia(Coordenada atacante, Coordenada defensor) {
+	private int distancia(Coordenada desde, Coordenada hasta) {
 		int distancia = 0;
 		// TODO Calcular distancia.
 		return distancia;

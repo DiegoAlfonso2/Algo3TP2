@@ -23,7 +23,14 @@ public abstract class Bonus implements Contenido {
 		return null;
 	}
 
-	@Override
+    @Override
+    public FlagFusion definirFlagFusion() {
+        return null;
+    }
+
+
+
+    @Override
 	public void almacenarse(Modificadores bonus, ChispaSuprema chispa) {
 		this.inicializarTurnos();
 		bonus.agregar(this);
@@ -34,6 +41,10 @@ public abstract class Bonus implements Contenido {
 	public abstract int modificarDefensa(int ataqueRecibido);
 	
 	public abstract int modificarVelocidad(int velocidadParcial);
+
+    public abstract boolean algoformerDisponible();
+
+    public abstract boolean modificarFusionable();
 	
 	public void inicializarTurnos() {
 		this.turnosRestantes = 3;

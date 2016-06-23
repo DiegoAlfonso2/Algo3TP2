@@ -18,6 +18,9 @@ public class Coordenada {
 	public boolean esConsecutiva(Coordenada otra) {
 		return Math.abs(this.x - otra.x) <= 1 && Math.abs(this.y - otra.y) <= 1;
 	}
+    public int distanciaHasta(Coordenada otra){
+        return Math.max (Math.abs(this.x - otra.x), Math.abs(this.y - otra.y));
+    }
 
 	@Override
 	public boolean equals(Object otroObjeto) {

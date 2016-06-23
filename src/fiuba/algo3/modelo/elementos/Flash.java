@@ -23,5 +23,15 @@ public class Flash extends Bonus {
 			return velocidadParcial * 3;
 		return velocidadParcial;
 	}
-	
+
+    @Override
+    public boolean algoformerDisponible() {
+        return true;
+    }
+
+    @Override
+    public boolean modificarFusionable() {
+        return false;
+    }
+
 }

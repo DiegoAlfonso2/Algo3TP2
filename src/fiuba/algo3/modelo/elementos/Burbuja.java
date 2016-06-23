@@ -24,7 +24,17 @@ public class Burbuja extends Bonus {
 		return velocidadParcial;
 	}
 
-	public void inicializarTurnos() {
+    @Override
+    public boolean algoformerDisponible() {
+        return false;
+    }
+    @Override
+    public boolean modificarFusionable() {
+        return false;
+    }
+
+
+    public void inicializarTurnos() {
 		if (this.activo)
 			this.turnosRestantes = 2;
 	}

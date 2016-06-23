@@ -48,6 +48,18 @@ public class Modificadores {
 		return ataqueRecibidoParcial;
 	}
 
+    public boolean disponibilidad(){
+        for (Bonus unBonus: bonus)
+            if (!unBonus.algoformerDisponible ()) return false;
+        return true;
+    }
+
+    public boolean fusionable(){
+        for (Bonus unBonus: bonus)
+            if (unBonus.modificarFusionable ()) return true;
+        return false;
+    }
+
 	public void descontarTurnos() {
 		for (Bonus unBonus : bonus) {
 			unBonus.descontarTurno();

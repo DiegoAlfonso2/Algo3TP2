@@ -20,6 +20,8 @@ public abstract class AlgoFormer{
     protected ChispaSuprema chispa;
 	protected Modo modoActivo;
 	protected Modo modoInactivo;
+    protected boolean disponible;
+    protected boolean fusionable;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -27,6 +29,8 @@ public abstract class AlgoFormer{
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
 		this.bonus = new Modificadores();
+        this.disponible = true;
+        this.fusionable = false;
 	}
 
 	public String getNombre() {
@@ -104,6 +108,16 @@ public abstract class AlgoFormer{
 	public void activarBonus() {
 		this.bonus.activarBonus();
 	}
+
+    public void actualizarEstado(){
+        disponible = this.bonus.disponibilidad ();
+        fusionable = this.bonus.fusionable ();
+    }
+
+    public boolean esfusionable(){
+        return this.fusionable;
+    }
+
 
 	public abstract boolean equipoAutobots();
 	

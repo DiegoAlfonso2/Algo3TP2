@@ -23,5 +23,15 @@ public class DobleCanon extends Bonus {
 	public int modificarVelocidad(int velocidadParcial) {
 		return velocidadParcial;
 	}
-	
+
+    @Override
+    public boolean algoformerDisponible() {
+        return true;
+    }
+
+    @Override
+    public boolean modificarFusionable() {
+        return false;
+    }
+
 }

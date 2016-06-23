@@ -21,7 +21,12 @@ public class ChispaSuprema implements Contenido{
 		return this;
 	}
 
-	@Override
+    @Override
+    public FlagFusion definirFlagFusion() {
+        return null;
+    }
+
+    @Override
 	public void almacenarse(Modificadores bonus, ChispaSuprema chispa) {
 		chispa = this;
 		throw new FinalException();

@@ -9,6 +9,7 @@ public abstract class Autobot extends AlgoFormer {
 		super(nombre, puntosDeVida, modoHumanoide, modoAlterno);
 	}
 
+
 	public boolean perteneceA(Jugador jugador) {
 		return jugador.lePertenece(this);
 	}
