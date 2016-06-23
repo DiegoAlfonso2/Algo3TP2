@@ -34,8 +34,8 @@ public class EmpezarFusion implements Accion {
         AlgoFormer algo2 = tablero.algoFormerEnCasillero (segundaC);
         AlgoFormer algo3 = tablero.algoFormerEnCasillero (terceraC);
     } catch (CasilleroVacioException cve) {
-        throw new FusionInvalidaException (
-                "No hay un AlgoFormer en esos casilleros. ");
+        throw new CasilleroVacioException (
+                "Uno de los casilleros esta vacio. ");
     }
 
     if (    !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (primeraC)) ||

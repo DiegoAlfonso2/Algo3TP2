@@ -51,8 +51,8 @@ public class Fusionar implements Accion {
             algo3 = tablero.algoFormerEnCasillero (terceraC);
 
         } catch (CasilleroVacioException cve) {
-            throw new FusionInvalidaException (
-                    "No hay un AlgoFormer en esos casilleros. ");
+            throw new CasilleroVacioException (
+                    "Uno de los casilleros esta vacio. ");
         }
 
         if ( !algo1.esfusionable () || !algo2.esfusionable () || !algo3.esfusionable ())
