@@ -31,13 +31,7 @@ public abstract class Jugador {
 
 	public void terminarTurno() {
 		for (AlgoFormer algoformer : equipo) {
-			algoformer.descontarTurnos();
-		}
-	}
-
-	public void activarBonus() {
-		for (AlgoFormer algoformer : equipo) {
-			algoformer.activarBonus();
+			algoformer.terminarTurno();
 		}
 	}
 

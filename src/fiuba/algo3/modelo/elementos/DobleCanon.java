@@ -1,17 +1,22 @@
 package fiuba.algo3.modelo.elementos;
 
-public class DobleCanon extends Bonus {
+public class DobleCanon extends ModificadorAgotable {
+	
+	private final static String NOMBRE = "Doble Canon";
+	private final static int DURACION_TURNOS = 3;
 
 	public DobleCanon() {
-		this.nombre = "Doble Canon";
-		this.activo = false;
+		super(DURACION_TURNOS);
 	}
 
 	@Override
+	public String getNombre() {
+		return NOMBRE;
+	}
+	
+	@Override
 	public int modificarAtaque(int ataqueParcial) {
-		if (this.activo)
-			return ataqueParcial * 2;
-		return ataqueParcial;
+		return estaActivo() ? ataqueParcial * 2 : ataqueParcial;
 	}
 
 	@Override

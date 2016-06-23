@@ -2,18 +2,21 @@ package fiuba.algo3.modelo.transformers;
 
 import java.util.Collection;
 
-import fiuba.algo3.modelo.*;
+import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.EstadoVital;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
 	
 	private String nombre;
 	private int puntosDeVida;
-	private Modificadores bonus;
+	private Modificadores modificadores;
 	private ChispaSuprema chispa;
 	private Modo modoActivo;
 	private Modo modoInactivo;
@@ -26,7 +29,7 @@ public abstract class AlgoFormer{
 		this.puntosDeVida = puntosDeVida;
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
-		this.bonus = new Modificadores();
+		this.modificadores = new Modificadores();
         this.disponible = true;
         this.fusionable = false;
 
@@ -48,49 +51,62 @@ public abstract class AlgoFormer{
 		return modoActivo.getPtosDeAtaque();
 	}
 
+	public int getAtaqueModificado() {
+		return modificadores.modificarAtaque(getPtosDeAtaque());
+	}
+
 	public int getDistanciaAtaque() {
 		return modoActivo.getDistAtaque();
+	}
+
+	public int getDistanciaAtaqueModificada() {
+		return getDistanciaAtaque();
 	}
 
 	public int getVelocidad() {
 		return modoActivo.getVelocidad();
 	}
 
-	public abstract boolean perteneceA(JugadorAutobots jugador);
-	public abstract boolean perteneceA(JugadorDecepticons jugador);
-	
+	public int getVelocidadModificada() {
+		return modificadores.modificarVelocidad(getVelocidad());
+	}
+
+	public EstadoVital getEstadoVital() {
+		return new EstadoVital(getPuntosDeVida(), getVelocidadModificada());
+	}
+
 	public void transformar() {
 		Modo tmp = modoActivo;
 		this.modoActivo = modoInactivo;
 		this.modoInactivo = tmp;
-	}
-	
-	public EstadoVital getEstadoVital() {
-		return new EstadoVital(getPuntosDeVida(), getVelocidad());
 	}
 
 	public boolean estaVivo() {
 		return puntosDeVida > 0;
 	}
 
-	public void absorber(Contenido contenido) {
-		contenido.almacenarse(this.bonus, this.chispa);
+	public void absorber(Bonus contenido) {
+		modificadores.agregar(contenido);
+	}
+
+	public void absorber(ChispaSuprema contenido) {
+		chispa = contenido;
 	}
 	
 	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
 		return modoActivo.atravesarEspinas(estado);
 	}
 
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		return modoActivo.atravesarPantano(estado);
+	}
+
 	public boolean tieneBonus(String bonus) {
-		return this.bonus.tieneBonus(bonus);
+		return this.modificadores.tieneBonus(bonus);
 	}
 	
 	protected boolean ataquePosible(int distancia) {
 		return (modoActivo.getDistAtaque() >= distancia);
-	}
-
-	public int getAtaqueModificado() {
-		return bonus.modificarAtaque(modoActivo.getPtosDeAtaque());
 	}
 
 	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
@@ -102,17 +118,20 @@ public abstract class AlgoFormer{
 		this.puntosDeVida -= ataqueRecibido;
 	}
 
-	public void descontarTurnos() {
-		this.bonus.descontarTurnos();
-	}
+	public abstract boolean perteneceA(JugadorAutobots jugador);
+	public abstract boolean perteneceA(JugadorDecepticons jugador);
 
-	public void activarBonus() {
-		this.bonus.activarBonus();
+	public void terminarTurno() {
+		this.modificadores.descontarTurnos();
+		this.modificadores.activarBonus();
 	}
+    public void activarBonus() {
+        this.modificadores.activarBonus();
+    }
 
     public void actualizarEstado(){
-        disponible = this.bonus.disponibilidad ();
-        fusionable = this.bonus.fusionable ();
+        disponible = this.modificadores.disponibilidad ();
+        fusionable = this.modificadores.fusionable ();
     }
 
     public boolean esfusionable(){
@@ -121,18 +140,9 @@ public abstract class AlgoFormer{
 
     public boolean estaActivado() { return this.disponible; }
 
-	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
-		return modoActivo.atravesarPantano(estado);
-	}
 
     public void completoChispa() {
     }
 
-//	public abstract void atravesarPantano();
-//	
-//	public abstract void atravesarNebulosaAndromeda();
-//	
-//	public abstract void atravesarTormentaPsionica();
-	
 }
 

@@ -47,6 +47,13 @@ public class Modificadores {
 		}
 		return ataqueRecibidoParcial;
 	}
+    public int modificarVelocidad(int velocidad) {
+        int velocidadParcial = velocidad;
+        for (Bonus unBonus : bonus) {
+            velocidadParcial = unBonus.modificarVelocidad(velocidadParcial);
+        }
+        return velocidadParcial;
+    }
 
     public boolean disponibilidad(){
         for (Bonus unBonus: bonus)
@@ -68,7 +75,7 @@ public class Modificadores {
 
 	public void activarBonus() {
 		for (Bonus unBonus : bonus) {
-			unBonus.activarBonus();
+			unBonus.activar();
 		}
 	}
 
