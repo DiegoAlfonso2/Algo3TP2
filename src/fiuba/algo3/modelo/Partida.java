@@ -8,8 +8,8 @@ import fiuba.algo3.modelo.transformers.AlgoFormer;
 public class Partida {
 
 	private Tablero tablero;
-	Jugador jugador1;
-	Jugador jugador2;
+	private Jugador jugador1;
+	private Jugador jugador2;
 	private boolean jugando;
 	
 	public Partida(Jugador jugador1, Jugador jugador2) {
@@ -75,8 +75,12 @@ public class Partida {
 		return this.jugador2;
 	}
 
-	public boolean puedeJugar(Coordenada ubicacion) {
-		return (this.obtenerJugadorActivo().lePertenece(this.obtenerAlgoformer(ubicacion)));
+//	public boolean puedeJugar(Coordenada ubicacion) {
+//		return (this.obtenerJugadorActivo().lePertenece(this.obtenerAlgoformer(ubicacion)));
+//	}
+	
+	public boolean puedeJugar(AlgoFormer personaje) {
+		return (this.obtenerJugadorActivo().lePertenece(personaje));
 	}
 	
 }

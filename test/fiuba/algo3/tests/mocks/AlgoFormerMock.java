@@ -1,21 +1,23 @@
-package fiuba.algo3.modelo.transformers;
+package fiuba.algo3.tests.mocks;
 
 import fiuba.algo3.modelo.JugadorAutobots;
 import fiuba.algo3.modelo.JugadorDecepticons;
-import fiuba.algo3.modelo.excepciones.AtaqueInvalidoException;
 import fiuba.algo3.modelo.modos.Modo;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
+import fiuba.algo3.modelo.transformers.Autobot;
+import fiuba.algo3.modelo.transformers.Decepticon;
 
-public abstract class Autobot extends AlgoFormer {
+public class AlgoFormerMock extends AlgoFormer {
 
-	protected Autobot(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
+	public AlgoFormerMock(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		super(nombre, puntosDeVida, modoHumanoide, modoAlterno);
 	}
 
 	@Override
 	public boolean perteneceA(JugadorAutobots jugador) {
-		return true;
+		return false;
 	}
-	
+
 	@Override
 	public boolean perteneceA(JugadorDecepticons jugador) {
 		return false;
@@ -23,19 +25,17 @@ public abstract class Autobot extends AlgoFormer {
 
 	@Override
 	public void atacar(AlgoFormer objetivo, int distanciaAObjetivo) {
-		if (!ataquePosible(distanciaAObjetivo)) {
-			throw new AtaqueInvalidoException();
-		}
-		objetivo.recibirAtaque(this, getAtaqueModificado());
+
 	}
 
 	@Override
 	protected void recibirAtaque(Autobot atacante, int ataque) {
-		throw new AtaqueInvalidoException("No se puede atacar un AlgoFormer del mismo equipo");
+
 	}
 
 	@Override
 	protected void recibirAtaque(Decepticon atacante, int ataque) {
-		recibirDanio(ataque);
+
 	}
+
 }

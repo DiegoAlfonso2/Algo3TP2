@@ -167,20 +167,12 @@ public class Tablero {
 		this.localizarCasillero(coordenada).ponerBonus(bonus);
 	}
 
-	public boolean ataquePosible(Coordenada atacante, Coordenada defensor) {
-		return this.algoFormerEnCasillero(atacante).ataquePosible(this.distancia(atacante,defensor));
+	public void efectuarAtaque(Coordenada coordAtacante, Coordenada coordDefensor) {
+//		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
+		AlgoFormer atacante = algoFormerEnCasillero(coordAtacante);
+		AlgoFormer atacado = algoFormerEnCasillero(coordDefensor);
+		atacante.atacar(atacado, coordAtacante.distanciaHasta(coordDefensor));
 	}
-
-	public void efectuarAtaque(Coordenada atacante, Coordenada defensor) {
-		this.algoFormerEnCasillero(defensor).recibirAtaque(this.algoFormerEnCasillero(atacante).atacar());
-	}
-
-	private int distancia(Coordenada desde, Coordenada hasta) {
-		int distancia = 0;
-		// TODO Calcular distancia.
-		return distancia;
-	}
-	
 	
 }
 

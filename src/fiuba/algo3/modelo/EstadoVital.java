@@ -28,7 +28,11 @@ public class EstadoVital {
 	}
 	
 	public boolean esValido() {
-		return puntosDeVidaRestantes > 0 && movimientosRestantes >= 0;
+		return movimientosRestantes >= 0;
+	}
+	
+	public boolean estaVivo() {
+		return puntosDeVidaRestantes > 0;
 	}
 	
 }

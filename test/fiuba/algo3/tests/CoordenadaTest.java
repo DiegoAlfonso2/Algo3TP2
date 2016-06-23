@@ -59,4 +59,36 @@ public class CoordenadaTest {
 		Assert.assertFalse(new Coordenada(4, 4).esConsecutiva(new Coordenada(5, 2)));
 		Assert.assertFalse(new Coordenada(4, 4).esConsecutiva(new Coordenada(6, 2)));
 	}
+	
+	@Test
+	public void testDistancias() {
+		Assert.assertEquals(
+				new Coordenada(6, 8).distanciaHasta(new Coordenada(3, 1)), 
+				new Coordenada(3, 1).distanciaHasta(new Coordenada(6, 8)));
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(1, 1)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(1, 2)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(1, 3)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(1, 4)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(1, 5)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(2, 5)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(3, 5)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(4, 5)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(5, 5)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(5, 4)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(5, 3)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(5, 2)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(5, 1)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(4, 1)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(3, 1)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(2, 1)), 2);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(2, 2)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(2, 3)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(2, 4)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(3, 4)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(4, 4)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(4, 3)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(4, 2)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(3, 2)), 1);
+		Assert.assertEquals(new Coordenada(3, 3).distanciaHasta(new Coordenada(3, 3)), 0);
+	}
 }

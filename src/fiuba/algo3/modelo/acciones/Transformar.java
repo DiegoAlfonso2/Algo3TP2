@@ -19,6 +19,6 @@ public class Transformar implements Accion {
 	@Override
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
 		AlgoFormer accionado = tablero.algoFormerEnCasillero(posicionAlgoFormerATransformar);
-		accionado.cambiarModo();
+		accionado.transformar();
 	}
 }

@@ -19,7 +19,7 @@ public class JugadorAutobots extends Jugador {
 
 	@Override
 	public boolean lePertenece(AlgoFormer personaje) {
-		return personaje.equipoAutobots();
+		return personaje.perteneceA(this);
 	}
 
 }

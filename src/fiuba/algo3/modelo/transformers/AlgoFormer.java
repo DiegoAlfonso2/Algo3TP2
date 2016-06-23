@@ -4,7 +4,8 @@ import java.util.Collection;
 
 import fiuba.algo3.modelo.Contenido;
 import fiuba.algo3.modelo.EstadoVital;
-import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
@@ -13,15 +14,14 @@ import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
 	
-	protected String nombre;
-	protected String avatar;
-	protected int puntosDeVida;
-	protected Modificadores bonus;
-    protected ChispaSuprema chispa;
-	protected Modo modoActivo;
-	protected Modo modoInactivo;
-    protected boolean disponible;
-    protected boolean fusionable;
+	private String nombre;
+	private int puntosDeVida;
+	private Modificadores bonus;
+	private ChispaSuprema chispa;
+	private Modo modoActivo;
+	private Modo modoInactivo;
+    private boolean disponible;
+    private boolean fusionable;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -57,9 +57,10 @@ public abstract class AlgoFormer{
 		return modoActivo.getVelocidad();
 	}
 
-	public abstract boolean perteneceA(Jugador jugador);
+	public abstract boolean perteneceA(JugadorAutobots jugador);
+	public abstract boolean perteneceA(JugadorDecepticons jugador);
 	
-	public void cambiarModo() {
+	public void transformar() {
 		Modo tmp = modoActivo;
 		this.modoActivo = modoInactivo;
 		this.modoInactivo = tmp;
@@ -85,19 +86,20 @@ public abstract class AlgoFormer{
 		return this.bonus.tieneBonus(bonus);
 	}
 	
-	public boolean ataquePosible(int distancia) {
+	protected boolean ataquePosible(int distancia) {
 		return (modoActivo.getDistAtaque() >= distancia);
 	}
 
-	public int atacar() {
+	public int getAtaqueModificado() {
 		return bonus.modificarAtaque(modoActivo.getPtosDeAtaque());
 	}
 
-	public void recibirAtaque(int ataque) {
-		this.recibirDanio(bonus.modificarDefensa(ataque));
-	}
+	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
+
+	protected abstract void recibirAtaque(Autobot atacante, int ataque);
+	protected abstract void recibirAtaque(Decepticon atacante, int ataque);
 	
-	private void recibirDanio(int ataqueRecibido) {
+	public void recibirDanio(int ataqueRecibido) {
 		this.puntosDeVida -= ataqueRecibido;
 	}
 
@@ -118,10 +120,9 @@ public abstract class AlgoFormer{
         return this.fusionable;
     }
 
-
-	public abstract boolean equipoAutobots();
-	
-	public abstract boolean equipoDecepticons();
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		return modoActivo.atravesarPantano(estado);
+	}
 	
 //	public abstract void atravesarPantano();
 //	
