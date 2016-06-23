@@ -29,9 +29,18 @@ public class EmpezarFusion implements Accion {
     @Override
     public void ejecutarSobre(Partida partida, Tablero tablero) {
 
-    if (!partida.puedeJugar (primeraC) ||
-            !partida.puedeJugar (segundaC) ||
-            !partida.puedeJugar (terceraC)
+    try {
+        AlgoFormer algo1 = tablero.algoFormerEnCasillero (primeraC);
+        AlgoFormer algo2 = tablero.algoFormerEnCasillero (segundaC);
+        AlgoFormer algo3 = tablero.algoFormerEnCasillero (terceraC);
+    } catch (CasilleroVacioException cve) {
+        throw new FusionInvalidaException (
+                "No hay un AlgoFormer en esos casilleros. ");
+    }
+
+    if (    !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (primeraC)) ||
+            !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (segundaC)) ||
+            !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (terceraC))
             ) throw new EquipoIncorrectoException ("Los Algoformers tienen que ser del mismo equipo.");
 
     if ((!primeraC.esConsecutiva (segundaC) || !primeraC.esConsecutiva (terceraC)) &&

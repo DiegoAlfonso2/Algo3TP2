@@ -1,12 +1,13 @@
 package fiuba.algo3.modelo.transformers;
 
-import fiuba.algo3.modelo.Jugador;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.modos.MenasorUnico;
 
 /**
  * Created by Julian Garate on 6/21/16.
  */
-public class Menasor extends Megatransformer{
+public class Menasor extends Decepticon {
 
     private static final String MENASOR_NOMBRE = "Menasor";
 
@@ -17,15 +18,5 @@ public class Menasor extends Megatransformer{
                 ,
                 new MenasorUnico (),
                 new MenasorUnico ());
-    }
-
-    @Override
-    public boolean equipoAutobots() {
-        return false;
-    }
-
-    @Override
-    public boolean equipoDecepticons() {
-        return true;
     }
 }

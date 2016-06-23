@@ -2,10 +2,7 @@ package fiuba.algo3.modelo.transformers;
 
 import java.util.Collection;
 
-import fiuba.algo3.modelo.Contenido;
-import fiuba.algo3.modelo.EstadoVital;
-import fiuba.algo3.modelo.JugadorAutobots;
-import fiuba.algo3.modelo.JugadorDecepticons;
+import fiuba.algo3.modelo.*;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
