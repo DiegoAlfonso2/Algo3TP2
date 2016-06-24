@@ -32,15 +32,13 @@ public abstract class UnidadTerrestre extends Modo {
 	}
 
 	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-		
+	public Collection<Consecuencia> atravesarNebulosaAndromeda(EstadoVital estado) {
+		return Collections.emptyList();
 	}
 
 	@Override
-	public void atravesarTormentaPsionica(int ataque) {
-		// TODO Auto-generated method stub
-		
+	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
+		return Collections.emptyList();
 	}
 
 }

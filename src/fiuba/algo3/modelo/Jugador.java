@@ -45,5 +45,9 @@ public abstract class Jugador {
 			throw new FinalException();
 		}
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
     
 }

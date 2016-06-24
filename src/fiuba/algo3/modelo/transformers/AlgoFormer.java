@@ -100,6 +100,10 @@ public abstract class AlgoFormer{
 	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
 		return modoActivo.atravesarPantano(estado);
 	}
+	
+	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
+		return modoActivo.atravesarTormentaPsionica(estado);
+	}
 
 	public boolean tieneBonus(String bonus) {
 		return this.modificadores.tieneBonus(bonus);

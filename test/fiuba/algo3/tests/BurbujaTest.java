@@ -10,18 +10,21 @@ public class BurbujaTest {
 	@Test
 	public void testBurbujaModificaDefensa() {
 		Burbuja testeada = new Burbuja();
+		testeada.activar();
 		Assert.assertEquals(0, testeada.modificarDefensa(1000));
 	}
 	
 	@Test
 	public void testBurbujaNoModificaAtaque() {
 		Burbuja testeada = new Burbuja();
+		testeada.activar();
 		Assert.assertEquals(1000, testeada.modificarAtaque(1000));
 	}
 	
 	@Test
 	public void testBurbujaNoModificaVelocidad() {
 		Burbuja testeada = new Burbuja();
+		testeada.activar();
 		Assert.assertEquals(1000, testeada.modificarVelocidad(1000));
 	}
 	

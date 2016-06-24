@@ -12,8 +12,7 @@ public class TormentaPsionica extends Aire {
 	@Override
 	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, 
 			EstadoVital estado) {
-		// TODO Agregar consecuencias de atravesar una tormenta psionica
-		return new ArrayList<Consecuencia>();
+		return personaje.atravesarTormentaPsionica(estado);
 	}
 	
 }

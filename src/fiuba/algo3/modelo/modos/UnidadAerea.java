@@ -1,10 +1,12 @@
 package fiuba.algo3.modelo.modos;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.acciones.consecuencias.PenalizadorTormentaPsionica;
 
 public abstract class UnidadAerea extends Modo {
 
@@ -23,15 +25,15 @@ public abstract class UnidadAerea extends Modo {
 	}
 
 	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-		
+	public Collection<Consecuencia> atravesarNebulosaAndromeda(EstadoVital estado) {
+		return Collections.emptyList();
 	}
 
 	@Override
-	public void atravesarTormentaPsionica(int ataque) {
-		// TODO Auto-generated method stub
-		
+	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
+		Collection<Consecuencia> consecuencias = new ArrayList<>();
+		consecuencias.add(new PenalizadorTormentaPsionica());
+		return consecuencias;
 	}
 
 }

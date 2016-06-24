@@ -35,8 +35,8 @@ public abstract class Modo {
 
 	public abstract Collection<Consecuencia> atravesarPantano(EstadoVital estado);
 	
-	public abstract void atravesarNebulosaAndromeda();
+	public abstract Collection<Consecuencia> atravesarNebulosaAndromeda(EstadoVital estado);
 
-	public abstract void atravesarTormentaPsionica(int ataque);
+	public abstract Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado);
 		
 }
