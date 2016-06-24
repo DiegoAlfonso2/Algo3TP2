@@ -66,7 +66,7 @@ public class FusionTest {
 
         Partida partida = new Partida(jugador1, jugador2);
 
-        ArrayList<Coordenada> movimientos = new ArrayList<> ();
+        ArrayList<Coordenada> movimientos = new ArrayList<Coordenada>();
         movimientos.add (new Coordenada (3,1));
         movimientos.add (new Coordenada (2,2));
         partida.jugar (new Mover (movimientos));

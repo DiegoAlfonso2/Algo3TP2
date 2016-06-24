@@ -31,7 +31,7 @@ public abstract class UnidadAerea extends Modo {
 
 	@Override
 	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
-		Collection<Consecuencia> consecuencias = new ArrayList<>();
+		Collection<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
 		consecuencias.add(new PenalizadorTormentaPsionica());
 		return consecuencias;
 	}
