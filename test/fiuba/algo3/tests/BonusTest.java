@@ -17,38 +17,38 @@ import fiuba.algo3.modelo.excepciones.BonusYaAgregadoException;
 
 public class BonusTest {
 
-//	@Test
-//	public void test01agarrarBonusBurbuja() {
-//		List<Coordenada> movimiento = new ArrayList<Coordenada>();
-//		Coordenada coordenada0 = new Coordenada(3,1);
-//		Coordenada coordenada1 = new Coordenada(3,2);
-//		Coordenada coordenada2 = new Coordenada(3,3);
-//		Coordenada coordenada3 = new Coordenada(3,4);
-//		movimiento.add(coordenada0);
-//		movimiento.add(coordenada1);
-//        movimiento.add(coordenada2);
-//        movimiento.add(coordenada3);
-//                
-//		Jugador jugador1 = new JugadorAutobots("Pepito");
-//		Jugador jugador2 = new JugadorDecepticons("Pirulo");
-//
-//		// Se hardcodea un Bumblebee en la posicion (3,1).
-//		// Se hardcodean los bonus de acuerdo al mapa adjunto.
-//		Partida partida = new Partida(jugador1, jugador2);
-//
-//		Transformar transformarBumblebee = new Transformar(coordenada0);
-//		partida.jugar(transformarBumblebee);
-//		
-//		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
-//		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
-//		partida.jugar(transformarMegatron);
-//		
-//		Mover moverBumblebee = new Mover(movimiento);
-//		partida.jugar(moverBumblebee);
-//
-//		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).tieneBonus("Burbuja"));
-//		Assert.assertTrue(partida.casilleroVacio(coordenada3));
-//	}
+	@Test
+	public void test01agarrarBonusBurbuja() {
+		List<Coordenada> movimiento = new ArrayList<Coordenada>();
+		Coordenada coordenada0 = new Coordenada(3,1);
+		Coordenada coordenada1 = new Coordenada(3,2);
+		Coordenada coordenada2 = new Coordenada(3,3);
+		Coordenada coordenada3 = new Coordenada(3,4);
+		movimiento.add(coordenada0);
+		movimiento.add(coordenada1);
+        movimiento.add(coordenada2);
+        movimiento.add(coordenada3);
+                
+		Jugador jugador1 = new JugadorAutobots("Pepito");
+		Jugador jugador2 = new JugadorDecepticons("Pirulo");
+
+		// Se hardcodea un Bumblebee en la posicion (3,1).
+		// Se hardcodean los bonus de acuerdo al mapa adjunto.
+		Partida partida = new Partida(jugador1, jugador2);
+
+		Transformar transformarBumblebee = new Transformar(coordenada0);
+		partida.jugar(transformarBumblebee);
+		
+		// Solo se utiliza para poder pasar el turno de los Decepticons, ya que no se pueden hacer 2 acciones en el mismo turno. 
+		Transformar transformarMegatron = new Transformar (new Coordenada(10,10));
+		partida.jugar(transformarMegatron);
+		
+		Mover moverBumblebee = new Mover(movimiento);
+		partida.jugar(moverBumblebee);
+
+		Assert.assertTrue(partida.obtenerAlgoformer(coordenada3).tieneBonus("Burbuja"));
+		Assert.assertTrue(partida.casilleroVacio(coordenada3));
+	}
 //	
 //	@Test
 //	public void test02agarrarBonusDobleCanon() {
