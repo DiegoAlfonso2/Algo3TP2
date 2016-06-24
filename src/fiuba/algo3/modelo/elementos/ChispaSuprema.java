@@ -1,10 +1,8 @@
 package fiuba.algo3.modelo.elementos;
 
 import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.transformers.AlgoFormer;
 
-/**
- * Created by Julian Garate on 6/3/16.
- */
 public class ChispaSuprema implements Contenido{
 
     private String nombre = "Chispa Suprema";
@@ -14,12 +12,7 @@ public class ChispaSuprema implements Contenido{
     }
 
 	@Override
-	public Bonus definirBonus() {
-		return null;
-	}
-
-	@Override
-	public ChispaSuprema definirChispa() {
-		return this;
+	public void interactuarCon(AlgoFormer personaje) {
+		personaje.absorber(this);
 	}
 }

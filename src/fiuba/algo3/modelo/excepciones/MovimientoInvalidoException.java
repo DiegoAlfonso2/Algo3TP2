@@ -19,6 +19,5 @@ public class MovimientoInvalidoException extends RuntimeException {
 	public MovimientoInvalidoException(Throwable arg0) {
 		super(arg0);
 	}
-
 	
 }

@@ -1,52 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+public class FrenzyHumanoide extends Humanoide {
 
-public class FrenzyHumanoide extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new FrenzyAlterno();
+	private final static int FRENZY_HUMANOIDE_PUNTOS_ATAQUE = 10;
+	private final static int FRENZY_HUMANOIDE_DIST_ATAQUE = 5;
+	private final static int FRENZY_HUMANOIDE_VELOCIDAD = 2;
+	private final static String FRENZY_HUMANOIDE_AVATAR =
+			"Frenzy Humanoide";
+	
+	public FrenzyHumanoide() {
+		super(FRENZY_HUMANOIDE_PUNTOS_ATAQUE,
+				FRENZY_HUMANOIDE_DIST_ATAQUE,
+				FRENZY_HUMANOIDE_VELOCIDAD);
 	}
-
+	
 	@Override
 	public String avatarModo() {
-		return "Frenzy Humanoide";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 10;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 5;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 2;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		throw new MovimientoInvalidoException();
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return FRENZY_HUMANOIDE_AVATAR;
 	}
 
 }

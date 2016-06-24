@@ -1,50 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-public class OptimusAlterno extends Modo {
+public class OptimusAlterno extends UnidadTerrestre {
 
-	@Override
-	public Modo cambiarModo() {
-		return new OptimusHumanoide();
+	private final static int OPTIMUS_TERRESTRE_PUNTOS_ATAQUE = 15;
+	private final static int OPTIMUS_TERRESTRE_DIST_ATAQUE = 4;
+	private final static int OPTIMUS_TERRESTRE_VELOCIDAD = 5;
+	private final static String OPTIMUS_TERRESTRE_AVATAR =
+			"Peterbilt 379";
+
+	public OptimusAlterno() {
+		super(OPTIMUS_TERRESTRE_PUNTOS_ATAQUE, 
+				OPTIMUS_TERRESTRE_DIST_ATAQUE, 
+				OPTIMUS_TERRESTRE_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Peterbilt 379";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 15;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 4;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 5;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 2;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return OPTIMUS_TERRESTRE_AVATAR;
 	}
 
 }

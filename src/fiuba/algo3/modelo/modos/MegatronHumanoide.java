@@ -1,52 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+public class MegatronHumanoide extends Humanoide {
 
-public class MegatronHumanoide extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new MegatronAlterno();
+	private final static int MEGATRON_HUMANOIDE_PUNTOS_ATAQUE = 10;
+	private final static int MEGATRON_HUMANOIDE_DIST_ATAQUE = 3;
+	private final static int MEGATRON_HUMANOIDE_VELOCIDAD = 1;
+	private final static String MEGATRON_HUMANOIDE_AVATAR =
+			"Megatron Humanoide";
+	
+	public MegatronHumanoide() {
+		super(MEGATRON_HUMANOIDE_PUNTOS_ATAQUE,
+				MEGATRON_HUMANOIDE_DIST_ATAQUE,
+				MEGATRON_HUMANOIDE_VELOCIDAD);
 	}
-
+	
 	@Override
 	public String avatarModo() {
-		return "Megatron Humanoide";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 10;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 3;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 1;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		throw new MovimientoInvalidoException();
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return MEGATRON_HUMANOIDE_AVATAR;
 	}
 
 }

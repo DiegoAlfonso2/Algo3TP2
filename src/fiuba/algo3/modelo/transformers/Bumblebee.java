@@ -1,47 +1,18 @@
 package fiuba.algo3.modelo.transformers;
 
+import fiuba.algo3.modelo.modos.BumblebeeAlterno;
 import fiuba.algo3.modelo.modos.BumblebeeHumanoide;
-import fiuba.algo3.modelo.modos.Modo;
 
-public class Bumblebee extends Autobot{
+public class Bumblebee extends Autobot {
+	
+	private static final String BUMBLEBEE_NOMBRE = "Bumblebee";
+	private static final int BUMBLEBEE_PUNTOS_DE_VIDA = 350;
 
     public Bumblebee() {
-        this.nombre = "Bumblebee";
-        this.puntosDeVida = 350;
-        this.modoActivo = new BumblebeeHumanoide();
-        this.setearCaracteristicas(this.modoActivo);
+    	super(BUMBLEBEE_NOMBRE, 
+    			BUMBLEBEE_PUNTOS_DE_VIDA,
+    			new BumblebeeHumanoide(),
+    			new BumblebeeAlterno());
     }
-	
-	private void setearCaracteristicas(Modo modo) {
-		this.avatar = modo.avatarModo();
-		this.ataque = modo.ataqueModo();
-		this.distAtaque = modo.distAtaqueModo();
-		this.velocidad = modo.velocidadModo();
-	}
-	
-	public void cambiarModo() {
-		modoActivo = this.modoActivo.cambiarModo();
-		this.setearCaracteristicas(this.modoActivo);
-	}
-	
-	@Override
-	public void atravesarEspinas() {
-		this.puntosDeVida = this.modoActivo.atravesarEspinas(this.puntosDeVida);
-	}
-
-	@Override
-	public void atravesarPantano() {
-		this.descontarMovimientoPosible(this.modoActivo.atravesarPantano());
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		this.modoActivo.atravesarNebulosaAndromeda();
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		this.modoActivo.atravesarTormentaPsionica();
-	}
-	
+		
 }

@@ -17,3 +17,6 @@ build/
 # Files and folders added by Eclipse IDE #
 RemoteSystemsTempFiles/
 .metadata/
+/bin/
+.classpath
+.project

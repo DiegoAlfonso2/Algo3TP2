@@ -1,38 +1,46 @@
 package fiuba.algo3.modelo.transformers;
 
+import java.util.Collection;
+
 import fiuba.algo3.modelo.Contenido;
+import fiuba.algo3.modelo.EstadoVital;
+import fiuba.algo3.modelo.JugadorAutobots;
+import fiuba.algo3.modelo.JugadorDecepticons;
+import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
+import fiuba.algo3.modelo.elementos.Modificadores;
 import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
 	
-	protected String nombre;
-	protected String avatar;
-	protected int ataque;
-	protected int distAtaque;
-	protected int velocidad;
-	protected int puntosDeVida;
-	protected int movimientos;
-	protected Bonus bonus;
-    protected ChispaSuprema chispa;
-	protected Modo modoActivo;
+	private String nombre;
+	private int puntosDeVida;
+	private Modificadores modificadores;
+	private ChispaSuprema chispa;
+	private Modo modoActivo;
+	private Modo modoInactivo;
+    private boolean disponible;
+    private boolean fusionable;
+    private boolean ganador;
 
-	/*public AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
+	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
 		this.puntosDeVida = puntosDeVida;
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
+		this.modificadores = new Modificadores();
+        this.disponible = true;
+        this.fusionable = false;
+
 	}
-    */
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
 	public String getAvatar() {
-		return this.avatar;
+		return modoActivo.avatarModo();
 	}
 
 	public int getPuntosDeVida() {
@@ -40,63 +48,105 @@ public abstract class AlgoFormer{
 	}
 
 	public int getPtosDeAtaque() {
-		return this.ataque;
+		return modoActivo.getPtosDeAtaque();
+	}
+
+	public int getAtaqueModificado() {
+		return modificadores.modificarAtaque(getPtosDeAtaque());
 	}
 
 	public int getDistanciaAtaque() {
-		return this.distAtaque;
+		return modoActivo.getDistAtaque();
+	}
+
+	public int getDistanciaAtaqueModificada() {
+		return getDistanciaAtaque();
 	}
 
 	public int getVelocidad() {
-		return this.velocidad;
+		return modoActivo.getVelocidad();
 	}
 
-	public void cambiarModo() {
-		modoActivo.cambiarModo();
+	public int getVelocidadModificada() {
+		return modificadores.modificarVelocidad(getVelocidad());
+	}
+
+	public EstadoVital getEstadoVital() {
+		return new EstadoVital(getPuntosDeVida(), getVelocidadModificada());
+	}
+
+	public void transformar() {
+		Modo tmp = modoActivo;
+		this.modoActivo = modoInactivo;
+		this.modoInactivo = tmp;
 	}
 
 	public boolean estaVivo() {
 		return puntosDeVida > 0;
 	}
 
-	public void validarMovimiento(int cantMov) {
-		if (cantMov > this.velocidad){
-			throw new MovimientoInvalidoException();
-		}	
-	}
-	
-	public void absorber(Bonus bonus) {
-		this.bonus = bonus;
-	}
-	
-	public void absorber(ChispaSuprema chispa) {
-		this.chispa = chispa;
-	}
-	
-	public void absorber(Contenido contenido) {
-		this.bonus = contenido.definirBonus();
-		this.chispa = contenido.definirChispa();
+	public void absorber(Bonus contenido) {
+		modificadores.agregar(contenido);
 	}
 
-	public abstract void atravesarEspinas();
+	public void absorber(ChispaSuprema contenido) {
+		chispa = contenido;
+	}
 	
-	public abstract void atravesarPantano();
-	
-	public abstract void atravesarNebulosaAndromeda();
-	
-	public abstract void atravesarTormentaPsionica();
-
-	public void resetearMovimientosPosibles() {
-		this.movimientos = this.velocidad;
+	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
+		return modoActivo.atravesarEspinas(estado);
 	}
 
-	public boolean poseeMovimientosPosibles() {
-		return (this.movimientos > 0);
+	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
+		return modoActivo.atravesarPantano(estado);
+	}
+	
+	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
+		return modoActivo.atravesarTormentaPsionica(estado);
 	}
 
-	public void descontarMovimientoPosible(int i) {
-		this.movimientos -= 1;
+	public boolean tieneBonus(String bonus) {
+		return this.modificadores.tieneBonus(bonus);
 	}
+	
+	protected boolean ataquePosible(int distancia) {
+		return (modoActivo.getDistAtaque() >= distancia);
+	}
+
+	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
+
+	protected abstract void recibirAtaque(Autobot atacante, int ataque);
+	protected abstract void recibirAtaque(Decepticon atacante, int ataque);
+	
+	public void recibirDanio(int ataqueRecibido) {
+		this.puntosDeVida -= ataqueRecibido;
+	}
+
+	public abstract boolean perteneceA(JugadorAutobots jugador);
+	public abstract boolean perteneceA(JugadorDecepticons jugador);
+
+	public void terminarTurno() {
+		this.modificadores.descontarTurnos();
+		this.modificadores.activarBonus();
+	}
+    public void activarBonus() {
+        this.modificadores.activarBonus();
+    }
+
+    public void actualizarEstado(){
+        disponible = this.modificadores.disponibilidad ();
+        fusionable = this.modificadores.fusionable ();
+    }
+
+    public boolean esfusionable(){
+        return this.fusionable;
+    }
+
+    public boolean estaActivado() { return this.disponible; }
+
+
+    public void completoChispa() {
+    }
 
 }
 

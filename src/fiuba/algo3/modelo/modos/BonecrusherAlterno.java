@@ -1,50 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-public class BonecrusherAlterno extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new BonecrusherHumanoide();
+public class BonecrusherAlterno extends UnidadTerrestre {
+	
+	private final static int BONECRUSHER_TERRESTRE_PUNTOS_ATAQUE = 30;
+	private final static int BONECRUSHER_TERRESTRE_DIST_ATAQUE = 3;
+	private final static int BONECRUSHER_TERRESTRE_VELOCIDAD = 8;
+	private final static String BONECRUSHER_TERRESTRE_AVATAR =
+			"Force Protection Industries Buffalo HMPCV buscaminas";
+	
+	public BonecrusherAlterno() {
+		super(BONECRUSHER_TERRESTRE_PUNTOS_ATAQUE, 
+				BONECRUSHER_TERRESTRE_DIST_ATAQUE, 
+				BONECRUSHER_TERRESTRE_VELOCIDAD);
 	}
-
+	
 	@Override
 	public String avatarModo() {
-		return "Force Protection Industries Buffalo HMPCV buscaminas";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 30;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 3;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 8;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 2;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return BONECRUSHER_TERRESTRE_AVATAR;
 	}
 
 }

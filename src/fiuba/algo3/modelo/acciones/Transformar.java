@@ -1,5 +1,8 @@
-package fiuba.algo3.modelo;
+package fiuba.algo3.modelo.acciones;
 
+import fiuba.algo3.modelo.Coordenada;
+import fiuba.algo3.modelo.Partida;
+import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 /**
@@ -15,8 +18,7 @@ public class Transformar implements Accion {
 
 	@Override
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
-		// TODO Validar el turno
 		AlgoFormer accionado = tablero.algoFormerEnCasillero(posicionAlgoFormerATransformar);
-		accionado.cambiarModo();
+		accionado.transformar();
 	}
 }

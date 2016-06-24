@@ -1,50 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-public class BumblebeeAlterno extends Modo {
+public class BumblebeeAlterno extends UnidadTerrestre {
+	
+	private final static int BUMBLEBEE_TERRESTRE_PUNTOS_ATAQUE = 20;
+	private final static int BUMBLEBEE_TERRESTRE_DIST_ATAQUE = 3;
+	private final static int BUMBLEBEE_TERRESTRE_VELOCIDAD = 15;
+	private final static String BUMBLEBEE_TERRESTRE_AVATAR =
+			"Chevrolet Camaro Concept";
 
-	@Override
-	public Modo cambiarModo() {
-		return new BumblebeeHumanoide();
+	public BumblebeeAlterno() {
+		super(BUMBLEBEE_TERRESTRE_PUNTOS_ATAQUE,
+				BUMBLEBEE_TERRESTRE_DIST_ATAQUE,
+				BUMBLEBEE_TERRESTRE_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Chevrolet Camaro Concept";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 20;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 3;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 15;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		return 2;
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return BUMBLEBEE_TERRESTRE_AVATAR;
 	}
 
 }

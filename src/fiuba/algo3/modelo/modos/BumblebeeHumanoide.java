@@ -1,52 +1,22 @@
 package fiuba.algo3.modelo.modos;
 
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
-
-public class BumblebeeHumanoide extends Modo {
-
-	@Override
-	public Modo cambiarModo() {
-		return new BumblebeeAlterno();
+public class BumblebeeHumanoide extends Humanoide {
+	
+	private final static int BUMBLEBEE_HUMANOIDE_PUNTOS_ATAQUE = 40;
+	private final static int BUMBLEBEE_HUMANOIDE_DIST_ATAQUE = 1;
+	private final static int BUMBLEBEE_HUMANOIDE_VELOCIDAD = 2;
+	private final static String BUMBLEBEE_HUMANOIDE_AVATAR =
+			"Bumblebee Humanoide";
+	
+	public BumblebeeHumanoide() {
+		super(BUMBLEBEE_HUMANOIDE_PUNTOS_ATAQUE,
+				BUMBLEBEE_HUMANOIDE_DIST_ATAQUE,
+				BUMBLEBEE_HUMANOIDE_VELOCIDAD);
 	}
 
 	@Override
 	public String avatarModo() {
-		return "Bumblebee Humanoide";
-	}
-
-	@Override
-	public int ataqueModo() {
-		return 40;
-	}
-
-	@Override
-	public int distAtaqueModo() {
-		return 1;
-	}
-
-	@Override
-	public int velocidadModo() {
-		return 2;
-	}
-
-	@Override
-	public int atravesarEspinas(int puntosDeVida) {
-		return (int) (puntosDeVida * 0.95);
-	}
-
-	@Override
-	public int atravesarPantano() {
-		throw new MovimientoInvalidoException();
-	}
-
-	@Override
-	public void atravesarNebulosaAndromeda() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void atravesarTormentaPsionica() {
-		// TODO Auto-generated method stub
+		return BUMBLEBEE_HUMANOIDE_AVATAR;
 	}
 
 }
