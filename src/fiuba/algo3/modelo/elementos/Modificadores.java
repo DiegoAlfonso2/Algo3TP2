@@ -47,14 +47,25 @@ public class Modificadores {
 		}
 		return ataqueRecibidoParcial;
 	}
+    public int modificarVelocidad(int velocidad) {
+        int velocidadParcial = velocidad;
+        for (Bonus unBonus : bonus) {
+            velocidadParcial = unBonus.modificarVelocidad(velocidadParcial);
+        }
+        return velocidadParcial;
+    }
 
-	public int modificarVelocidad(int velocidad) {
-		int velocidadParcial = velocidad;
-		for (Bonus unBonus : bonus) {
-			velocidadParcial = unBonus.modificarVelocidad(velocidadParcial);
-		}
-		return velocidadParcial;
-	}
+    public boolean disponibilidad(){
+        for (Bonus unBonus: bonus)
+            if (!unBonus.algoformerDisponible ()) return false;
+        return true;
+    }
+
+    public boolean fusionable(){
+        for (Bonus unBonus: bonus)
+            if (unBonus.modificarFusionable ()) return true;
+        return false;
+    }
 
 	public void descontarTurnos() {
 		for (Bonus unBonus : bonus) {

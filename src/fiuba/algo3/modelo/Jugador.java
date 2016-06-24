@@ -38,7 +38,8 @@ public abstract class Jugador {
 	public void sigueParticipando() {
 		boolean sigueJugando = false;
 		for (AlgoFormer algoformer : equipo) {
-			sigueJugando = algoformer.estaVivo();
+			if (algoformer.estaVivo())
+				sigueJugando = true;
 		}
 		if (!sigueJugando){
 			throw new FinalException();

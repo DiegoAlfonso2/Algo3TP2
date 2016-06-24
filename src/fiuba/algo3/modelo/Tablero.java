@@ -173,6 +173,8 @@ public class Tablero {
 		AlgoFormer atacante = algoFormerEnCasillero(coordAtacante);
 		AlgoFormer atacado = algoFormerEnCasillero(coordDefensor);
 		atacante.atacar(atacado, coordAtacante.distanciaHasta(coordDefensor));
+		if (!atacado.estaVivo())
+			localizarCasillero(coordDefensor).sacarAlgoformer();
 	}
 
 	public Superficie obtenerSuperficieAerea(Coordenada coordenada){

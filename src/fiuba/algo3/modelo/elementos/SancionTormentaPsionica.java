@@ -13,7 +13,7 @@ public class SancionTormentaPsionica extends Bonus {
 		return NOMBRE;
 	}
 
-	@Override
+    @Override
 	public int modificarAtaque(int ataqueParcial) {
 		return (int) (ataqueParcial * 0.6);
 	}
@@ -28,8 +28,20 @@ public class SancionTormentaPsionica extends Bonus {
 		return velocidadParcial;
 	}
 
-	public void descontarTurno() {
-		// Este metodo no hace nada ya que la Tormenta Psionica afecta el ataque durante toda la partida.
-	}
-	
+    @Override
+    public boolean algoformerDisponible() {
+        return true;
+    }
+
+    @Override
+    public boolean modificarFusionable() {
+        return false;
+    }
+
+    @Override
+    public void descontarTurno() {
+
+    }
+
 }
+

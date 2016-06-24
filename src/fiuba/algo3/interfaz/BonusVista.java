@@ -17,6 +17,9 @@ public class BonusVista extends StackPane {
 		  
 		  imagen = null;
 		  if (nombre != null) {
+			  if (nombre == "Chispa Suprema"){
+				  imagen = nombre.concat(".gif");
+			  }else
 			  imagen = nombre.concat(".png");
 		  	  icon = new Image(imagen, 50, 50, false, false);
 		  	  setAlignment(Pos.CENTER);

@@ -20,6 +20,9 @@ public abstract class AlgoFormer{
 	private ChispaSuprema chispa;
 	private Modo modoActivo;
 	private Modo modoInactivo;
+    private boolean disponible;
+    private boolean fusionable;
+    private boolean ganador;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
 		this.nombre = nombre;
@@ -27,6 +30,9 @@ public abstract class AlgoFormer{
 		this.modoActivo = modoHumanoide;
 		this.modoInactivo = modoAlterno;
 		this.modificadores = new Modificadores();
+        this.disponible = true;
+        this.fusionable = false;
+
 	}
 
 	public String getNombre() {
@@ -44,7 +50,7 @@ public abstract class AlgoFormer{
 	public int getPtosDeAtaque() {
 		return modoActivo.getPtosDeAtaque();
 	}
-	
+
 	public int getAtaqueModificado() {
 		return modificadores.modificarAtaque(getPtosDeAtaque());
 	}
@@ -52,7 +58,7 @@ public abstract class AlgoFormer{
 	public int getDistanciaAtaque() {
 		return modoActivo.getDistAtaque();
 	}
-	
+
 	public int getDistanciaAtaqueModificada() {
 		return getDistanciaAtaque();
 	}
@@ -60,7 +66,7 @@ public abstract class AlgoFormer{
 	public int getVelocidad() {
 		return modoActivo.getVelocidad();
 	}
-	
+
 	public int getVelocidadModificada() {
 		return modificadores.modificarVelocidad(getVelocidad());
 	}
@@ -74,7 +80,7 @@ public abstract class AlgoFormer{
 		this.modoActivo = modoInactivo;
 		this.modoInactivo = tmp;
 	}
-	
+
 	public boolean estaVivo() {
 		return puntosDeVida > 0;
 	}
@@ -82,7 +88,7 @@ public abstract class AlgoFormer{
 	public void absorber(Bonus contenido) {
 		modificadores.agregar(contenido);
 	}
-	
+
 	public void absorber(ChispaSuprema contenido) {
 		chispa = contenido;
 	}
@@ -90,11 +96,11 @@ public abstract class AlgoFormer{
 	public Collection<Consecuencia> atravesarEspinas(EstadoVital estado) {
 		return modoActivo.atravesarEspinas(estado);
 	}
-	
+
 	public Collection<Consecuencia> atravesarPantano(EstadoVital estado) {
 		return modoActivo.atravesarPantano(estado);
 	}
-	
+
 	public boolean tieneBonus(String bonus) {
 		return this.modificadores.tieneBonus(bonus);
 	}
@@ -102,7 +108,7 @@ public abstract class AlgoFormer{
 	protected boolean ataquePosible(int distancia) {
 		return (modoActivo.getDistAtaque() >= distancia);
 	}
-	
+
 	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
 
 	protected abstract void recibirAtaque(Autobot atacante, int ataque);
@@ -114,15 +120,29 @@ public abstract class AlgoFormer{
 
 	public abstract boolean perteneceA(JugadorAutobots jugador);
 	public abstract boolean perteneceA(JugadorDecepticons jugador);
-	
+
 	public void terminarTurno() {
 		this.modificadores.descontarTurnos();
 		this.modificadores.activarBonus();
 	}
-	
-//	public abstract void atravesarNebulosaAndromeda();
-//	
-//	public abstract void atravesarTormentaPsionica();
-	
+    public void activarBonus() {
+        this.modificadores.activarBonus();
+    }
+
+    public void actualizarEstado(){
+        disponible = this.modificadores.disponibilidad ();
+        fusionable = this.modificadores.fusionable ();
+    }
+
+    public boolean esfusionable(){
+        return this.fusionable;
+    }
+
+    public boolean estaActivado() { return this.disponible; }
+
+
+    public void completoChispa() {
+    }
+
 }
 

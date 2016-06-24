@@ -19,7 +19,7 @@ public abstract class Autobot extends AlgoFormer {
 	@Override
 	public boolean perteneceA(JugadorDecepticons jugador) {
 		return false;
-	}	
+	}
 
 	@Override
 	public void atacar(AlgoFormer objetivo, int distanciaAObjetivo) {
@@ -28,12 +28,12 @@ public abstract class Autobot extends AlgoFormer {
 		}
 		objetivo.recibirAtaque(this, getAtaqueModificado());
 	}
-	
+
 	@Override
 	protected void recibirAtaque(Autobot atacante, int ataque) {
 		throw new AtaqueInvalidoException("No se puede atacar un AlgoFormer del mismo equipo");
 	}
-	
+
 	@Override
 	protected void recibirAtaque(Decepticon atacante, int ataque) {
 		recibirDanio(ataque);

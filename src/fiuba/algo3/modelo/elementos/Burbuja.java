@@ -4,11 +4,11 @@ public class Burbuja extends ModificadorAgotable {
 
 	private final static String NOMBRE = "Burbuja";
 	private final static int DURACION_TURNOS = 2;
-	
+
 	public Burbuja() {
 		super(DURACION_TURNOS);
 	}
-	
+
 	@Override
 	public String getNombre() {
 		return NOMBRE;
@@ -28,5 +28,14 @@ public class Burbuja extends ModificadorAgotable {
 	public int modificarVelocidad(int velocidadParcial) {
 		return velocidadParcial;
 	}
-	
+
+    @Override
+    public boolean algoformerDisponible() {
+        return true;
+    }
+    @Override
+    public boolean modificarFusionable() {
+        return false;
+    }
+
 }

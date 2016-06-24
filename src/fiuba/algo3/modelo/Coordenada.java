@@ -15,10 +15,7 @@ public class Coordenada {
 	 * @param otra Coordenada contra la que se quiere medir la distancia
 	 * @return
 	 */
-	public int distanciaHasta(Coordenada otra) {
-		return Math.max(Math.abs(this.x - otra.x), Math.abs(this.y - otra.y));
-	}
-	
+
 	/**
 	 * Indica si dos casilleros representados por sus coordenadas son adyacentes 
 	 * (estan uno al lado del otro, uno arriba del otro o en diagonal).
@@ -28,6 +25,9 @@ public class Coordenada {
 	public boolean esConsecutiva(Coordenada otra) {
 		return distanciaHasta(otra) <= 1;
 	}
+    public int distanciaHasta(Coordenada otra){
+        return Math.max (Math.abs(this.x - otra.x), Math.abs(this.y - otra.y));
+    }
 
 	@Override
 	public boolean equals(Object otroObjeto) {

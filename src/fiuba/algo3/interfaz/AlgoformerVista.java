@@ -2,24 +2,14 @@ package fiuba.algo3.interfaz;
 
 
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.modelo.Coordenada;
-import fiuba.algo3.modelo.acciones.Mover;
-import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
-
-import java.awt.event.MouseAdapter;
-
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
 
 public class AlgoformerVista extends StackPane {
 	
