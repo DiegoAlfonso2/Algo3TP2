@@ -120,21 +120,21 @@ public class Tablero {
         
         // Hardcodeo las Zonas de Nebulosas de Andr�meda.
 		this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(1,6));
-        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,3));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(2,10));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(3,8));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(4,2));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(7,4));
+        this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(7,9));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(9,6));
         this.ponerSuperficie(new NebulosaAndromeda(), new Coordenada(10,4));
         
         // Hardcodeo las Zonas de Tormentas Psi�nicas.
+        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(2,3));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(2,9));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,3));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(4,6));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,1));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,6));
-        this.ponerSuperficie(new TormentaPsionica(), new Coordenada(7,9));
         this.ponerSuperficie(new TormentaPsionica(), new Coordenada(10,5));
 	}
 
