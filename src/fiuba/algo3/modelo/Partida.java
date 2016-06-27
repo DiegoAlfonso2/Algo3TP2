@@ -1,5 +1,8 @@
 package fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fiuba.algo3.modelo.acciones.Accion;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.excepciones.JuegoNoEstaActivoException;
@@ -90,6 +93,39 @@ public class Partida {
 	
 	public Superficie obtenerSuperficieTerrestre(Coordenada ubicacion) {
 		return this.tablero.obtenerSuperficieTerrestre(ubicacion);
+	}
+
+	public List<Coordenada> crearMovimiento(Coordenada inicio, Coordenada fin) {
+		List<Coordenada> movimiento = new ArrayList<Coordenada>();
+		int oldX = inicio.obtenerX();
+		int oldY = inicio.obtenerY();
+		int newX = fin.obtenerX();
+		int newY = fin.obtenerY();
+		int otroX = newX;
+		int otroY = newY;
+		
+		movimiento.add(inicio);
+		while (oldX != newX || oldY != newY){
+			if (newX < oldX){
+				otroX = oldX - 1;
+				oldX = otroX;
+			}
+			if (newX > oldX){
+				otroX = oldX + 1;
+				oldX = otroX;
+			}
+			if (newY < oldY){
+				otroY = oldY - 1;
+				oldY = otroY;
+			}
+			if (newY > oldY){
+				otroY = oldY + 1;
+				oldY = otroY;
+			}
+		Coordenada coord = new Coordenada(otroX, otroY);
+		movimiento.add(coord);
+		}
+		return movimiento;
 	}
 }
 	

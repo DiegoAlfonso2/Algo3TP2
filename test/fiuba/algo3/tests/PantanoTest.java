@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.modelo.superficies.Espinas;
 import fiuba.algo3.modelo.superficies.Pantano;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 import fiuba.algo3.tests.mocks.AlgoAereoMock;

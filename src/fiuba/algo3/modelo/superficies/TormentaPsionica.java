@@ -1,6 +1,5 @@
 package fiuba.algo3.modelo.superficies;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import fiuba.algo3.modelo.EstadoVital;

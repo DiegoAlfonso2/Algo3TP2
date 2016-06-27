@@ -2,7 +2,6 @@ package fiuba.algo3.modelo.transformers;
 
 import java.util.Collection;
 
-import fiuba.algo3.modelo.Contenido;
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.JugadorAutobots;
 import fiuba.algo3.modelo.JugadorDecepticons;
@@ -104,6 +103,10 @@ public abstract class AlgoFormer{
 	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
 		return modoActivo.atravesarTormentaPsionica(estado);
 	}
+	
+	public Collection<Consecuencia> atravesarNebulosAndromeda(EstadoVital estado) {
+		return modoActivo.atravesarNebulosaAndromeda(estado);
+	}
 
 	public boolean tieneBonus(String bonus) {
 		return this.modificadores.tieneBonus(bonus);
@@ -116,6 +119,7 @@ public abstract class AlgoFormer{
 	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
 
 	protected abstract void recibirAtaque(Autobot atacante, int ataque);
+	
 	protected abstract void recibirAtaque(Decepticon atacante, int ataque);
 	
 	public void recibirDanio(int ataqueRecibido) {
@@ -123,6 +127,7 @@ public abstract class AlgoFormer{
 	}
 
 	public abstract boolean perteneceA(JugadorAutobots jugador);
+	
 	public abstract boolean perteneceA(JugadorDecepticons jugador);
 
 	public void terminarTurno() {
@@ -147,6 +152,14 @@ public abstract class AlgoFormer{
 
     public void completoChispa() {
     }
+
+	public boolean estaActivo() {
+		return this.disponible;
+	}
+
+	public int modificarDefensa(int ataque) {
+		return modificadores.modificarDefensa(ataque);
+	}
 
 }
 

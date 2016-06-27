@@ -1,7 +1,5 @@
 package fiuba.algo3.interfaz;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,33 +50,6 @@ public class AlgoformerVista extends StackPane {
 	        this.posY = y;
 	        
 	        relocate(oldX, oldY);
-	    }
-
-	public void agregarMovimientos(int newX, int newY) {
-		int oldX = this.posX;
-		int oldY = this.posY;
-		int otroX = newX;
-		int otroY = newY;
-		while (oldX != newX || oldY != newY){
-			if (newX < oldX){
-				otroX = oldX - 1;
-				oldX = otroX;
-			}
-			if (newX > oldX){
-				otroX = oldX + 1;
-				oldX = otroX;
-			}
-			if (newY < oldY){
-				otroY = oldY - 1;
-				oldY = otroY;
-			}
-			if (newY > oldY){
-				otroY = oldY + 1;
-				oldY = otroY;
-			}
-		Coordenada coord = new Coordenada(otroX+1, otroY+1);
-		movimiento.add(coord);
-		}
 	}
 
 }

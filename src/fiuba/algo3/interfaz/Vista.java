@@ -171,7 +171,7 @@ public class Vista extends Application {
 			int newX = posTablero(algoformer.getLayoutX());
 			int newY = posTablero(algoformer.getLayoutY());
 			if (e.getButton()==MouseButton.PRIMARY){
-				algoformer.agregarMovimientos(newX, newY);
+				algoformer.movimiento = (partida.crearMovimiento(new Coordenada(x+1,y+1), new Coordenada(newX+1, newY+1)));	
 				Mover move = new Mover(algoformer.movimiento);
 				try {
 					partida.jugar(move);
