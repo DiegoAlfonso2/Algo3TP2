@@ -4,6 +4,7 @@ import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.JugadorAutobots;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
+import fiuba.algo3.modelo.elementos.FlagFusion;
 import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
 import fiuba.algo3.modelo.excepciones.FusionInvalidaException;
@@ -30,19 +31,12 @@ public class Fusionar implements Accion {
     }
 
     @Override
-    public void ejecutarSobre(Partida partida, Tablero tablero) throws FusionInvalidaException {
+    public void ejecutarSobre(Partida partida, Tablero tablero) {
 
-
-        if (!(primeraC.esConsecutiva (segundaC) && primeraC.esConsecutiva (terceraC)) ||
-                !(segundaC.esConsecutiva (primeraC) && segundaC.esConsecutiva (terceraC)) ||
-                !(terceraC.esConsecutiva (primeraC) && terceraC.esConsecutiva (segundaC))
+        if ((!primeraC.esConsecutiva (segundaC) || !primeraC.esConsecutiva (terceraC)) &&
+                (!segundaC.esConsecutiva (primeraC) || !segundaC.esConsecutiva (terceraC)) &&
+                (!terceraC.esConsecutiva (primeraC) || !terceraC.esConsecutiva (segundaC))
                 ) throw new FusionInvalidaException (" Los AlgoFormers tienen que estar consecutivos.");
-
-        if (    !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (primeraC)) ||
-                !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (segundaC)) ||
-                !partida.obtenerJugadorActivo().lePertenece(tablero.algoFormerEnCasillero (terceraC))
-                ) throw new EquipoIncorrectoException ("Los Algoformers tienen que ser del mismo equipo.");
-
 
         AlgoFormer algo1, algo2, algo3, megat;
         try {
@@ -52,11 +46,14 @@ public class Fusionar implements Accion {
 
         } catch (CasilleroVacioException cve) {
             throw new CasilleroVacioException (
-                    "Uno de los casilleros esta vacio. ");
+                    "Uno o mas, de los casilleros esta vacio. ");
         }
 
-        if ( !algo1.esfusionable () || !algo2.esfusionable () || !algo3.esfusionable ())
-            throw new FusionInvalidaException (" Los Algoformers no estan listos para fusionarse.");
+        if (    !partida.obtenerJugadorActivo().lePertenece(algo1) ||
+                !partida.obtenerJugadorActivo().lePertenece(algo2) ||
+                !partida.obtenerJugadorActivo().lePertenece(algo3)
+                ) throw new EquipoIncorrectoException ("Los Algoformers tienen que ser del mismo equipo.");
+
 
 
         if (partida.obtenerJugadorActivo().lePertenece(new Optimus ()))
@@ -69,6 +66,7 @@ public class Fusionar implements Accion {
         tablero.sacarAlgoformer (algo3,terceraC);
 
         tablero.ponerAlgoformer (megat,primeraC);
+        tablero.algoFormerEnCasillero (primeraC).absorber (new FlagFusion ());
 
     }
 }

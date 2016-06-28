@@ -37,7 +37,5 @@ public class FlagFusion extends ModificadorAgotable {
     @Override
     public boolean algoformerDisponible() { return !estaActivo ();   }
 
-    @Override
-    public boolean modificarFusionable(){ return !estaActivo (); }
 
 }

@@ -32,9 +32,5 @@ public class DobleCanon extends ModificadorAgotable {
     @Override
     public boolean algoformerDisponible() { return true; }
 
-    @Override
-    public boolean modificarFusionable() {
-        return false;
-    }
 
 }

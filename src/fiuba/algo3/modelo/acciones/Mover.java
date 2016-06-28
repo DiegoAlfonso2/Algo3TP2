@@ -9,10 +9,7 @@ import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.excepciones.AlgoformerInactivoException;
-import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
-import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
+import fiuba.algo3.modelo.excepciones.*;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class Mover implements Accion {

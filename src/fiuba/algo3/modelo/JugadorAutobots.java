@@ -2,10 +2,7 @@ package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-import fiuba.algo3.modelo.transformers.AlgoFormer;
-import fiuba.algo3.modelo.transformers.Bumblebee;
-import fiuba.algo3.modelo.transformers.Optimus;
-import fiuba.algo3.modelo.transformers.Ratchet;
+import fiuba.algo3.modelo.transformers.*;
 
 public class JugadorAutobots extends Jugador {
 
@@ -15,6 +12,7 @@ public class JugadorAutobots extends Jugador {
 		this.equipo.add(new Optimus());
 		this.equipo.add(new Bumblebee());
 		this.equipo.add(new Ratchet());
+        this.equipo.add(new Superion (new Optimus(),new Ratchet(),new Bumblebee()));
 	}
 
 	@Override

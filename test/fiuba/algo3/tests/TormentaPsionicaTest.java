@@ -18,16 +18,24 @@ public class TormentaPsionicaTest {
 		Jugador jugador1 = new JugadorAutobots("Pepito");
 		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		Coordenada bumblebeeInicial = new Coordenada(3,1);
-		Coordenada bumblebeeFinal = new Coordenada(2,3);
-		
+		Coordenada bumblebeeMedio = new Coordenada(5,1);
+		Coordenada bumblebeeFinal = new Coordenada(7,1);
+		Coordenada megatronInicial = new Coordenada(10,10);
 		
 		// Se hardcodean los elementos de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
 		
-		Mover moverBumblebee = new Mover(partida.crearMovimiento(bumblebeeInicial, bumblebeeFinal));
+		Mover moverBumblebee = new Mover(partida.crearMovimiento(bumblebeeInicial, bumblebeeMedio));
+		partida.jugar(moverBumblebee);
+
+		// Pasa el turno Decepticons.
+		Transformar transformarMegatron = new Transformar(megatronInicial);
+		partida.jugar(transformarMegatron);		
+		
+		moverBumblebee = new Mover(partida.crearMovimiento(bumblebeeMedio, bumblebeeFinal));
 		partida.jugar(moverBumblebee);
 		
-		Assert.assertEquals(partida.obtenerAlgoformer(bumblebeeFinal).getAtaqueModificado(), 40);
+		Assert.assertEquals(partida.obtenerAlgoformer(bumblebeeFinal).getAtaqueModificado(), 80);
 	}
 	
 	@Test
@@ -36,15 +44,22 @@ public class TormentaPsionicaTest {
 		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		Coordenada bumblebeeInicial = new Coordenada(3,1);
 		Coordenada bumblebeeFinal = new Coordenada(2,3);
-		
+		Coordenada megatronInicial = new Coordenada(10,10);
 		
 		// Se hardcodean los elementos de acuerdo al mapa adjunto.
 		Partida partida = new Partida(jugador1, jugador2);
 		
+		Transformar transformarBumblebee = new Transformar(bumblebeeInicial);
+		partida.jugar(transformarBumblebee);
+
+		// Pasa el turno Decepticons.
+		Transformar transformarMegatron = new Transformar(megatronInicial);
+		partida.jugar(transformarMegatron);		
+		
 		Mover moverBumblebee = new Mover(partida.crearMovimiento(bumblebeeInicial, bumblebeeFinal));
 		partida.jugar(moverBumblebee);
 		
-		Assert.assertEquals(partida.obtenerAlgoformer(bumblebeeFinal).getAtaqueModificado(), 40);
+		Assert.assertEquals(partida.obtenerAlgoformer(bumblebeeFinal).getAtaqueModificado(), 20);
 	}
 	
 	@Test
@@ -52,7 +67,7 @@ public class TormentaPsionicaTest {
 		Jugador jugador1 = new JugadorAutobots("Pepito");
 		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		Coordenada ratchetInicial = new Coordenada(1,3);
-		Coordenada ratchetFinal = new Coordenada(2,3);
+		Coordenada ratchetFinal = new Coordenada(4,6);
 		Coordenada bonecrusherInicial = new Coordenada(10,8);
 		
 		
@@ -77,7 +92,7 @@ public class TormentaPsionicaTest {
 		Jugador jugador1 = new JugadorAutobots("Pepito");
 		Jugador jugador2 = new JugadorDecepticons("Pirulo");
 		Coordenada ratchetInicial = new Coordenada(1,3);
-		Coordenada ratchetFinal = new Coordenada(2,3);
+		Coordenada ratchetFinal = new Coordenada(4,6);
 		Coordenada bonecrusherInicial = new Coordenada(10,8);
 		
 		

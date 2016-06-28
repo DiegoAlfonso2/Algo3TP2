@@ -34,11 +34,6 @@ public class SancionTormentaPsionica extends Bonus {
     }
 
     @Override
-    public boolean modificarFusionable() {
-        return false;
-    }
-
-    @Override
     public void descontarTurno() {
 
     }

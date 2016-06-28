@@ -34,9 +34,4 @@ public class Flash extends ModificadorAgotable {
         return true;
     }
 
-    @Override
-    public boolean modificarFusionable() {
-        return false;
-    }
-
 }

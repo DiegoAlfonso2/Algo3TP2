@@ -9,6 +9,7 @@ import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
+import fiuba.algo3.modelo.excepciones.AlgoformerInactivoException;
 import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
@@ -20,7 +21,6 @@ public abstract class AlgoFormer{
 	private Modo modoActivo;
 	private Modo modoInactivo;
     private boolean disponible;
-    private boolean fusionable;
     private boolean ganador;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
@@ -30,8 +30,6 @@ public abstract class AlgoFormer{
 		this.modoInactivo = modoAlterno;
 		this.modificadores = new Modificadores();
         this.disponible = true;
-        this.fusionable = false;
-
 	}
 
 	public String getNombre() {
@@ -133,24 +131,15 @@ public abstract class AlgoFormer{
 	public void terminarTurno() {
 		this.modificadores.descontarTurnos();
 		this.modificadores.activarBonus();
+        this.actualizarEstado ();
 	}
-    public void activarBonus() {
-        this.modificadores.activarBonus();
-    }
 
-    public void actualizarEstado(){
+    private void actualizarEstado(){
         disponible = this.modificadores.disponibilidad ();
-        fusionable = this.modificadores.fusionable ();
     }
 
-    public boolean esfusionable(){
-        return this.fusionable;
-    }
-
-    public boolean estaActivado() { return this.disponible; }
-
-
-    public void completoChispa() {
+    public boolean estaActivado() {
+    	return this.disponible;
     }
 
 	public boolean estaActivo() {
