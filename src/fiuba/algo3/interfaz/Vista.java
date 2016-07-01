@@ -217,7 +217,7 @@ public class Vista extends Application {
 				}
 			
         });
-		
+
         algoformer.setOnMousePressed(e -> {
 
         	algoformer.mouseX = e.getSceneX();

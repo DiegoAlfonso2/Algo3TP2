@@ -51,6 +51,28 @@ public class Dividir implements Accion {
             throw new EquipoIncorrectoException ("El algoformer seleccionado no le pertenece.");
 
 
+        if (!(partida.obtenerJugadorActivo ().obtenerAlgoformers ().get (3) == megat)) {
+            throw new DivisionInvalidaException ("El algoformer seleccionado no es divisible.");
+        }
+
+        tablero.sacarAlgoformer (megat,inputC);
+
+        int vidaNuevaDeAlgoformers = megat.getPuntosDeVida () / 3;
+
+        AlgoFormer algo1 = partida.obtenerJugadorActivo ().obtenerAlgoformers ().get (0);
+        AlgoFormer algo2 = partida.obtenerJugadorActivo ().obtenerAlgoformers ().get (1);
+        AlgoFormer algo3 = partida.obtenerJugadorActivo ().obtenerAlgoformers ().get (2);
+
+        algo1.setPuntosDeVida(vidaNuevaDeAlgoformers);
+        algo2.setPuntosDeVida(vidaNuevaDeAlgoformers);
+        algo3.setPuntosDeVida(vidaNuevaDeAlgoformers);
+
+
+        tablero.ponerAlgoformer ( algo1, primeraC);
+        tablero.ponerAlgoformer ( algo2, segundaC);
+        tablero.ponerAlgoformer ( algo3, terceraC);
+
+
     }
 
 }

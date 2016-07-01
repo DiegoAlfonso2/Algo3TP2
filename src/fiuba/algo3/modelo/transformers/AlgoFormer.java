@@ -48,7 +48,9 @@ public abstract class AlgoFormer{
 		return modoActivo.getPtosDeAtaque();
 	}
 
-	public int getAtaqueModificado() {
+    public void setPuntosDeVida(int nuevaVida) { puntosDeVida = nuevaVida;}
+
+    public int getAtaqueModificado() {
 		return modificadores.modificarAtaque(getPtosDeAtaque());
 	}
 
