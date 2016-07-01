@@ -7,8 +7,8 @@ package fiuba.algo3.modelo.elementos;
 public class FlagFusion extends ModificadorAgotable {
 
 
-    private final static String NOMBRE = "Flash";
-    private final static int DURACION_TURNOS = 3;
+    private final static String NOMBRE = "FlagFusion";
+    private final static int DURACION_TURNOS = 2;
 
     public FlagFusion() {
         super(DURACION_TURNOS);
