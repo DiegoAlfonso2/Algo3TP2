@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class DividirTest {
 
-    @Test(expected = FusionInvalidaException.class)
+    @Test
     public void testCasillerosNoConsecutivos(){
 
     }

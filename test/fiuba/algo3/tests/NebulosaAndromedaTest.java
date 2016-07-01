@@ -163,14 +163,14 @@ public class NebulosaAndromedaTest {
 				
 		// Pasa el turno Decepticons.
 		partida.jugar(transformarBonecrusher);
-				
-		// Pasa el segundo turno Autobots (transformo a Optimus).
-		partida.jugar(new Transformar(new Coordenada(1,1)));
-				
-		// Pasa el turno Decepticons.
-		partida.jugar(transformarBonecrusher);				
-			
-		// No puedo utilizar a Ratchet.
+
+        // Pasa el segundo turno Autobots (transformo a Optimus).
+        partida.jugar(new Transformar(new Coordenada(1,1)));
+
+        // Pasa el turno Decepticons.
+        partida.jugar(transformarBonecrusher);
+
+        // No puedo utilizar a Ratchet.
 		transformarRatchet = new Transformar(ratchetFinal);
 		partida.jugar(transformarRatchet);		
 	}
