@@ -33,9 +33,5 @@ public class Burbuja extends ModificadorAgotable {
     public boolean algoformerDisponible() {
         return true;
     }
-    @Override
-    public boolean modificarFusionable() {
-        return false;
-    }
 
 }

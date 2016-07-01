@@ -1,6 +1,5 @@
 package fiuba.algo3.modelo.superficies;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import fiuba.algo3.modelo.EstadoVital;
@@ -11,8 +10,7 @@ public class NebulosaAndromeda extends Aire {
 
 	@Override
 	public Collection<Consecuencia> actuarSobreAlgoformer(AlgoFormer personaje, EstadoVital estado) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Consecuencia>();
+		return personaje.atravesarNebulosAndromeda(estado);
 	}
 	
 }

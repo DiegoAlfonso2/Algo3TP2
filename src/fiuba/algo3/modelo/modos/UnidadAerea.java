@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
+import fiuba.algo3.modelo.acciones.consecuencias.PenalizadorNebulosaAndromeda;
 import fiuba.algo3.modelo.acciones.consecuencias.PenalizadorTormentaPsionica;
 
 public abstract class UnidadAerea extends Modo {
@@ -26,7 +27,9 @@ public abstract class UnidadAerea extends Modo {
 
 	@Override
 	public Collection<Consecuencia> atravesarNebulosaAndromeda(EstadoVital estado) {
-		return Collections.emptyList();
+		Collection<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
+		consecuencias.add(new PenalizadorNebulosaAndromeda());
+		return consecuencias;
 	}
 
 	@Override

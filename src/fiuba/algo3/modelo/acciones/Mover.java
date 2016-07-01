@@ -8,10 +8,8 @@ import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
-import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
-import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
-import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
-import fiuba.algo3.modelo.excepciones.PosicionInvalidaException;
+import fiuba.algo3.modelo.excepciones.AlgoformerInactivoException;
+import fiuba.algo3.modelo.excepciones.*;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
 public class Mover implements Accion {
@@ -26,8 +24,7 @@ public class Mover implements Accion {
     // TODO Este metodo pide un refactor
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
     	if (movimiento == null || movimiento.size() < 2) {
-    		throw new MovimientoInvalidoException(
-    				"No estan indicados los casilleros que se van a atravesar");
+    		throw new MovimientoInvalidoException("No estan indicados los casilleros que se van a atravesar");
     	}
     	try {
 			Coordenada origen = movimiento.remove(0);
@@ -36,23 +33,23 @@ public class Mover implements Accion {
 			try {
 				personaje = tablero.algoFormerEnCasillero(origen);
 			} catch (CasilleroVacioException cve) {
-				throw new MovimientoInvalidoException(
-						"No hay un AlgoFormer en ese casillero");
+				throw new MovimientoInvalidoException("No hay un AlgoFormer en ese casillero");
 			}
 	    	if (!partida.puedeJugar(personaje)) {
 	    		throw new EquipoIncorrectoException();
+	    	}
+	    	if (!personaje.estaActivo()){
+	    		throw new AlgoformerInactivoException("Algoformer inactivo");
 	    	}
 			List<Consecuencia> consecuencias = new ArrayList<Consecuencia>();
 			EstadoVital estado = personaje.getEstadoVital();
 			Coordenada coordenadaAnterior = origen;
 			for (Coordenada coordenada : movimiento) {
 				if (!coordenadaAnterior.esConsecutiva(coordenada)) {
-					throw new MovimientoInvalidoException(
-							"No se puede saltar entre casilleros no contiguos");
+					throw new MovimientoInvalidoException("No se puede saltar entre casilleros no contiguos");
 				}
 				if (!estado.esValido()) {
-					throw new MovimientoInvalidoException(
-							"El movimiento excede la capacidad del AlgoFormer");
+					throw new MovimientoInvalidoException("El movimiento excede la capacidad del AlgoFormer");
 				}
 				consecuencias.addAll(tablero.atravesarCasillero(coordenada, personaje, estado));
 				coordenadaAnterior = coordenada;

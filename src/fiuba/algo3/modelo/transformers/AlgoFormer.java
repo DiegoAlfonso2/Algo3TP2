@@ -2,7 +2,6 @@ package fiuba.algo3.modelo.transformers;
 
 import java.util.Collection;
 
-import fiuba.algo3.modelo.Contenido;
 import fiuba.algo3.modelo.EstadoVital;
 import fiuba.algo3.modelo.JugadorAutobots;
 import fiuba.algo3.modelo.JugadorDecepticons;
@@ -10,6 +9,7 @@ import fiuba.algo3.modelo.acciones.consecuencias.Consecuencia;
 import fiuba.algo3.modelo.elementos.Bonus;
 import fiuba.algo3.modelo.elementos.ChispaSuprema;
 import fiuba.algo3.modelo.elementos.Modificadores;
+import fiuba.algo3.modelo.excepciones.AlgoformerInactivoException;
 import fiuba.algo3.modelo.modos.Modo;
 
 public abstract class AlgoFormer{
@@ -21,7 +21,6 @@ public abstract class AlgoFormer{
 	private Modo modoActivo;
 	private Modo modoInactivo;
     private boolean disponible;
-    private boolean fusionable;
     private boolean ganador;
 
 	protected AlgoFormer(String nombre, int puntosDeVida, Modo modoHumanoide, Modo modoAlterno) {
@@ -31,8 +30,6 @@ public abstract class AlgoFormer{
 		this.modoInactivo = modoAlterno;
 		this.modificadores = new Modificadores();
         this.disponible = true;
-        this.fusionable = false;
-
 	}
 
 	public String getNombre() {
@@ -104,6 +101,10 @@ public abstract class AlgoFormer{
 	public Collection<Consecuencia> atravesarTormentaPsionica(EstadoVital estado) {
 		return modoActivo.atravesarTormentaPsionica(estado);
 	}
+	
+	public Collection<Consecuencia> atravesarNebulosAndromeda(EstadoVital estado) {
+		return modoActivo.atravesarNebulosaAndromeda(estado);
+	}
 
 	public boolean tieneBonus(String bonus) {
 		return this.modificadores.tieneBonus(bonus);
@@ -116,6 +117,7 @@ public abstract class AlgoFormer{
 	public abstract void atacar(AlgoFormer objetivo, int distanciaAObjetivo);
 
 	protected abstract void recibirAtaque(Autobot atacante, int ataque);
+	
 	protected abstract void recibirAtaque(Decepticon atacante, int ataque);
 	
 	public void recibirDanio(int ataqueRecibido) {
@@ -123,30 +125,30 @@ public abstract class AlgoFormer{
 	}
 
 	public abstract boolean perteneceA(JugadorAutobots jugador);
+	
 	public abstract boolean perteneceA(JugadorDecepticons jugador);
 
 	public void terminarTurno() {
 		this.modificadores.descontarTurnos();
 		this.modificadores.activarBonus();
+        this.actualizarEstado ();
 	}
-    public void activarBonus() {
-        this.modificadores.activarBonus();
-    }
 
-    public void actualizarEstado(){
+    private void actualizarEstado(){
         disponible = this.modificadores.disponibilidad ();
-        fusionable = this.modificadores.fusionable ();
     }
 
-    public boolean esfusionable(){
-        return this.fusionable;
+    public boolean estaActivado() {
+    	return this.disponible;
     }
 
-    public boolean estaActivado() { return this.disponible; }
+	public boolean estaActivo() {
+		return this.disponible;
+	}
 
-
-    public void completoChispa() {
-    }
+	public int modificarDefensa(int ataque) {
+		return modificadores.modificarDefensa(ataque);
+	}
 
 }
 

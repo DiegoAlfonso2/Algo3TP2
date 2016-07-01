@@ -23,7 +23,7 @@ public abstract class Autobot extends AlgoFormer {
 
 	@Override
 	public void atacar(AlgoFormer objetivo, int distanciaAObjetivo) {
-		if (!ataquePosible(distanciaAObjetivo)) {
+        if (!ataquePosible(distanciaAObjetivo)) {
 			throw new AtaqueInvalidoException();
 		}
 		objetivo.recibirAtaque(this, getAtaqueModificado());
@@ -36,6 +36,6 @@ public abstract class Autobot extends AlgoFormer {
 
 	@Override
 	protected void recibirAtaque(Decepticon atacante, int ataque) {
-		recibirDanio(ataque);
+		recibirDanio(modificarDefensa(ataque));
 	}
 }

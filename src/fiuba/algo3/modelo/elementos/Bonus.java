@@ -22,8 +22,6 @@ public abstract class Bonus implements Contenido {
 
     public abstract boolean algoformerDisponible();
 
-    public abstract boolean modificarFusionable();
-
 	public void activar() {
 		activado = true;
 	}

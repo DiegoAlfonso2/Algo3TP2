@@ -61,11 +61,6 @@ public class Modificadores {
         return true;
     }
 
-    public boolean fusionable(){
-        for (Bonus unBonus: bonus)
-            if (unBonus.modificarFusionable ()) return true;
-        return false;
-    }
 
 	public void descontarTurnos() {
 		for (Bonus unBonus : bonus) {

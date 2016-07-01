@@ -13,7 +13,6 @@ import fiuba.algo3.modelo.JugadorDecepticons;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
 import fiuba.algo3.modelo.acciones.Mover;
-import fiuba.algo3.modelo.excepciones.CasilleroVacioException;
 import fiuba.algo3.modelo.excepciones.MovimientoInvalidoException;
 import fiuba.algo3.modelo.superficies.Pantano;
 import fiuba.algo3.modelo.transformers.AlgoFormer;

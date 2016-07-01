@@ -2,10 +2,7 @@ package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-import fiuba.algo3.modelo.transformers.AlgoFormer;
-import fiuba.algo3.modelo.transformers.Bonecrusher;
-import fiuba.algo3.modelo.transformers.Frenzy;
-import fiuba.algo3.modelo.transformers.Megatron;
+import fiuba.algo3.modelo.transformers.*;
 
 public class JugadorDecepticons extends Jugador {
 	
@@ -15,6 +12,7 @@ public class JugadorDecepticons extends Jugador {
 		this.equipo.add(new Megatron());
 		this.equipo.add(new Bonecrusher());
 		this.equipo.add(new Frenzy());
+        this.equipo.add(new Menasor(new Frenzy(),new Bonecrusher(),new Megatron()));
 	}
 
 	@Override

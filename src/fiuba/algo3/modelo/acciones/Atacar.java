@@ -3,6 +3,7 @@ package fiuba.algo3.modelo.acciones;
 import fiuba.algo3.modelo.Coordenada;
 import fiuba.algo3.modelo.Partida;
 import fiuba.algo3.modelo.Tablero;
+import fiuba.algo3.modelo.excepciones.AlgoformerInactivoException;
 import fiuba.algo3.modelo.excepciones.EquipoIncorrectoException;
 import fiuba.algo3.modelo.transformers.AlgoFormer;
 
@@ -19,6 +20,8 @@ public class Atacar implements Accion {
     @Override
 	public void ejecutarSobre(Partida partida, Tablero tablero) {
     	AlgoFormer atacante = tablero.algoFormerEnCasillero(coordAtacante);
+        if (!atacante.estaActivado ())
+        	throw new AlgoformerInactivoException ();
     	if (!partida.puedeJugar(atacante)){
     		throw new EquipoIncorrectoException();
     	}

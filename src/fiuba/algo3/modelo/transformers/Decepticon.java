@@ -31,7 +31,7 @@ public abstract class Decepticon extends AlgoFormer {
 	
 	@Override
 	protected void recibirAtaque(Autobot atacante, int ataque) {
-		recibirDanio(ataque);
+		recibirDanio(modificarDefensa(ataque));
 	}
 	
 	@Override
