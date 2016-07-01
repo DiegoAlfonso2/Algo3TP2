@@ -61,7 +61,7 @@ public class FusionTest {
 
     }
 
-    @Test(expected = FusionInvalidaException.class)
+    @Test
     public void testFusionNoCargandoFalgs(){
 
         Jugador jugador1 = new JugadorAutobots("Pepito");
@@ -72,8 +72,13 @@ public class FusionTest {
         partida.jugar (new Transformar (new Coordenada (1,1)));
         partida.jugar (new Transformar (new Coordenada (10,10)));
 
-        Fusionar fusion = new Fusionar (new Coordenada (1,1),new Coordenada (1,3),new Coordenada (3,3));
-        partida.jugar (fusion);
+
+        try{
+            Fusionar fusion = new Fusionar (new Coordenada (1,1),new Coordenada (1,3),new Coordenada (3,3));
+            partida.jugar (fusion);
+        } catch (FusionInvalidaException a){
+
+        }
 
         Assert.assertFalse (partida.obtenerAlgoformer (new Coordenada (1,1)).tieneBonus ("FlagFusion"));
 
@@ -97,11 +102,13 @@ public class FusionTest {
         Fusionar fusion = new Fusionar (new Coordenada (1, 1), new Coordenada (1, 3), new Coordenada (2, 2));
         partida.jugar (fusion);
 
+        partida.jugar (new Transformar (new Coordenada (10, 10)));
+
         Assert.assertTrue (partida.obtenerAlgoformer (new Coordenada (1, 1)).tieneBonus ("FlagFusion"));
 
     }
 
-/*    
+
     @Test(expected = AlgoformerInactivoException.class)
     public void testNoPuedeAtacarCuandoRecienFusiona(){
         Jugador jugador1 = new JugadorAutobots("Pepito");
@@ -117,6 +124,9 @@ public class FusionTest {
 
         Fusionar fusion = new Fusionar (new Coordenada (1,1),new Coordenada (1,3),new Coordenada (2,2));
 
+        partida.jugar (fusion);
+
+        movimientos.clear ();
         movimientos.add (new Coordenada (10,10));
         movimientos.add (new Coordenada (9,9));
         movimientos.add (new Coordenada (8,8));
@@ -135,5 +145,4 @@ public class FusionTest {
 
         partida.jugar (unAtaque);
     }
-*/
 }

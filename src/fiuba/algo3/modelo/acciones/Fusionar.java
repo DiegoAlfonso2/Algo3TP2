@@ -55,18 +55,14 @@ public class Fusionar implements Accion {
                 ) throw new EquipoIncorrectoException ("Los Algoformers tienen que ser del mismo equipo.");
 
 
-
-        if (partida.obtenerJugadorActivo().lePertenece(new Optimus ()))
-            megat = new Superion (algo1, algo2, algo3);
-        else
-            megat = new Menasor (algo1, algo2, algo3);
+        megat=partida.obtenerJugadorActivo ().obtenerAlgoformers ().get (3);
 
         tablero.sacarAlgoformer (algo1,primeraC);
         tablero.sacarAlgoformer (algo2,segundaC);
         tablero.sacarAlgoformer (algo3,terceraC);
 
+        new FlagFusion ().interactuarCon (megat);
         tablero.ponerAlgoformer (megat,primeraC);
-        tablero.algoFormerEnCasillero (primeraC).absorber (new FlagFusion ());
 
     }
 }
