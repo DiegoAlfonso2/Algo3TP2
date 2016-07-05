@@ -33,5 +33,6 @@ Las correcciones de errores van en ramas `bugfix/`, por ejemplo `bugfix/issue-2`
 ## Integrantes del Grupo:
 
 Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
+Garate, Julian (93043, jgarate89@gmail.com)
 Oderigo, Diego Alfonso (83969, diego.alfonso@gmail.com)
 Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
