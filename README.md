@@ -1,6 +1,16 @@
 # Algo3TP2
 TP final de Algoritmos y Programación 3 de FIUBA
 
+## Integrantes del Grupo:
+
+Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
+
+Garate, Julian (93043, jgarate89@gmail.com)
+
+Alfonso Oderigo, Diego (83969, diego.alfonso@gmail.com)
+
+Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
+
 ## Build Status
 
 Next: [![Build Status](https://travis-ci.org/DiegoAlfonso2/Algo3TP2.svg?branch=next)](https://travis-ci.org/DiegoAlfonso2/Algo3TP2)
@@ -30,9 +40,3 @@ Las nuevas funcionalidades van en ramas `dev/`, por ejemplo `dev/mapa-con-textur
 
 Las correcciones de errores van en ramas `bugfix/`, por ejemplo `bugfix/issue-2` o `bugfix/algoformer-fuera-de-rango-del-mapa`. Una vez que termina el desarrollo, la rama se mergea con next a traves de un PR y se borra.
 
-## Integrantes del Grupo:
-
-Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
-Garate, Julian (93043, jgarate89@gmail.com)
-Oderigo, Diego Alfonso (83969, diego.alfonso@gmail.com)
-Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
