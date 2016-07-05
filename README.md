@@ -30,3 +30,8 @@ Las nuevas funcionalidades van en ramas `dev/`, por ejemplo `dev/mapa-con-textur
 
 Las correcciones de errores van en ramas `bugfix/`, por ejemplo `bugfix/issue-2` o `bugfix/algoformer-fuera-de-rango-del-mapa`. Una vez que termina el desarrollo, la rama se mergea con next a traves de un PR y se borra.
 
+## Integrantes del Grupo:
+
+Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
+Oderigo, Diego Alfonso (83969, diego.alfonso@gmail.com)
+Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
