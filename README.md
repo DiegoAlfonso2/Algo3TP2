@@ -1,6 +1,16 @@
 # Algo3TP2
 TP final de Algoritmos y Programación 3 de FIUBA
 
+## Integrantes del Grupo:
+
+Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
+
+Garate, Julian (93043, jgarate89@gmail.com)
+
+Alfonso Oderigo, Diego (83969, diego.alfonso@gmail.com)
+
+Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
+
 ## Build Status
 
 Next: [![Build Status](https://travis-ci.org/DiegoAlfonso2/Algo3TP2.svg?branch=next)](https://travis-ci.org/DiegoAlfonso2/Algo3TP2)
