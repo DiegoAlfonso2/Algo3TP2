@@ -7,7 +7,7 @@ Cabrera, Agustín (92512, agustin.cabrera@hotmail.com)
 
 Garate, Julian (93043, jgarate89@gmail.com)
 
-Alfonso Oderigo, Diego (83969, diego.alfonso@gmail.com)
+Alfonso Oderigo, Diego (83969, diego.alfonso2@gmail.com)
 
 Raña, Cristian Ezequiel (95457, cristian.rana@hotmail.com)
 
